@@ -24,7 +24,7 @@ Pandemic Manager is a tool to assist university during the pandemic. It is an ap
 
 * Library and Sports Center will use an appointment system which allows limited number of students at a time.
 
-* There will be a live counter on student services so that administration make arrangements. 
+* There will be a live counter on student bus services so that administration make arrangements. 
 
 * Send notifications to cheer up people at the university during the pandemic ( i.e motivational quotes)
 
