@@ -10,8 +10,7 @@ Pandemic Manager is a tool to assist university during the pandemic. It is an ap
 <br>  
 **Project Functions:**
 
-* If one student tests positive, app will notify the instructor to not let the student in the lecture. It will also notify
-the students in the same section to get tested for covid because of contact.
+* If one student tests positive, app will notify the instructor to not let the student in the lecture. The student will be asked to report other students that he has contacted recently. The reported students and the students in the same section with the covid positive student will be notified and need to get tested before entering the lectures.
 
 * If the instructor tests positive for covid it will notify students, who attended the class from the last 3 days, to get a test. 
 
@@ -22,6 +21,15 @@ the students in the same section to get tested for covid because of contact.
 * If a student is not vaccinated, it will keep track of his covid test intervals and remaining time until next test
 
 * Advice professors to make the lectures hybrid/online according to the percentage of covid-negative students in the section.
+
+* Library and Sports Center will use an appointment system which allows limited number of students at a time.
+
+* There will be a live counter on student services so that administration make arrangements. 
+
+* Send notifications to cheer up people at the university during the pandemic ( i.e motivational quotes)
+
+* Distribute smoking students to different areas evenly, alert each student in the smoking area if one of the students from the same area is risky.
+
 
 **Roles:**
 1. Admin
@@ -35,7 +43,4 @@ the students in the same section to get tested for covid because of contact.
 4. Yagmur Eryilmaz
 5. Suleyman Hanyyev
 
-## Potential Functions ( all crazy ideas here) :
-1. Send notifications to cheer up people at the university during the pandemic ( i.e motivational quotes)
-2. Regulations to cafeterias
-3. Regulations to Smoking Area
+
