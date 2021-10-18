@@ -39,6 +39,8 @@ vaka
 1. Admin
 2. Student
 3. Instructor / Teacher Assistant
+4. Library Staff
+5. Sports Center Staff
 
 ## Group Members (Group3I):
 1. Doruk Kantarcioglu
