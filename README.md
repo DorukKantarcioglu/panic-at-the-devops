@@ -22,13 +22,17 @@ Pandemic Manager is a tool to assist university during the pandemic. It is an ap
 
 * Advice professors to make the lectures hybrid/online according to the percentage of covid-negative students in the section.
 
-* Library and Sports Center will use an appointment system which allows limited number of students at a time.
+* Sports Center will use an appointment system which allows limited number of students at a time.
+vaka
+* An appointment system will be used to reserve study rooms in library to track covid contact and also prevent excessive crowding.  
 
-* There will be a live counter on student bus services so that administration make arrangements. 
+* Students can notify the app about the cafeteria they are currently eating and other students can see the live count of each noshery . 
 
 * Send notifications to cheer up people at the university during the pandemic ( i.e motivational quotes)
 
 * Distribute smoking students to different areas evenly, alert each student in the smoking area if one of the students from the same area is risky.
+
+* Keep track of the live count of covid positives and quarantine people.
 
 
 **Roles:**
