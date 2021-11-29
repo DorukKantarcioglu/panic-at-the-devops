@@ -24,14 +24,19 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findAll());
     }
 
+    @GetMapping("id/{id}")
+    public ResponseEntity<Student> getStudent(@RequestParam Long id) {
+        return ResponseEntity.ok(studentService.findById(id));
+    }
+
     @GetMapping("hesCode/{hesCode}")
     public ResponseEntity<Student> getStudentByHesCode(@PathVariable String hesCode) {
         return ResponseEntity.ok(studentService.findByHesCode(hesCode));
     }
 
-    @GetMapping("id/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-        return ResponseEntity.ok(studentService.findById(id));
+    @PostMapping("hesCode/{hesCode}")
+    public ResponseEntity<String> validateHesCode(@PathVariable String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eDevletPassword) {
+        return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eDevletPassword));
     }
 
     @PostMapping
