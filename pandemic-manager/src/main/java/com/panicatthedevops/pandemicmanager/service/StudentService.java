@@ -1,6 +1,7 @@
 package com.panicatthedevops.pandemicmanager.service;
 
 import com.panicatthedevops.pandemicmanager.entity.Student;
+import com.panicatthedevops.pandemicmanager.exception.HesCodeAlreadyExistsException;
 import com.panicatthedevops.pandemicmanager.exception.StudentAlreadyExistsException;
 import com.panicatthedevops.pandemicmanager.exception.StudentNotFoundException;
 import com.panicatthedevops.pandemicmanager.repository.StudentRepository;
@@ -50,6 +51,9 @@ public class StudentService {
 
     public Student updateHesCode(Long id, String hesCode) {
         if (studentRepository.existsById(id)) {
+            if (studentRepository.existsByHesCode(hesCode)) {
+                throw new HesCodeAlreadyExistsException("HES code " + hesCode + " belongs to another student.");
+            }
             Student student = studentRepository.getById(id);
             student.setHesCode(hesCode);
             return studentRepository.save(student);
