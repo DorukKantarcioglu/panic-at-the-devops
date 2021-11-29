@@ -24,18 +24,18 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findAll());
     }
 
-    @GetMapping("id/{id}")
-    public ResponseEntity<Student> getStudent(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.findById(id));
     }
 
-    @GetMapping("hesCode/{hesCode}")
-    public ResponseEntity<Student> getStudentByHesCode(@PathVariable String hesCode) {
+    @GetMapping(headers = "hesCode")
+    public ResponseEntity<Student> getStudentByHesCode(@RequestHeader String hesCode) {
         return ResponseEntity.ok(studentService.findByHesCode(hesCode));
     }
 
-    @PostMapping("hesCode/{hesCode}")
-    public ResponseEntity<String> validateHesCode(@PathVariable String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eDevletPassword) {
+    @PostMapping(headers = {"hesCode", "trIdNumber", "eDevletPassword"})
+    public ResponseEntity<String> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eDevletPassword) {
         return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eDevletPassword));
     }
 
@@ -45,7 +45,7 @@ public class StudentController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Student> updateHesCode(@PathVariable Long id, @RequestParam String hesCode) {
+    public ResponseEntity<Student> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
         return ResponseEntity.ok(studentService.updateHesCode(id, hesCode));
     }
 
