@@ -1,12 +1,10 @@
 package com.panicatthedevops.pandemicmanager.service;
 
 import com.panicatthedevops.pandemicmanager.entity.Student;
-import com.panicatthedevops.pandemicmanager.exception.HesCodeAlreadyExistsException;
-import com.panicatthedevops.pandemicmanager.exception.HesCodeNotValidException;
-import com.panicatthedevops.pandemicmanager.exception.StudentAlreadyExistsException;
-import com.panicatthedevops.pandemicmanager.exception.StudentNotFoundException;
+import com.panicatthedevops.pandemicmanager.exception.*;
 import com.panicatthedevops.pandemicmanager.repository.StudentRepository;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -81,7 +79,12 @@ public class StudentService {
         driver.findElement(By.id("egpField")).sendKeys(eGovernmentPassword);
         driver.findElement(By.name("submitButton")).click();
         driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama");
-        driver.findElement(By.id("hes_kodu")).sendKeys(hesCode);
+        try {
+            driver.findElement(By.id("hes_kodu")).sendKeys(hesCode);
+        }
+        catch (NoSuchElementException e) {
+            throw new EGovernmentAuthenticationFailedException("Credentials for E-Government authentication are wrong.");
+        }
         driver.findElement(By.className("actionButton")).click();
         driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama?sonuc=Goster");
         List<WebElement> webElements = driver.findElements(By.xpath("//dl"));
