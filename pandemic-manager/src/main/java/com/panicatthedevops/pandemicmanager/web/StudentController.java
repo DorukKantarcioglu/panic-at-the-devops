@@ -34,9 +34,9 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findByHesCode(hesCode));
     }
 
-    @PostMapping(headers = {"hesCode", "trIdNumber", "eDevletPassword"})
-    public ResponseEntity<String> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eDevletPassword) {
-        return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eDevletPassword));
+    @PostMapping(headers = {"hesCode", "trIdNumber", "eGovernmentPassword"})
+    public ResponseEntity<String> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
+        return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eGovernmentPassword));
     }
 
     @PostMapping

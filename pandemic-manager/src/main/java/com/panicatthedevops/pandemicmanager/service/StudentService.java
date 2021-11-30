@@ -2,11 +2,13 @@ package com.panicatthedevops.pandemicmanager.service;
 
 import com.panicatthedevops.pandemicmanager.entity.Student;
 import com.panicatthedevops.pandemicmanager.exception.HesCodeAlreadyExistsException;
+import com.panicatthedevops.pandemicmanager.exception.HesCodeNotValidException;
 import com.panicatthedevops.pandemicmanager.exception.StudentAlreadyExistsException;
 import com.panicatthedevops.pandemicmanager.exception.StudentNotFoundException;
 import com.panicatthedevops.pandemicmanager.repository.StudentRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,16 +74,20 @@ public class StudentService {
         }
     }
 
-    public String validateHesCode(String hesCode, String trIdNumber, String eDevletPassword) {
+    public String validateHesCode(String hesCode, String trIdNumber, String eGovernmentPassword) {
         WebDriver driver = new HtmlUnitDriver();
         driver.get("https://giris.turkiye.gov.tr/Giris/gir");
         driver.findElement(By.id("tridField")).sendKeys(trIdNumber);
-        driver.findElement(By.id("egpField")).sendKeys(eDevletPassword);
+        driver.findElement(By.id("egpField")).sendKeys(eGovernmentPassword);
         driver.findElement(By.name("submitButton")).click();
         driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama");
         driver.findElement(By.id("hes_kodu")).sendKeys(hesCode);
         driver.findElement(By.className("actionButton")).click();
         driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama?sonuc=Goster");
-        return driver.findElements(By.xpath("//dl")).iterator().next().getText();
+        List<WebElement> webElements = driver.findElements(By.xpath("//dl"));
+        if (webElements.isEmpty()) {
+            throw new HesCodeNotValidException("HES code " + hesCode + " is not valid.");
+        }
+        return webElements.iterator().next().getText();
     }
 }
