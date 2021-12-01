@@ -21,7 +21,7 @@ public class Student {
     private String name;
     private String email;
     private String hesCode;
-    private boolean isAllowedOnCampus;
-    private boolean isVaccinated;
-    private boolean isTested;
+    private boolean allowedOnCampus;
+    private boolean vaccinated;
+    private boolean tested;
 }
