@@ -1,6 +1,9 @@
 import StudentService from "../service/StudentService";
 import StudentList from "./components/StudentList";
 import {useEffect, useState} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 const CoursePage =()=>
 {
@@ -17,7 +20,20 @@ const CoursePage =()=>
     },[])
 
     return(
-        <StudentList data = {data}/>
+        <div>
+            <StudentList data = {data}/>
+            hello
+
+         <i
+                className="fas fa-arrow-right"
+                style={{ fontSize: "20pt", color: "#29377e" }}
+              ></i>
+
+
+    
+            <FontAwesomeIcon icon="check-square"> yağmur </FontAwesomeIcon>
+              hello
+        </div>
     )
 
 }

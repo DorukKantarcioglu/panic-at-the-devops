@@ -4,8 +4,12 @@ import ReservationCheck from "./app/components/reservationCheckForm";
 import InfoBox from "./app/components/InfoBox";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Layout} from "antd";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/react-fontawesome';
+import '@fortawesome/free-solid-svg-icons';
 import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
+import Dashboard from './app/Dashboard';
 const {Header, Content} = Layout;
 
 function App() {
@@ -26,7 +30,7 @@ function App() {
 
                       <Switch>
                           <Route path="/home">
-                              <CoursePage/>
+                              <Dashboard/>
                           </Route>
                           <Route path="/appointment">
                               <CoursePage/>

@@ -1,6 +1,9 @@
 import React from 'react';
-import CovidStatisticsBox from './components/CovidStatisticsBox';
- 
+import CovidInfoBox from './components/CovidInfoBox';
+import FormInput from './components/FormInput';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+    
 function Dashboard(props) {
  
   // handle click event of logout button
@@ -10,21 +13,25 @@ function Dashboard(props) {
  
   return (
     <React.Fragment>
-      <div className="d-flex flex-row justify-content-around mb-5 ">    
-
-        <CovidStatisticsBox
+      <div className="d-flex flex-row justify-content-around mb-5 ">
+      
+        <CovidInfoBox
+           
+          background-color = "coral"
           key="1"
           name={" Live Count"}
           value={2000}
           icon="fas fa-users"
         />
-        <CovidStatisticsBox
+
+        <FormInput></FormInput>
+        <CovidInfoBox
           key="2"
           name={"New Cases In This Week"}
           value={1200}
           icon="fas fa-clipboard-check"
         />
-        <CovidStatisticsBox
+        <CovidInfoBox
           key="3"
           name={"Total Count"}
           value={2300}

@@ -31,6 +31,6 @@ li.menu a:hover:not(.active) {
 }
 
 .active {
-    background-color: rgb(163, 150, 245);
+    background-color: rgb(158, 245, 150);
 }
 
