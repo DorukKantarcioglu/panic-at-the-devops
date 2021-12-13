@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./css/LoginFormStyle.css";
+import "../css/LoginFormStyle.css";
 import StudentService from "../../service/StudentService";
 
 

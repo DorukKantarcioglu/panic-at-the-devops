@@ -1,6 +1,6 @@
 import * as ReactDOM from "react-dom";
-import InfoBox from "./app/components/InfoBox";
-import "./css/TableStyle.css";
+import "../css/TableStyle.css";
+import InfoBox from "./InfoBox";
 
 
 const StudentList=(props)=>

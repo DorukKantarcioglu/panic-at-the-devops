@@ -1,8 +1,9 @@
-import "./css/SidebarStyle.css"
+import "../css/SidebarStyle.css"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import InfoBox from "./InfoBox";
 import React from "react";
-import CoursePage from "./app/CoursePage";
+import CoursePage from "../CoursePage";
+
 
 
 
