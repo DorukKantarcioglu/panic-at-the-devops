@@ -1,24 +1,62 @@
-import logo from './logo.svg';
 import './App.css';
+import MyProfile from "./ProfilePage";
+import ProfilePage from "./ProfilePage";
+import ReservationCheck from "./reservationCheck";
+import InfoBox from "./InfoBox";
+
+
+import StudentInfoBox from "./StudentInfoBox";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Layout, Menu, Breadcrumb} from "antd";
+import MenuTab from "./MenuTab";
+import StudentService from "./StudentService";
+import {useEffect, useState} from "react";
+import StudentList from "./StudentList";
+import CoursePage from "./CoursePage";
+import NewSeatingPlanForm from "./NewSeatingPlanForm";
+const {Header, Content, Footer} = Layout;
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <>
+          <div>
+              <Router>
+                  <Header>
+                      <div>
+                          <MenuTab  />
+                      </div>
+                  </Header>
+                  <Content className="site-layout"
+                           style={{padding: "0 5 px", marginTop: 40}}>
+
+                      <Switch>
+                          <Route path="/home">
+                              <CoursePage/>
+                          </Route>
+                          <Route path="/appointment">
+                              <CoursePage/>
+                          </Route>
+                          <Route path="/profile">
+                              <ProfilePage/>
+                          </Route>
+                          <Route path= "/campusmap">
+                              <ReservationCheck/>
+                          </Route>
+                          <Route path= "/logout">
+                              <InfoBox id = {21903224}/>
+                          </Route>
+                          <Route path="/addUser" >
+                              <InfoBox id = {21903224}/>
+                          </Route>
+                      </Switch>
+
+                  </Content>
+              </Router>
+          </div>
+      </>
   );
 }
 
