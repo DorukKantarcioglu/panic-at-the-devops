@@ -1,20 +1,12 @@
 import './App.css';
-import MyProfile from "./ProfilePage";
-import ProfilePage from "./ProfilePage";
-import ReservationCheck from "./reservationCheck";
-import InfoBox from "./InfoBox";
-
-
-import StudentInfoBox from "./StudentInfoBox";
+import ProfilePage from "./app/ProfilePage";
+import ReservationCheck from "./app/components/reservationCheckForm";
+import InfoBox from "./app/components/InfoBox";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Layout, Menu, Breadcrumb} from "antd";
-import MenuTab from "./MenuTab";
-import StudentService from "./StudentService";
-import {useEffect, useState} from "react";
-import StudentList from "./StudentList";
-import CoursePage from "./CoursePage";
-import NewSeatingPlanForm from "./NewSeatingPlanForm";
-const {Header, Content, Footer} = Layout;
+import {Layout} from "antd";
+import MenuTab from "./app/components/MenuTab";
+import CoursePage from "./app/CoursePage";
+const {Header, Content} = Layout;
 
 function App() {
 

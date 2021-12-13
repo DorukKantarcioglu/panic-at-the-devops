@@ -1,5 +1,5 @@
-import StudentService from "./StudentService";
-import StudentList from "./StudentList";
+import StudentService from "../service/StudentService";
+import StudentList from "./components/StudentList";
 import {useEffect, useState} from "react";
 
 const CoursePage =()=>

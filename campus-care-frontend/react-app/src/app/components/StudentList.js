@@ -1,8 +1,7 @@
 import * as ReactDOM from "react-dom";
-import {useNavigate} from "react-router";
-import InfoBox from "./InfoBox";
-import "./TableStyle.css";
-import {Redirect, Route} from "react-router-dom";
+import InfoBox from "./app/components/InfoBox";
+import "./css/TableStyle.css";
+
 
 const StudentList=(props)=>
 {

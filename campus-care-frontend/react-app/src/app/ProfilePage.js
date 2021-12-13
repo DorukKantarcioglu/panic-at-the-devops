@@ -1,9 +1,6 @@
 import React from "react";
-import InfoBox from "./InfoBox";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
-import StudentList from "./StudentList";
-import SideBar from "./SideBar";
-import CoursePage from "./CoursePage";
+import SideBar from "./components/SideBar";
 
 class MyProfile extends React.Component {
 

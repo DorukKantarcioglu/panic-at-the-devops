@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import "./LoginFormStyle.css";
-import StudentService from "./StudentService";
+import "./css/LoginFormStyle.css";
+import StudentService from "../../service/StudentService";
 
 
 const ReservationCheck =()=>

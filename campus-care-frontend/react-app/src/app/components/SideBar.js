@@ -1,9 +1,9 @@
-import "./SidebarStyle.css"
+import "./css/SidebarStyle.css"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import StudentList from "./StudentList";
 import InfoBox from "./InfoBox";
 import React from "react";
-import CoursePage from "./CoursePage";
+import CoursePage from "./app/CoursePage";
+
 
 
 const SideBar=(props)=>
