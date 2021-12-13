@@ -3,7 +3,7 @@ import ProfilePage from "./app/ProfilePage";
 import ReservationCheck from "./app/components/reservationCheckForm";
 import InfoBox from "./app/components/InfoBox";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-//import {Layout} from "antd";
+import {Layout} from "antd";
 import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
 const {Header, Content} = Layout;
