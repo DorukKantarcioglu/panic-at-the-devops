@@ -1,6 +1,5 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
-import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +45,14 @@ public class InstructorController {
         return ResponseEntity.ok(instructorService.updateHesCode(id, hesCode));
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Instructor> addCourse(@PathVariable Long id, @RequestBody Course course) {
-        return ResponseEntity.ok(instructorService.addCourse(id, course));
+    @PatchMapping(path = "/{id}", headers = "courseCode")
+    public ResponseEntity<Instructor> addCourse(@PathVariable Long id, @RequestHeader String courseCode) {
+        return ResponseEntity.ok(instructorService.addCourse(id, courseCode));
+    }
+
+    @DeleteMapping(path = "/{id}", headers = "courseCode")
+    public ResponseEntity<Instructor> removeCourse(@PathVariable Long id, @RequestHeader String courseCode) {
+        return ResponseEntity.ok(instructorService.removeCourse(id, courseCode));
     }
 
     @DeleteMapping("/{id}")
