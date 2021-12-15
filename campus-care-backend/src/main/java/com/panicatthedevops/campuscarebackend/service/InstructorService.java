@@ -29,7 +29,7 @@ public class InstructorService {
 
     public Instructor findById(Long id) {
         return instructorRepository.findById(id).orElseThrow(()
-        -> new InstructorNotFoundException("Instructor with id " + id + " does not exist."));
+                -> new InstructorNotFoundException("Instructor with id " + id + " does not exist."));
     }
 
     public Instructor findByHesCode(String hesCode) {
@@ -54,7 +54,7 @@ public class InstructorService {
         if (instructorRepository.existsById(id)) {
             Instructor instructor = instructorRepository.getById(id);
             if (courseRepository.existsByCourseCode(courseCode)) {
-                instructor.getCoursesGiven().add(courseRepository.findByCourseCode(courseCode).iterator().next());
+                instructor.addCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return instructorRepository.save(instructor);
             }
             else {
@@ -70,7 +70,7 @@ public class InstructorService {
         if (instructorRepository.existsById(id)) {
             Instructor instructor = instructorRepository.getById(id);
             if (courseRepository.existsByCourseCode(courseCode)) {
-                instructor.getCoursesGiven().remove(courseRepository.findByCourseCode(courseCode).iterator().next());
+                instructor.removeCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return instructorRepository.save(instructor);
             }
             else {

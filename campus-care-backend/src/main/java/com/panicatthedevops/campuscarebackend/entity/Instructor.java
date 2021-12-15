@@ -1,16 +1,15 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "instructor")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,6 +20,17 @@ public class Instructor {
     private String email;
     private String hesCode;
 
-    @OneToMany(targetEntity = Course.class)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("instructor")
     private Set<Course> coursesGiven;
+
+    public void addCourse(Course course) {
+        coursesGiven.add(course);
+        course.setInstructor(this);
+    }
+
+    public void removeCourse(Course course) {
+        coursesGiven.remove(course);
+        course.setInstructor(null);
+    }
 }

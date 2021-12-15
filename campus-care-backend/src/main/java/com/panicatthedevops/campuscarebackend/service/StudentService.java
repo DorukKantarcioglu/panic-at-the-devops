@@ -2,6 +2,7 @@ package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.*;
+import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -16,10 +17,12 @@ import java.util.List;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository) {
         this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
     }
 
     public List<Student> findAll() {
@@ -57,6 +60,38 @@ public class StudentService {
             Student student = studentRepository.getById(id);
             student.setHesCode(hesCode);
             return studentRepository.save(student);
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student addCourse(Long id, String courseCode) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.getById(id);
+            if (courseRepository.existsByCourseCode(courseCode)) {
+                student.addCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
+                return studentRepository.save(student);
+            }
+            else {
+                throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student removeCourse(Long id, String courseCode) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.getById(id);
+            if (courseRepository.existsByCourseCode(courseCode)) {
+                student.removeCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
+                return studentRepository.save(student);
+            }
+            else {
+                throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+            }
         }
         else {
             throw new StudentNotFoundException("Student with id " + id + " does not exist.");

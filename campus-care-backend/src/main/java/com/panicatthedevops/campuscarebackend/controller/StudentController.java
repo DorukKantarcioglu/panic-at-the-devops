@@ -45,9 +45,19 @@ public class StudentController {
         return new ResponseEntity<>(studentService.save(student), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping(path = "/{id}", headers = "hesCode")
     public ResponseEntity<Student> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
         return ResponseEntity.ok(studentService.updateHesCode(id, hesCode));
+    }
+
+    @PatchMapping(path = "/{id}", headers = "courseCode")
+    public ResponseEntity<Student> addCourse(@PathVariable Long id, @RequestHeader String courseCode) {
+        return ResponseEntity.ok(studentService.addCourse(id, courseCode));
+    }
+
+    @DeleteMapping(path = "/{id}", headers = "courseCode")
+    public ResponseEntity<Student> removeCourse(@PathVariable Long id, @RequestHeader String courseCode) {
+        return ResponseEntity.ok(studentService.removeCourse(id, courseCode));
     }
 
     @DeleteMapping("/{id}")

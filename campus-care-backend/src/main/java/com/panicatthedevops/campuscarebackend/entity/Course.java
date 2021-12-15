@@ -1,15 +1,15 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "course")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,4 +18,13 @@ public class Course {
     private String courseCode;
     private String courseName;
     private int capacity;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "instructor_id")
+    @JsonIgnoreProperties("coursesGiven")
+    private Instructor instructor;
+
+    @ManyToMany(mappedBy = "coursesTaken")
+    @JsonIgnoreProperties("coursesTaken")
+    List<Student> studentList;
 }
