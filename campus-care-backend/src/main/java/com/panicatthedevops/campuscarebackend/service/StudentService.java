@@ -57,7 +57,7 @@ public class StudentService {
             if (studentRepository.existsByHesCode(hesCode)) {
                 throw new HesCodeAlreadyExistsException("HES code " + hesCode + " belongs to another student.");
             }
-            Student student = studentRepository.getById(id);
+            Student student = studentRepository.findById(id).get();
             student.setHesCode(hesCode);
             return studentRepository.save(student);
         }
@@ -68,7 +68,7 @@ public class StudentService {
 
     public Student addCourse(Long id, String courseCode) {
         if (studentRepository.existsById(id)) {
-            Student student = studentRepository.getById(id);
+            Student student = studentRepository.findById(id).get();
             if (courseRepository.existsByCourseCode(courseCode)) {
                 student.addCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return studentRepository.save(student);
@@ -84,7 +84,7 @@ public class StudentService {
 
     public Student removeCourse(Long id, String courseCode) {
         if (studentRepository.existsById(id)) {
-            Student student = studentRepository.getById(id);
+            Student student = studentRepository.findById(id).get();
             if (courseRepository.existsByCourseCode(courseCode)) {
                 student.removeCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return studentRepository.save(student);

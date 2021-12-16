@@ -1,6 +1,7 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
+import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,11 +41,6 @@ public class InstructorController {
         return new ResponseEntity<>(instructorService.save(instructor), HttpStatus.CREATED);
     }
 
-    @PatchMapping(path = "/{id}", headers = "hesCode")
-    public ResponseEntity<Instructor> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
-        return ResponseEntity.ok(instructorService.updateHesCode(id, hesCode));
-    }
-
     @PatchMapping(path = "/{id}", headers = "courseCode")
     public ResponseEntity<Instructor> addCourse(@PathVariable Long id, @RequestHeader String courseCode) {
         return ResponseEntity.ok(instructorService.addCourse(id, courseCode));
@@ -53,6 +49,16 @@ public class InstructorController {
     @DeleteMapping(path = "/{id}", headers = "courseCode")
     public ResponseEntity<Instructor> removeCourse(@PathVariable Long id, @RequestHeader String courseCode) {
         return ResponseEntity.ok(instructorService.removeCourse(id, courseCode));
+    }
+
+    @GetMapping(path = "/{id}", headers = "courseCode")
+    public ResponseEntity<List<Student>> getNotAllowedStudents(@PathVariable Long id, @RequestHeader String courseCode) {
+        return ResponseEntity.ok(instructorService.findNotAllowedStudents(id, courseCode));
+    }
+
+    @PatchMapping(path = "/{id}", headers = "hesCode")
+    public ResponseEntity<Instructor> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
+        return ResponseEntity.ok(instructorService.updateHesCode(id, hesCode));
     }
 
     @DeleteMapping("/{id}")

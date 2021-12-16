@@ -1,6 +1,8 @@
 package com.panicatthedevops.campuscarebackend.service;
 
+import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
+import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
 import com.panicatthedevops.campuscarebackend.exception.HesCodeAlreadyExistsException;
 import com.panicatthedevops.campuscarebackend.exception.InstructorAlreadyExistsException;
@@ -10,6 +12,7 @@ import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,7 +55,7 @@ public class InstructorService {
 
     public Instructor addCourse(Long id, String courseCode) {
         if (instructorRepository.existsById(id)) {
-            Instructor instructor = instructorRepository.getById(id);
+            Instructor instructor = instructorRepository.findById(id).get();
             if (courseRepository.existsByCourseCode(courseCode)) {
                 instructor.addCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return instructorRepository.save(instructor);
@@ -68,7 +71,7 @@ public class InstructorService {
 
     public Instructor removeCourse(Long id, String courseCode) {
         if (instructorRepository.existsById(id)) {
-            Instructor instructor = instructorRepository.getById(id);
+            Instructor instructor = instructorRepository.findById(id).get();
             if (courseRepository.existsByCourseCode(courseCode)) {
                 instructor.removeCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return instructorRepository.save(instructor);
@@ -82,12 +85,33 @@ public class InstructorService {
         }
     }
 
+    public List<Student> findNotAllowedStudents(Long id, String courseCode) {
+        if (instructorRepository.existsById(id)) {
+            Instructor instructor = instructorRepository.findById(id).get();
+            for (Course course : instructor.getCoursesGiven()) {
+                if (course.getCourseCode().equals(courseCode)) {
+                    List<Student> students = new ArrayList<>();
+                    for (Student student : course.getStudentList()) {
+                        if (!student.isAllowedOnCampus()) {
+                            students.add(student);
+                        }
+                    }
+                    return students;
+                }
+            }
+            throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+        }
+        else {
+            throw new InstructorNotFoundException("Instructor with id " + id + " does not exist.");
+        }
+    }
+
     public Instructor updateHesCode(Long id, String hesCode) {
         if (instructorRepository.existsById(id)) {
             if (instructorRepository.existsByHesCode(hesCode)) {
                 throw new HesCodeAlreadyExistsException("HES code " + hesCode + " belongs to another instructor.");
             }
-            Instructor instructor = instructorRepository.getById(id);
+            Instructor instructor = instructorRepository.findById(id).get();
             instructor.setHesCode(hesCode);
             return instructorRepository.save(instructor);
         }
