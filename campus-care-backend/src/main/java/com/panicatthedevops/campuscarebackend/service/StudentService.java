@@ -70,6 +70,10 @@ public class StudentService {
         if (studentRepository.existsById(id)) {
             Student student = studentRepository.findById(id).get();
             if (courseRepository.existsByCourseCode(courseCode)) {
+                if (student.getCoursesTaken().contains(courseRepository.findByCourseCode(courseCode).iterator().next())) {
+                    throw new StudentAlreadyEnrolledToTheCourseException(
+                            "Student with id" + id + "is already enrolled to the course with code " + courseCode + ".");
+                }
                 student.addCourse(courseRepository.findByCourseCode(courseCode).iterator().next());
                 return studentRepository.save(student);
             }
