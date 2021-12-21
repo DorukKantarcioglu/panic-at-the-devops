@@ -2,9 +2,11 @@ package com.panicatthedevops.campuscarebackend;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
+import com.panicatthedevops.campuscarebackend.entity.Staff;
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
+import com.panicatthedevops.campuscarebackend.repository.StaffRepository;
 import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,25 +23,24 @@ public class CampusCareBackendApplication {
 
     @Bean
     public CommandLineRunner lineRunner(
-            StudentRepository studentRepository, InstructorRepository instructorRepository, CourseRepository courseRepository) {
+            StudentRepository studentRepository, InstructorRepository instructorRepository, CourseRepository courseRepository, StaffRepository staffRepository) {
         return args -> {
             studentRepository.saveAll(Arrays.asList(
-                    new Student(1L, "Doruk", "doruk@campuscare.com", "DORUK-HES-CODE", true, true, false, null),
-                    new Student(2L, "Yagmur", "yagmur@campuscare.com", "YAGMUR-HES-CODE", true, false, true, null),
-                    new Student(3L, "Oguz", "oguz@campuscare.com", "OGUZ-HES-CODE", false, true, false, null),
-                    new Student(4L, "Elif", "elif@campuscare.com", "ELIF-HES-CODE", true, true, false, null),
-                    new Student(5L, "Suleyman", "suleyman@campuscare.com", "SULO-HES-CODE", true, true, true, null)
+                    new Student(1L, "Doruk", "password", "doruk@campuscare.com", "DORUK-HES-CODE", "num", true, true, false, null, null, null)
             ));
             instructorRepository.saveAll(Arrays.asList(
-                    new Instructor(1L, "Eray Tuzun", "tuzun@campuscare.com", "TUZUN-HES-CODE", null),
-                    new Instructor(2L, "Karani Kardas", "kardas@campuscare.com", "KARDAS-HES-CODE", null),
-                    new Instructor(3L, "Dilek Koksal", "koksal@campuscare.com", "KOKSAL-HES-CODE", null)
+                    new Instructor(2L, "Eray Tuzun", "passwrd", "tuzun@campuscare.com", "TUZUN-HES-CODE", "+90", true, true, false , null, null, null)
             ));
             courseRepository.saveAll(Arrays.asList(
-                    new Course("CS-319", "Object-Oriented Software Engineering", 50, instructorRepository.findById(1L).get(), null),
-                    new Course("CS-315", "Programming Languages", 50, instructorRepository.findById(2L).get(), null),
-                    new Course("MATH-230", "Probability and Statistics for Engineers", 25, instructorRepository.findById(3L).get(), null)
+                    new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(2L).get(), null),
+                    new Course("CS-315-1", "Programming Languages",1, 50, null, null),
+                    new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, null, null)
+            ));
+
+            staffRepository.saveAll(Arrays.asList(
+                    new Staff(4L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", true, true, false, null, null)
             ));
         };
     }
+
 }

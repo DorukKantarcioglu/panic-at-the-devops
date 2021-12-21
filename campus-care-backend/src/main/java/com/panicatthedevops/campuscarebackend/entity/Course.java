@@ -17,9 +17,10 @@ public class Course {
     @Id
     private String courseCode;
     private String courseName;
+    private int section;
     private int capacity;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "instructor_id")
     @JsonIgnoreProperties("coursesGiven")
     private Instructor instructor;

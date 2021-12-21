@@ -2,25 +2,27 @@ package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import java.util.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "instructor")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class Instructor {
-    @Id
-    private Long id;
-    private String name;
-    private String email;
-    private String hesCode;
+public class Instructor extends User {
+    public Instructor(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, Set<Course> coursesGiven, List<Notification> notificationList, Set<Reservation> reservations) {
+        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservations);
+        this.coursesGiven = coursesGiven;
+    }
 
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    public Instructor(Set<Course> coursesGiven) {
+        this.coursesGiven = coursesGiven;
+    }
+
+    @OneToMany(mappedBy = "instructor")
     @JsonIgnoreProperties("instructor")
     private Set<Course> coursesGiven;
 

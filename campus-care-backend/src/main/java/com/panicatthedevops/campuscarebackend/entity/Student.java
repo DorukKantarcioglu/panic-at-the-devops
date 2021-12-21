@@ -1,29 +1,26 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "student")
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class Student {
-    @Id
-    private Long id;
-    private String name;
-    private String email;
-    private String hesCode;
-    private boolean allowedOnCampus;
-    private boolean vaccinated;
-    private boolean tested;
+public class Student extends User {
+    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet) {
+        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet);
+        this.coursesTaken = coursesTaken;
+    }
+
+    public Student(List<Course> coursesTaken) {
+        this.coursesTaken = coursesTaken;
+    }
 
     @ManyToMany
     @JoinTable(name = "course_enrollment",
