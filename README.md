@@ -41,6 +41,7 @@ Pandemic Manager is a tool to assist university during the pandemic. It is an ap
 3. Instructor / Teacher Assistant
 4. Library Staff
 5. Sports Center Staff
+6. Diagnovir Staff
 
 ## Group Members (Group3I):
 1. Doruk Kantarcioglu
