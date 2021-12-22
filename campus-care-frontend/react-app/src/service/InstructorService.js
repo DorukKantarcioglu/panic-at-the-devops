@@ -1,3 +1,4 @@
+/*import axios from "axios";
 
 const InstructorService =(function () {
     
@@ -91,18 +92,21 @@ const InstructorService =(function () {
         }
     }
 
+
     return(
-        createInstructor : _createInstructor,
-        getAllInstructors: _getAllInstructors,
-        getInstructorById: _getInstructorById,
-        getInstructorByHesCode: _getInstructorByHesCode,
-        updateHesCode: _updateHesCode,
-        getNotAllowedStudents: _getNotAllowedStudents,
-        deleteInstructor: _deleteInstructor,
-        addCourse: _addCourse,
-        deleteCourse: _deleteCourse
+        {
+            createInstructor: _createInstructor,
+            getAllInstructors: _getAllInstructors,
+            getInstructorById: _getInstructorById,
+            getInstructorByHesCode: _getInstructorByHesCode,
+            updateHesCode: _updateHesCode,
+            getNotAllowedStudents: _getNotAllowedStudents,
+            deleteInstructor: _deleteInstructor,
+            addCourse: _addCourse,
+            deleteCourse: _deleteCourse
+        }
     );
 
 })();
 export default InstructorService;
-
+*/

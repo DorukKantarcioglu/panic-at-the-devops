@@ -32,7 +32,7 @@ function App() {
                 <ReservationCheck />
               </Route>
               <Route path="/profile">
-                <ProfilePage />
+                <ProfilePage id = "1"/>
               </Route>
               <Route path="/campusmap">
                 <CoursePage />

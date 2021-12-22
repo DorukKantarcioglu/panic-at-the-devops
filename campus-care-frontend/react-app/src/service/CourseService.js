@@ -1,3 +1,4 @@
+import axios from "axios";
 
 
 const CourseService = (function () {
@@ -7,7 +8,6 @@ const CourseService = (function () {
         if (response) {
             return response.data;
         }
-
     };
     
     const _getCourseById=async (id)=>{
@@ -17,14 +17,14 @@ const CourseService = (function () {
         if (response) {
             return response.data;
         }
-    }
+    };
 
     return {
         getCourseById: _getCourseById,
-        getAllCourses: _getAllCourses
+        getAllCourses: _getAllCourses,
+
     };
     
 })();
 
 export default CourseService;
-}
