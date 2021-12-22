@@ -6,6 +6,7 @@ import { ResponsivePie } from "@nivo/pie";
 import MyResponsivePie from "./components/dashboardComponents/MyResponsivePie";
 import MyResponsiveLine from "./components/dashboardComponents/MyResponsiveLine";
 import MotivationalQuoteBox from "./components/dashboardComponents/MotivationalQuoteBox";
+import StudentList from "./components/StudentList";
 
 function Dashboard(props) {
   // handle click event of logout button
