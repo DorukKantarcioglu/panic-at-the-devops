@@ -5,35 +5,44 @@ class NewSeatingPlanForm extends React.Component
     constructor(props) {
         super(props);
         this.state = {
-            rowNo:'3',
-            columnNo: '1',
+            rowNo:'',
+            columnNo: '',
             capacity:'',
-            table: ''
+            table: '',
+            chart:[]
         }
+    }
+
+    saveStudent=(event)=>
+    {
+        let seatId = event.target.id;
+        let studentId = event.target.value;
+        let temp = this.state.chart;
+        temp[seatId] = studentId;
+        this.setState({chart:temp})
     }
 
     createSeatingPlan=()=>
     {
-        let table = '<table>'
-
-        for (let i = 1; i <= this.state.rowNo; i++)
+        let table = [];
+        let parent = [];
+        for (let i = 0; i < this.state.rowNo; i++)
         {
-            table += '<tr>'
-            for (let j = 1; j <= this.state.columnNo; j++)
+            let children = [];
+            for (let j = 0; j < this.state.columnNo; j++)
             {
-                table += '<td> <input type="text"  onChange={}/> </td>'
+                let id = j+(i*this.state.columnNo);
+                children.push(<td> <input type="text" name="seat" id = {id}  onChange={this.saveStudent}  /> </td>);
             }
-            table += '<tr/>'
+            parent.push(<tr> {children} </tr>);
         }
-        table += '<table/>'
-        this.setState({table: {table}})
+        table.push(<><table>{parent}</table>
+            <button id = "seatingPlanSave" onClick ={console.log("hello")} >Save</button></>)
 
+        this.setState({table:table});
 
     }
-    componentDidMount() {
-        this.createSeatingPlan()
-        //console.log({this.this.state.})
-    }
+
 
     handleChange=(event)=>
     {
@@ -45,7 +54,7 @@ class NewSeatingPlanForm extends React.Component
     render(){
         return(
 
-            <div>
+            <div className="seatingPlanForm">
                 <label className="seatingPlanForm"> Please enter the classroom capacity: </label>
                 <br/>
                 <input type="text" id="capacity" name="capacity" value= {this.state.capacity}onChange={this.handleChange}/>
@@ -55,7 +64,8 @@ class NewSeatingPlanForm extends React.Component
                 <label className="seatingPlanForm" id ="columnNo"> Number of seats in the rows: </label>
                 <input type="text" id="columnNo" name="columnNo" value= {this.state.columnNo}onChange={this.handleChange}/>
                 <button id = "seatingPlanSubmit" onClick={this.createSeatingPlan}> Create the seating plan </button>
-                {document.write(this.state.table)}
+                {this.state.table}
+
             </div>
 
         )
