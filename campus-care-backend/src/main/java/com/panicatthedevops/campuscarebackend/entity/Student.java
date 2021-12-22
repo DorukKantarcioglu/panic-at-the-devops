@@ -13,13 +13,16 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Student extends User {
-    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet) {
+    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, Cafeteria selectedCafeteria, SmokingArea selectedSmokingArea) {
         super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet);
         this.coursesTaken = coursesTaken;
+        this.selectedCafeteria = selectedCafeteria;
+        this.selectedSmokingArea = selectedSmokingArea;
     }
 
-    public Student(List<Course> coursesTaken) {
+    public Student(List<Course> coursesTaken, Cafeteria selectedCafeteria, SmokingArea selectedSmokingArea) {
         this.coursesTaken = coursesTaken;
+        this.selectedCafeteria = selectedCafeteria;
     }
 
     @ManyToMany
@@ -27,6 +30,12 @@ public class Student extends User {
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "courseCode"))
     @JsonIgnoreProperties("studentList")
     List<Course> coursesTaken;
+
+    @Transient
+    private Cafeteria selectedCafeteria;
+
+    @Transient
+    private SmokingArea selectedSmokingArea;
 
     public void addCourse(Course course) {
         coursesTaken.add(course);

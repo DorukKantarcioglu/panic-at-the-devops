@@ -27,6 +27,7 @@ public class User {
     private boolean tested;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private List<Notification> notificationList;
 
     @OneToMany(mappedBy = "user")

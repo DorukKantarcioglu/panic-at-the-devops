@@ -2,8 +2,8 @@ package com.panicatthedevops.campuscarebackend.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.panicatthedevops.campuscarebackend.util.TimeSlot;
 import lombok.*;
-import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
 

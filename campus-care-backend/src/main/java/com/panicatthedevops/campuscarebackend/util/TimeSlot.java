@@ -1,4 +1,4 @@
-package com.panicatthedevops.campuscarebackend.entity;
+package com.panicatthedevops.campuscarebackend.util;
 
 import lombok.*;
 
