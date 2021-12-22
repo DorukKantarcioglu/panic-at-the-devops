@@ -1,4 +1,4 @@
-import "../css/MenuTabStyle.css"
+
 import {Link} from "react-router-dom";
 
 
@@ -6,7 +6,7 @@ const MenuTab = (prop) => {
 
 
     return (
-            <ul className="menu">
+            <ul className="menu"  style={{padding: "10 px", marginTop: 10}}>
                 <li className="menu">
                     {" "}
                     <Link to="/home"> Home </Link>{" "}

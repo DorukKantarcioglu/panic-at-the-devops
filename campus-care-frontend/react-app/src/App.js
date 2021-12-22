@@ -25,21 +25,20 @@ function App() {
                           <MenuTab  />
                       </div>
                   </Header>
-                  <Content className="site-layout"
-                           style={{padding: "0 5 px", marginTop: 40}}>
+                  <Content>
 
                       <Switch>
                           <Route path="/home">
                               <Dashboard/>
                           </Route>
                           <Route path="/appointment">
-                              <CoursePage/>
+                             <ReservationCheck/>    
                           </Route>
                           <Route path="/profile">
                               <ProfilePage/>
                           </Route>
                           <Route path= "/campusmap">
-                              <ReservationCheck/>
+                             <CoursePage/>
                           </Route>
                           <Route path= "/logout">
                               <InfoBox id = {21903224}/>

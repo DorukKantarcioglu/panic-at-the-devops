@@ -1,5 +1,4 @@
 import * as ReactDOM from "react-dom";
-import "../css/TableStyle.css";
 import InfoBox from "./InfoBox";
 
 

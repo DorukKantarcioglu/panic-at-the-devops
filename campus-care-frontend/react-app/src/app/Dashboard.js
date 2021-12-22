@@ -1,44 +1,36 @@
-import React from 'react';
-import CovidInfoBox from './components/CovidInfoBox';
-import FormInput from './components/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import CovidInfoBox from "./components/CovidInfoBox";
+import FormInput from "./components/FormInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ResponsivePie } from "@nivo/pie";
+import MyResponsivePie from "./components/dashboardComponents/MyResponsivePie";
+import MyResponsiveLine from "./components/dashboardComponents/MyResponsiveLine";
+import MotivationalQuoteBox from "./components/dashboardComponents/MotivationalQuoteBox";
 
-    
 function Dashboard(props) {
- 
   // handle click event of logout button
-  const handleLogout = () => {    
-    props.history.push('/login');
-  }
- 
+  const handleLogout = () => {
+    props.history.push("/login");
+  };
+
   return (
     <React.Fragment>
-      <div className="d-flex flex-row justify-content-around mb-5 ">
-      
-        <CovidInfoBox
-           
-          background-color = "coral"
-          key="1"
-          name={" Live Count"}
-          value={2000}
-          icon="fas fa-users"
-        />
-
-        <FormInput></FormInput>
-        <CovidInfoBox
-          key="2"
-          name={"New Cases In This Week"}
-          value={1200}
-          icon="fas fa-clipboard-check"
-        />
-        <CovidInfoBox
-          key="3"
-          name={"Total Count"}
-          value={2300}
-          icon="fas fa-university "
+      <div className="row justify-content-center">
+        <MotivationalQuoteBox
+          value={
+            "Success is not final; failure is not fatal: It is the courage to continue that counts"
+          }
         />
       </div>
-
+      <div className="row justify-content-center">
+        <div className="col-6" style={{ height: 550 }}>
+          <label style={{ fontSize: 20 }}>Covid Statistics</label>
+          <MyResponsiveLine />
+        </div>
+        <div className="col-6 mt-5 " style={{ height: 550 }}>
+          <MyResponsivePie />
+        </div>
+      </div>
     </React.Fragment>
   );
 }

@@ -1,0 +1,30 @@
+input[type="text"] {
+  width: fit-content;
+  padding: 15px;
+  margin-top: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: whitesmoke;
+}
+input[class="search"] {
+  width: auto;
+  height: 40px;
+  padding: 12px 20px;
+  margin-top: 8px;
+  margin-left: 230px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: whitesmoke;
+}
+input[type="submit"] {
+  width: auto;
+  background-color: #a3a9f5;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
