@@ -10,6 +10,8 @@ import '@fortawesome/free-solid-svg-icons';
 import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
 import Dashboard from './app/Dashboard';
+import NewSeatingPlanForm from "./app/components/NewSeatingPlanForm";
+import SeatingPlan from "./app/components/SeatingPlan";
 const {Header, Content} = Layout;
 
 function App() {
@@ -32,19 +34,19 @@ function App() {
                               <Dashboard/>
                           </Route>
                           <Route path="/appointment">
-                             <ReservationCheck/>    
+                             <ReservationCheck/>
                           </Route>
                           <Route path="/profile">
-                              <ProfilePage/>
+
                           </Route>
                           <Route path= "/campusmap">
                              <CoursePage/>
                           </Route>
                           <Route path= "/logout">
-                              <InfoBox id = {21903224}/>
+                              <InfoBox id = {21903223}/>
                           </Route>
-                          <Route path="/addUser" >
-                              <InfoBox id = {21903224}/>
+                          <Route path="/notifications" >
+
                           </Route>
                       </Switch>
 
