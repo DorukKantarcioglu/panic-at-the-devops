@@ -55,9 +55,6 @@ class NewSeatingPlanForm extends React.Component
         return(
 
             <div className="seatingPlanForm">
-                <label className="seatingPlanForm"> Please enter the classroom capacity: </label>
-                <br/>
-                <input type="text" id="capacity" name="capacity" value= {this.state.capacity}onChange={this.handleChange}/>
                 <label className="seatingPlanForm" id ="rowNo"> Number of rows: </label>
                 <input type="text" id="rowNo" name="rowNo" value= {this.state.rowNo} onChange={this.handleChange}/>
                 <br/>

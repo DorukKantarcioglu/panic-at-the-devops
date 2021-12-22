@@ -1,31 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import InfoBox from "./components/InfoBox";
 import SideBar from "./components/SideBar";
+import StudentService from "../service/StudentService";
+import InstructorService from "../service/InstructorService";
 
-class MyProfile extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "Elif",
-      surname: "Cenesiz",
-      id: 21902461,
-      hesCode: "XXX",
-    };
-  }
-  render() {
+function MyProfile(props){
+
     return (
       <React.Fragment>
         <div className="row"> </div>
         <div col-4>
           {" "}
-          <SideBar id={this.state.id} />
-        </div>
-        <div>
-          <InfoBox />
+          <SideBar id={props.id} />
         </div>
       </React.Fragment>
     );
   }
-}
+
 export default MyProfile;
