@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import StudentService from "../../service/StudentService";
+import StudentService from "../../../service/StudentService";
 
 class InfoBox extends React.Component {
   constructor(props) {

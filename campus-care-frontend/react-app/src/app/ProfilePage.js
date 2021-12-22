@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import InfoBox from "./components/InfoBox";
+import InfoBox from "./components/profileComponents/InfoBox";
 import SideBar from "./components/SideBar";
-import StudentList from "./components/StudentList";
+import StudentList from "./components/profileComponents/StudentList";
 
 class MyProfile extends React.Component {
   constructor() {
