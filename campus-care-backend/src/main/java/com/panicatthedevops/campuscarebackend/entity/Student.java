@@ -13,16 +13,19 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Student extends User {
-    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, Cafeteria selectedCafeteria, SmokingArea selectedSmokingArea) {
+    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings) {
         super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet);
         this.coursesTaken = coursesTaken;
         this.selectedCafeteria = selectedCafeteria;
         this.selectedSmokingArea = selectedSmokingArea;
+        this.seatings = seatings;
     }
 
-    public Student(List<Course> coursesTaken, Cafeteria selectedCafeteria, SmokingArea selectedSmokingArea) {
+    public Student(List<Course> coursesTaken, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings) {
         this.coursesTaken = coursesTaken;
         this.selectedCafeteria = selectedCafeteria;
+        this.selectedSmokingArea = selectedSmokingArea;
+        this.seatings = seatings;
     }
 
     @ManyToMany
@@ -31,11 +34,12 @@ public class Student extends User {
     @JsonIgnoreProperties("studentList")
     List<Course> coursesTaken;
 
-    @Transient
-    private Cafeteria selectedCafeteria;
+    private String selectedCafeteria;
+    private String selectedSmokingArea;
 
-    @Transient
-    private SmokingArea selectedSmokingArea;
+    @OneToMany(mappedBy = "student")
+    @JsonIgnoreProperties("student")
+    private Set<SeatingObject> seatings;
 
     public void addCourse(Course course) {
         coursesTaken.add(course);

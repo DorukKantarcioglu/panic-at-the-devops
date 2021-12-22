@@ -1,6 +1,8 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
+import com.panicatthedevops.campuscarebackend.entity.Notification;
 import com.panicatthedevops.campuscarebackend.entity.Student;
+import com.panicatthedevops.campuscarebackend.service.NotificationService;
 import com.panicatthedevops.campuscarebackend.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,12 @@ import java.util.List;
 @RequestMapping("api/v1/students")
 public class StudentController {
     private final StudentService studentService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, NotificationService notificationService) {
         this.studentService = studentService;
+        this.notificationService = notificationService;
     }
 
     @GetMapping
@@ -50,13 +54,33 @@ public class StudentController {
         return ResponseEntity.ok(studentService.updateHesCode(id, hesCode));
     }
 
-    @PatchMapping(path = "/{id}", headers = "courseCode")
+    @PatchMapping(path = "/{id}/area", headers = "cafeteriaName")
+    public ResponseEntity<Student> updateSelectedCafeteria(@PathVariable Long id, @RequestHeader String cafeteriaName) {
+        return ResponseEntity.ok(studentService.updateSelectedCafeteria(id, cafeteriaName));
+    }
+
+    @PatchMapping(path = "/{id}/area", headers = "smokingAreaName")
+    public ResponseEntity<Student> updateSelectedSmokingArea(@PathVariable Long id, @RequestHeader String smokingAreaName) {
+        return ResponseEntity.ok(studentService.updateSelectedSmokingArea(id, smokingAreaName));
+    }
+
+    @DeleteMapping("/{id}/area")
+    public ResponseEntity<?> removeSelectedArea(@PathVariable Long id, @RequestHeader String type) {
+        if(type.equals("smoking"))
+            return ResponseEntity.ok(studentService.removeSelectedSmokingArea(id));
+        else if(type.equals("cafeteria"))
+            return ResponseEntity.ok(studentService.removeSelectedCafeteria(id));
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("RequestHeader for type " + type + " is invalid.");
+    }
+
+    @PatchMapping("/{id}/courses")
     public ResponseEntity<Student> addCourse(@PathVariable Long id, @RequestHeader String courseCode) {
         return ResponseEntity.ok(studentService.addCourse(id, courseCode));
     }
 
-    @DeleteMapping(path = "/{id}", headers = "courseCode")
-    public ResponseEntity<Student> removeCourse(@PathVariable Long id, @RequestHeader String courseCode) {
+    @DeleteMapping("/{id}/courses/{courseCode}")
+    public ResponseEntity<Student> removeCourse(@PathVariable Long id, @PathVariable String courseCode) {
         return ResponseEntity.ok(studentService.removeCourse(id, courseCode));
     }
 
@@ -64,5 +88,15 @@ public class StudentController {
     public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
         studentService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{id}/notifications")
+    public ResponseEntity<List<Notification>> getNotifications(@PathVariable Long id){
+        return ResponseEntity.ok(notificationService.getNotifications(id));
+    }
+
+    @PostMapping("/{id}/notifications")
+    public ResponseEntity<Notification> createNotification(@PathVariable Long id, @RequestHeader String content){
+        return ResponseEntity.ok(notificationService.saveCovidNotification(content, id));
     }
 }

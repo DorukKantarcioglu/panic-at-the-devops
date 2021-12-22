@@ -20,4 +20,12 @@ public abstract class Area {
     @Id
     String name;
     int liveCount;
+
+    public void incrementLiveCount() {
+        liveCount++;
+    }
+
+    public void decrementLiveCount() {
+        liveCount--;
+    }
 }
