@@ -50,6 +50,16 @@ public class StudentController {
         return ResponseEntity.ok(studentService.updateHesCode(id, hesCode));
     }
 
+    @PatchMapping(path = "/{id}", headers = "cafeteriaName")
+    public ResponseEntity<Student> updateSelectedCafeteria(@PathVariable Long id, @RequestHeader String cafeteriaName) {
+        return ResponseEntity.ok(studentService.updateSelectedCafeteria(id, cafeteriaName));
+    }
+
+    @PatchMapping(path = "/{id}", headers = "smokingAreaName")
+    public ResponseEntity<Student> updateSelectedSmokingArea(@PathVariable Long id, @RequestHeader String smokingAreaName) {
+        return ResponseEntity.ok(studentService.updateSelectedSmokingArea(id, smokingAreaName));
+    }
+
     @PatchMapping(path = "/{id}", headers = "courseCode")
     public ResponseEntity<Student> addCourse(@PathVariable Long id, @RequestHeader String courseCode) {
         return ResponseEntity.ok(studentService.addCourse(id, courseCode));

@@ -1,12 +1,10 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
-import com.panicatthedevops.campuscarebackend.util.SeatingObject;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "seatingPlan")
@@ -23,5 +21,8 @@ public class SeatingPlan {
     private int rowNumber;
     private int columnNumber;
 
+    @OneToMany(mappedBy = "seatingPlan")
+    @JsonIgnoreProperties("seatingPlan")
+    private Set<SeatingObject> seatingSet;
 
 }

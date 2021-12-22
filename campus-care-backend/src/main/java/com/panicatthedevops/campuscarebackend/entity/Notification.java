@@ -1,6 +1,7 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.panicatthedevops.campuscarebackend.util.NotificationType;
 import lombok.*;
 
 import javax.persistence.*;

@@ -25,12 +25,12 @@ public class StaffService {
 
     public Staff findById(Long id) {
         return staffRepository.findById(id).orElseThrow(()
-                -> new StaffNotFoundException("staff with id " + id + " does not exist."));
+                -> new StaffNotFoundException("Staff with id " + id + " does not exist."));
     }
 
     public Staff findByHesCode(String hesCode) {
         if (staffRepository.findByHesCode(hesCode).isEmpty()) {
-            throw new StaffNotFoundException("staff with HES code " + hesCode + " does not exist.");
+            throw new StaffNotFoundException("Staff with HES code " + hesCode + " does not exist.");
         }
         else {
             return staffRepository.findByHesCode(hesCode).iterator().next();
@@ -39,7 +39,7 @@ public class StaffService {
 
     public Staff save(Staff staff) {
         if (staffRepository.existsById(staff.getId())) {
-            throw new StaffAlreadyExistsException("staff with id " + staff.getId() + " already exists.");
+            throw new StaffAlreadyExistsException("Staff with id " + staff.getId() + " already exists.");
         }
         else {
             return staffRepository.save(staff);
@@ -49,14 +49,14 @@ public class StaffService {
     public Staff updateHesCode(Long id, String hesCode) {
         if (staffRepository.existsById(id)) {
             if (staffRepository.existsByHesCode(hesCode)) {
-                throw new HesCodeAlreadyExistsException("HES code " + hesCode + " belongs to another staff.");
+                throw new HesCodeAlreadyExistsException("HES code " + hesCode + " belongs to another Staff.");
             }
             Staff staff = staffRepository.findById(id).get();
             staff.setHesCode(hesCode);
             return staffRepository.save(staff);
         }
         else {
-            throw new StaffNotFoundException("staff with id " + id + " does not exist.");
+            throw new StaffNotFoundException("Staff with id " + id + " does not exist.");
         }
     }
 
@@ -65,7 +65,7 @@ public class StaffService {
             staffRepository.deleteById(id);
         }
         else {
-            throw new StaffNotFoundException("staff with id " + id + " does not exist.");
+            throw new StaffNotFoundException("Staff with id " + id + " does not exist.");
         }
     }
 }
