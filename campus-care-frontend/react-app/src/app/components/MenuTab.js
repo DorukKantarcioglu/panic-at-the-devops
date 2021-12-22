@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const MenuTab = (prop) => {
+const MenuTab = (props) => {
   return (
     <ul className="menu" style={{ padding: "10 px", marginTop: 10 }}>
       <li className="menu">

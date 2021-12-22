@@ -1,5 +1,5 @@
 import React from "react";
-import CovidInfoBox from "./components/CovidInfoBox";
+import CovidInfoBox from "./components/dashboardComponents/CovidInfoBox";
 import FormInput from "./components/FormInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsivePie } from "@nivo/pie";

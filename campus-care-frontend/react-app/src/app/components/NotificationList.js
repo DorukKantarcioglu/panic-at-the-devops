@@ -3,12 +3,12 @@ const NotificationList = (props) => {
     {
       header: "covid risk",
       date: "3 ",
-      content: "There is a covid student in your class",
+      content: "There is a covid student in your className",
     },
     {
       header: "covid risk",
       date: "4 ",
-      content: "Risky student in your cs class",
+      content: "Risky student in your cs className",
     },
   ];
 

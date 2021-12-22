@@ -67,9 +67,8 @@ li a.side:hover:not(.active) {
 }
 
 .button {
-  background-color: #cda1ec;
   border: none;
-  color: white;
+  color: rgb(252, 252, 252);
   height: auto;
   width: auto;
   padding: 10px;
@@ -81,8 +80,8 @@ li a.side:hover:not(.active) {
   transition-duration: 0.4s;
 }
 .button:hover {
-  background-color: #936caa; /* Green */
-  color: white;
+  background-color: #cbb7da; /* Green */
+  color: rgb(38, 36, 36);
 }
 
 button.active {
@@ -96,21 +95,18 @@ div {
   align-content: center;
 }
 
-
 table {
   width: 1200px;
   margin-left: 230px;
   background: #ffffff;
-
 }
 
-label,input[type=submit]{
+label,
+input[type="submit"] {
   width: 40%;
 }
 
-
-button[class=table] {
-
+button[class="table"] {
 }
 
 th,
@@ -124,64 +120,16 @@ td {
 th {
   background-color: rgb(183, 189, 256);
   color: white;
-
 }
 
 tr:hover {
   background-color: #f1f0f2;
 }
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin-top: 8px ;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background: whitesmoke;
-}
-
-button[class=table] {
+button[class="table"] {
   width: 100%;
 }
-
-input[class = search]
-{
-  width: 80%;
-  height: 40px;
-  padding: 12px 20px;
-  margin-top: 8px ;
-  margin-left: 230px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background: whitesmoke;
-}
-
-input[type=submit] {
-  width: 100%;
-  background-color: #a3a9f5;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 
 button :hover {
   background-color: rgb(173, 179, 255);
 }
-
-div  {
-  border-radius: 5px;
-  padding: 20px;
-  width: 80%;
-  alignment: center;
-}
-
-
-

@@ -1,7 +1,10 @@
 package com.panicatthedevops.campuscarebackend.service;
 
+import com.panicatthedevops.campuscarebackend.entity.Cafeteria;
+import com.panicatthedevops.campuscarebackend.entity.SmokingArea;
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.*;
+import com.panicatthedevops.campuscarebackend.repository.AreaRepository;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import org.openqa.selenium.By;
@@ -18,11 +21,13 @@ import java.util.List;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
+    private final AreaRepository areaRepository;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository) {
+    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository, AreaRepository areaRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.areaRepository = areaRepository;
     }
 
     public List<Student> findAll() {
@@ -40,6 +45,112 @@ public class StudentService {
         }
         else {
             return studentRepository.findByHesCode(hesCode).iterator().next();
+        }
+    }
+
+    public Student updateSelectedCafeteria(Long id, String cafeteriaName) {
+        if (studentRepository.existsById(id)) {
+            if (areaRepository.existsById(cafeteriaName)) {
+                Student student = studentRepository.findById(id).get();
+                if (student.getSelectedCafeteria() == null) {
+                    Cafeteria cafeteria = (Cafeteria)areaRepository.findById(cafeteriaName).get();
+                    cafeteria.incrementLiveCount();
+                    areaRepository.save(cafeteria);
+                    student.setSelectedCafeteria(cafeteriaName);
+                    return studentRepository.save(student);
+                }
+                else if (!student.getSelectedCafeteria().equals(cafeteriaName)) {
+                    Cafeteria oldCafeteria = (Cafeteria)areaRepository.findById(student.getSelectedCafeteria()).get();
+                    oldCafeteria.decrementLiveCount();
+                    areaRepository.save(oldCafeteria);
+                    Cafeteria newCafeteria = (Cafeteria)areaRepository.findById(cafeteriaName).get();
+                    newCafeteria.incrementLiveCount();
+                    areaRepository.save(newCafeteria);
+                    student.setSelectedCafeteria(cafeteriaName);
+                    return studentRepository.save(student);
+                }
+                else {
+                    throw new StudentAlreadyInAreaException("Student's cafeteria is already " + cafeteriaName + ".");
+                }
+            }
+            else {
+                throw new AreaNotFoundException("Cafeteria with name " + cafeteriaName + " does not exist.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student updateSelectedSmokingArea(Long id, String smokingAreaName) {
+        if (studentRepository.existsById(id)) {
+            if (areaRepository.existsById(smokingAreaName)) {
+                Student student = studentRepository.findById(id).get();
+                if (student.getSelectedSmokingArea() == null) {
+                    SmokingArea smokingArea = (SmokingArea)areaRepository.findById(smokingAreaName).get();
+                    smokingArea.incrementLiveCount();
+                    areaRepository.save(smokingArea);
+                    student.setSelectedSmokingArea(smokingAreaName);
+                    return studentRepository.save(student);
+                }
+                else if (!student.getSelectedSmokingArea().equals(smokingAreaName)) {
+                    SmokingArea oldSmokingArea = (SmokingArea) areaRepository.findById(student.getSelectedSmokingArea()).get();
+                    oldSmokingArea.decrementLiveCount();
+                    areaRepository.save(oldSmokingArea);
+                    SmokingArea newSmokingArea = (SmokingArea) areaRepository.findById(smokingAreaName).get();
+                    newSmokingArea.incrementLiveCount();
+                    areaRepository.save(newSmokingArea);
+                    student.setSelectedSmokingArea(smokingAreaName);
+                    return studentRepository.save(student);
+                }
+                else {
+                    throw new StudentAlreadyInAreaException("Student's smoking area is already " + smokingAreaName + ".");
+                }
+            }
+            else {
+                throw new AreaNotFoundException("Smoking area with name " + smokingAreaName + " does not exist.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student removeSelectedCafeteria(Long id) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            if (student.getSelectedCafeteria() != null) {
+                Cafeteria cafeteria = (Cafeteria) areaRepository.findById(student.getSelectedCafeteria()).get();
+                cafeteria.decrementLiveCount();
+                areaRepository.save(cafeteria);
+                student.setSelectedCafeteria(null);
+                return studentRepository.save(student);
+            }
+            else {
+                throw new StudentNotInAnyAreaException("Student with id " + id + " is not in any cafeteria.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student removeSelectedSmokingArea(Long id) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            if (student.getSelectedSmokingArea() != null) {
+                SmokingArea smokingArea = (SmokingArea) areaRepository.findById(student.getSelectedSmokingArea()).get();
+                smokingArea.decrementLiveCount();
+                areaRepository.save(smokingArea);
+                student.setSelectedSmokingArea(null);
+                return studentRepository.save(student);
+            }
+            else {
+                throw new StudentNotInAnyAreaException("Student with id " + id + " is not in any smoking area.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
         }
     }
 

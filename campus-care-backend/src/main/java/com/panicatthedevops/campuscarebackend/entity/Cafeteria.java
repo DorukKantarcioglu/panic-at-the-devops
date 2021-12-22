@@ -22,6 +22,4 @@ public class Cafeteria extends Area {
     public Cafeteria(int capacity) {
         this.capacity = capacity;
     }
-
-
 }
