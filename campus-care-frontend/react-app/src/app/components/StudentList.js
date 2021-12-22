@@ -10,7 +10,7 @@ const StudentList = (props) => {
   };
 
   return (
-    <table>
+    <table className="justfiy-content-start">
       <thead>
         <tr>
           <th> Name</th>
