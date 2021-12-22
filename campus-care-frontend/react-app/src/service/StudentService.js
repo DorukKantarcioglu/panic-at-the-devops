@@ -11,7 +11,7 @@ const StudentService = (function () {
     };
 
     const _getStudentById = async (id)=>{
-        const url = "http://localhost:8080/api/v1/students/".concat(id)
+        const url = "http://localhost:8080/api/v1/students/"+id
         const response = await axios.get(url)
         if (response) {
             return response.data;
