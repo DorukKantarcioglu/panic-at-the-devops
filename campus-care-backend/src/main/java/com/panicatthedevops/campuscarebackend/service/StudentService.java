@@ -116,6 +116,44 @@ public class StudentService {
         }
     }
 
+    public Student removeSelectedCafeteria(Long id) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            if (student.getSelectedCafeteria() != null) {
+                Cafeteria cafeteria = (Cafeteria) areaRepository.findById(student.getSelectedCafeteria()).get();
+                cafeteria.decrementLiveCount();
+                areaRepository.save(cafeteria);
+                student.setSelectedCafeteria(null);
+                return studentRepository.save(student);
+            }
+            else {
+                throw new StudentNotInAnyAreaException("Student with id " + id + " is not in any cafeteria.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student removeSelectedSmokingArea(Long id) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            if (student.getSelectedSmokingArea() != null) {
+                SmokingArea smokingArea = (SmokingArea) areaRepository.findById(student.getSelectedSmokingArea()).get();
+                smokingArea.decrementLiveCount();
+                areaRepository.save(smokingArea);
+                student.setSelectedSmokingArea(null);
+                return studentRepository.save(student);
+            }
+            else {
+                throw new StudentNotInAnyAreaException("Student with id " + id + " is not in any smoking area.");
+            }
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
     public Student save(Student student) {
         if (studentRepository.existsById(student.getId())) {
             throw new StudentAlreadyExistsException("Student with id " + student.getId() + " already exists.");
