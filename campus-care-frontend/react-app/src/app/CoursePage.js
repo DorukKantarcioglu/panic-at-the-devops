@@ -22,17 +22,6 @@ const CoursePage =()=>
     return(
         <div>
             <StudentList data = {data}/>
-            hello
-
-         <i
-                className="fas fa-arrow-right"
-                style={{ fontSize: "20pt", color: "#29377e" }}
-              ></i>
-
-
-    
-            <FontAwesomeIcon icon="check-square"> yağmur </FontAwesomeIcon>
-              hello
         </div>
     )
 

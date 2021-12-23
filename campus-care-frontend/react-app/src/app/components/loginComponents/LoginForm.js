@@ -8,6 +8,11 @@ import Dashboard from "../../Dashboard";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 
 export default function LoginForm(props) {
+
+  const [show, setShow] = useState(false);
+  const [email, showEmail] = useState(true);
+  const [newPasswordForm, showNewPasswordForm] = useState(false);
+  const [verification, showVerification] = useState(false);
   const [credentials, setCredentials] = useState({});
   const history = useHistory();
 
@@ -18,14 +23,24 @@ export default function LoginForm(props) {
     });
   };
 
-  const [show, setShow] = useState(false);
-  const [askEmail, setEmail] = useState(true);
-  const handleClose = () => {
-    setShow(false);
-    setEmail(true);
+  const verifyCode=()=>{
+    showNewPasswordForm(true);
+    showVerification(false);
+
+  }
+
+  const changePassword=()=>{
+
+  }
+  const showModal=()=>{
+    setShow(true);
   };
 
-  const handleShow = () => setShow(true);
+  const hideModal= () => {
+    setShow(false);
+  };
+
+
 
   const signIn = async () => {
     let path = `home`;
@@ -33,7 +48,8 @@ export default function LoginForm(props) {
   };
 
   const handleEmail = () => {
-    setEmail(false);
+    showEmail(false);
+    showVerification(true);
   };
   return (
     <Form>
@@ -55,7 +71,7 @@ export default function LoginForm(props) {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword" hidden={true}>
+      <Form.Group className="mb-3" controlId="formBasicPassword" >
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
@@ -85,52 +101,11 @@ export default function LoginForm(props) {
             type="button"
             data-toggle="modal"
             data-target="#exampleModalCenter"
-            onClick={handleShow}
+            onClick={showModal}
           >
             Forgot Password
           </Card>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Change Password</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {" "}
-              <label for="e-mail" class="col-form-label" hidden={!askEmail}>
-                E-mail:
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="e-mail"
-                hidden={!askEmail}
-              ></input>
-              <label
-                for="verificationCode"
-                class="col-form-label"
-                hidden={askEmail}
-              >
-                VerificationCode:
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="verificationCode"
-                hidden={askEmail}
-              ></input>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <div>
-                {askEmail ? (
-                  <Button onClick={handleEmail}> Send Email</Button>
-                ) : (
-                  <Button onClick={handleClose}>Verify Code</Button>
-                )}
-              </div>
-            </Modal.Footer>
-          </Modal>
+          <ForgotPasswordForm show={show} handleClose={hideModal}/>
         </div>
       </div>
     </Form>

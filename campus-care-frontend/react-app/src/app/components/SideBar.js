@@ -2,9 +2,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InfoBox from "./InfoBox";
 import React from "react";
 import CoursePage from "../CoursePage";
-import "./sideBarStyle.css" ;
-import { Dropdown } from "react-bootstrap";
-
 
 const SideBar = (props) => {
   let dropdown = document.getElementsByClassName("dropdown-btn");
@@ -31,39 +28,9 @@ const SideBar = (props) => {
           </Link>
         </li>
         <li className="side">
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Dropdown Button
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Link to="/profile-info" className="side">
-            Profile Info
-          </Link>
-        </li>
-        <li className="side">
           <Link to="/courses" className="side">
             Courses
           </Link>
-          <button className="dropdown-btn">Dropdown
-            <i className="fa fa-caret-down"></i>
-          </button>
-          <div className="dropdown-container">
-            <Link to="/courses" className="side">
-              Courses1
-            </Link>
-            <Link to="/courses" className="side">
-              Courses1
-            </Link>
-            <Link to="/courses" className="side">
-              Courses1
-            </Link>
-          </div>
         </li>
         <li className="side">
           <Link to="/appointments" className="side">
@@ -86,7 +53,6 @@ const SideBar = (props) => {
       </Switch>
     </Router>
         </div>
-
 
   );
 };

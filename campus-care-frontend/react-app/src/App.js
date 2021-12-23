@@ -11,6 +11,8 @@ import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
 import Dashboard from "./app/Dashboard";
 import Notifications from "./app/Notifications";
+import SeatingPlan from "./app/components/SeatingPlan";
+import NewSeatingPlanForm from "./app/components/NewSeatingPlanForm";
 const { Header, Content } = Layout;
 
 function App() {
@@ -38,7 +40,7 @@ function App() {
                 <CoursePage />
               </Route>
               <Route path="/logout">
-                <InfoBox id={21903224} />
+                <SeatingPlan />
               </Route>
               <Route path="/notifications">
                 <Notifications />
