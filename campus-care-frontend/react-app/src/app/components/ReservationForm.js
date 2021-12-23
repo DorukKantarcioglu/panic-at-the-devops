@@ -9,7 +9,7 @@ function ReservationForm() {
     <Container>
       <Row>
         <Col sm={4}>
-          <h5> Appointment System</h5>
+          <h5 style={{ color: "gray" }}> Appointment System</h5>
           <div className="btn-group-vertical">
             <Button
               className="button"
