@@ -1,12 +1,12 @@
 import "./App.css";
 import ProfilePage from "./app/ProfilePage";
-import ReservationCheck from "./app/components/reservationCheckForm";
 import InfoBox from "./app/components/profileComponents/InfoBox";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/react-fontawesome";
 import "@fortawesome/free-solid-svg-icons";
+import { IconName } from "react-icons/fa";
 import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
 import Dashboard from "./app/Dashboard";
@@ -31,7 +31,7 @@ function App() {
                 <Dashboard />
               </Route>
               <Route path="/appointment">
-                <AppointmentPage/>
+                <AppointmentPage />
               </Route>
               <Route path="/profile">
                 <ProfilePage id="1" />

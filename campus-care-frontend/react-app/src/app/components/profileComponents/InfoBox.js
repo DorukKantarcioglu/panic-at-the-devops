@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import StudentService from "../../../service/StudentService";
-import {Container, Col, Row} from 'react-bootstrap';
+import { Container, Col, Row } from "react-bootstrap";
 
 class InfoBox extends React.Component {
   constructor(props) {
@@ -39,14 +39,19 @@ class InfoBox extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container
+        style={{ position: "fixed", marginLeft: 120, marginTop: -100 }}
+      >
         <Row>
-          <Col>
+          <Col className="col-4">
             <div
-                className="infoBox"
-                style={{ borderStyle: "dotted", width: "auto" }}
+              className="infoBox"
+              style={{ borderStyle: "dashed", width: "auto" }}
             >
-              <label className="infoBox"> Name: {this.state.student.name} </label>
+              <label className="infoBox">
+                {" "}
+                Name: {this.state.student.name}{" "}
+              </label>
               <br />
               <label className="infoBox">
                 {" "}
@@ -70,14 +75,14 @@ class InfoBox extends React.Component {
               <br />
             </div>
           </Col>
-          <Col>
+          <Col className="col-6">
             <div className="updateHesCode" style={{ width: "auto" }}>
               <label className="m-2"> Enter your recent HES code: </label>
               <input
-                  type="text"
-                  id="hesCode"
-                  name="hesCode"
-                  onChange={this.handleChange}
+                type="text"
+                id="hesCode"
+                name="hesCode"
+                onChange={this.handleChange}
               />
               <button className="button m-2" onClick={this.changeHesCode}>
                 {" "}
@@ -85,10 +90,7 @@ class InfoBox extends React.Component {
               </button>
             </div>
           </Col>
-
         </Row>
-
-
       </Container>
     );
   }

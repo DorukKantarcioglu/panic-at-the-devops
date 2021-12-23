@@ -1,25 +1,36 @@
 import React from "react";
-import ReservationCheck from "./components/reservationCheckForm";
-import Button from 'react-bootstrap/Button'
-import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import ReservationCheckForm from "./components/ReservationCheckForm";
+import Card from "react-bootstrap/Button";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ReservationForm from "./components/ReservationForm";
 
 const AppointmentPage = () => {
-    return(
-            <Router>
-                <Link to="/new">
-                    <Button variant="dark" size ="lg" >New Appointment</Button>
-                </Link>
-                <ReservationCheck />
+  return (
+    <Router>
+      <ReservationCheckForm></ReservationCheckForm>
+      <Link to="/new">
+        <div className="row justify-content-center">
+          <div className="col-6">
+            <Card
+              className=" button"
+              style={{ backgroundColor: " #a3a9f5", border: "none" }}
+              size="md"
+            >
+              {" "}
+              New Appointment
+            </Card>
+          </div>
+          <div className="col-6"></div>
+        </div>
+      </Link>
 
-                <Switch>
-                    <Route path = "/new">
-                        <ReservationForm/>
-                    </Route>
-                </Switch>
-            </Router>
-
-    );
-}
+      <Switch>
+        <Route path="/new">
+          <ReservationForm />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 export default AppointmentPage;

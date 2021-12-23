@@ -1,6 +1,7 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
 import NotificationList from "./components/NotificationList";
+import ReservationCheckForm from "./components/ReservationCheckForm";
 import StudentList from "./components/profileComponents/StudentList";
 import { Dropdown } from "react-bootstrap";
 import LoginForm from "./components/loginComponents/LoginForm";
@@ -18,7 +19,7 @@ function Notifications(props) {
         </div>
         <div className="col-6 m-0">
           {" "}
-          <NewSeatingPlanForm></NewSeatingPlanForm>
+          <ReservationCheckForm></ReservationCheckForm>
         </div>
       </div>
     </React.Fragment>
