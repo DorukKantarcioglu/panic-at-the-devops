@@ -26,9 +26,7 @@ class MyProfile extends React.Component {
         <Row>
           <InfoBox />
         </Row>
-        <Row>
-          <CoursePage />
-        </Row>
+        <Row></Row>
         <Row>Appointments (To-do)</Row>
       </Container>
     );

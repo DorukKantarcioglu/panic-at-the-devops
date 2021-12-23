@@ -7,10 +7,10 @@ body {
 
 ul.menu {
   list-style-type: none;
-  margin-left: -50px;
+  margin: -50px;
   padding: 0;
   overflow: hidden;
-  background-color: #a3a9f5;
+  background-color: #3d44af;
   position: fixed;
   top: 0;
   width: 100%;
