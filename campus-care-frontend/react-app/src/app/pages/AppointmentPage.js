@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-
-import Card from "react-bootstrap/Button";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ReservationForm from "../components/ReservationForm";
 import MyModal from "../components/MyModal/MyModal";
 import Button from "react-bootstrap/Button";
+import ReservationsList from "../components/ReservationsList";
 
 const AppointmentPage = () => {
     const [modal, setModal] = useState(false);
@@ -16,6 +14,10 @@ const AppointmentPage = () => {
           <MyModal visible={modal} setVisible={setModal}>
               <ReservationForm/>
           </MyModal>
+          <br/>
+          <div>
+              <ReservationsList/>
+          </div>
       </div>
   );
 };
