@@ -37,8 +37,8 @@ li.menu a:hover:not(.active) {
 }
 ul.side {
   list-style-type: none;
-  margin: -90px;
-  margin-left: -120px;
+  margin: -100px;
+  margin-left: -140px;
   padding: 0;
   width: 200px;
   background-color: #f1ebf2;

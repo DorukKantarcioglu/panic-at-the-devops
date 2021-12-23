@@ -45,6 +45,9 @@ function App() {
               <Route path="/notifications">
                 <Notifications />
               </Route>
+              <Route path="/course/cs315">
+                <CoursePage />
+              </Route>
             </Switch>
           </Content>
         </Router>
