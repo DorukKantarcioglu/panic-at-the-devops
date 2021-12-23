@@ -25,4 +25,7 @@ public class SeatingPlan {
     @JsonIgnoreProperties("seatingPlan")
     private Set<SeatingObject> seatingSet;
 
+    @OneToOne(mappedBy = "seatingPlan")
+    @JsonIgnoreProperties("seatingPlan")
+    private Course course;
 }

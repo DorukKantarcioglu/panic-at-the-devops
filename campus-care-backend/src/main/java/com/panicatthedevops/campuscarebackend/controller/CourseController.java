@@ -1,7 +1,10 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
+import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
+import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
 import com.panicatthedevops.campuscarebackend.service.CourseService;
+import com.panicatthedevops.campuscarebackend.service.SeatingObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,9 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Course>> getCourses() {
@@ -40,4 +46,11 @@ public class CourseController {
         courseService.deleteByCourseCode(courseCode);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PatchMapping("/{courseCode}/seatingPlan")
+    public ResponseEntity<Course> addSeatingPlan(@RequestHeader Long seatingPlanId, @PathVariable String courseCode){
+        return ResponseEntity.ok(courseService.addSeatingPlan(seatingPlanId, courseCode));
+    }
+
+
 }
