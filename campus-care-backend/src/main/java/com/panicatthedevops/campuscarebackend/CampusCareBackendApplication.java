@@ -19,27 +19,30 @@ public class CampusCareBackendApplication {
 
     @Bean
     public CommandLineRunner lineRunner(
-            StudentRepository studentRepository, InstructorRepository instructorRepository, CourseRepository courseRepository, StaffRepository staffRepository, ReservationRepository reservationRepository, AreaRepository areaRepository, NotificationRepository notificationRepository) {
+            StudentRepository studentRepository, InstructorRepository instructorRepository, CourseRepository courseRepository, StaffRepository staffRepository,
+            ReservationRepository reservationRepository, AreaRepository areaRepository, NotificationRepository notificationRepository, SeatingPlanRepository seatingPlanRepository) {
         return args -> {
             studentRepository.saveAll(Arrays.asList(
-                    new Student(1L, "Doruk", "password", "doruk@campuscare.com", "DORUK-HES-CODE", "num", true, true, false, null, null, null, null, null, null)
+                    new Student(1L, "Doruk", "password", "doruk@campuscare.com", "DORUK-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
+                    new Student(2L, "Oğuz", "password", "oğuz@campuscare.com", "Oğuz-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
+                    new Student(3L, "Yağmur", "password", "yağmur@campuscare.com", "Yağmur-HES-CODE", "num", true, true, false, null, null, null, null, null, null)
             ));
             instructorRepository.saveAll(Arrays.asList(
-                    new Instructor(2L, "Eray Tuzun", "passwrd", "tuzun@campuscare.com", "TUZUN-HES-CODE", "+90", true, true, false , null, null, null),
+                    new Instructor(4L, "Eray Tuzun", "passwrd", "tuzun@campuscare.com", "TUZUN-HES-CODE", "+90", true, true, false , null, null, null),
                     new Instructor(12L, "David", "passwrd", "david@campuscare.com", "David-HES-CODE", "+90", true, true, false , null, null, null)
             ));
             courseRepository.saveAll(Arrays.asList(
-                    new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(2L).get(), null),
-                    new Course("CS-315-1", "Programming Languages",1, 50, instructorRepository.findById(12L).get(), null),
-                    new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, null, null)
+                    new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(4L).get(), null, null),
+                    new Course("CS-315-1", "Programming Languages",1, 50, instructorRepository.findById(12L).get(), null, null),
+                    new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, null, null, null)
             ));
 
-            notificationRepository.saveAll(Arrays.asList(new Notification(0, "Motivational quote1", NotificationType.MOTIVATIONAL_QUOTE, instructorRepository.findById(2L).get()),
+            notificationRepository.saveAll(Arrays.asList(new Notification(0, "Motivational quote1", NotificationType.MOTIVATIONAL_QUOTE, instructorRepository.findById(4L).get()),
                     new Notification(0, "Its definitely not 1 am rn", NotificationType.MOTIVATIONAL_QUOTE, studentRepository.findById(1L).get() ),
                     new Notification(0, "You got covid are not allowed to enter the campus", NotificationType.COVID_NOTIFICATION, studentRepository.findById(1L).get() )));
 
             staffRepository.saveAll(Arrays.asList(
-                    new Staff(4L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", true, true, false, null, null)
+                    new Staff(5L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", true, true, false, null, null)
             ));
 
             reservationRepository.saveAll(Arrays.asList(
@@ -54,6 +57,14 @@ public class CampusCareBackendApplication {
                     new SmokingArea("B-1", 22),
                     new SmokingArea("B-2", 30)
             ));
+
+            seatingPlanRepository.saveAll(Arrays.asList(
+                    new SeatingPlan(0, 10, 20, null, null),
+                    new SeatingPlan(0, 15, 20, null, null),
+                    new SeatingPlan(0, 5, 5, null, null)
+            ));
+
+
         };
     }
 

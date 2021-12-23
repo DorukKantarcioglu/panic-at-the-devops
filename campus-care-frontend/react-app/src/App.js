@@ -1,18 +1,18 @@
 import "./App.css";
 import ProfilePage from "./app/ProfilePage";
-import ReservationCheck from "./app/components/reservationCheckForm";
-import InfoBox from "./app/components/InfoBox";
+import InfoBox from "./app/components/profileComponents/InfoBox";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/react-fontawesome";
 import "@fortawesome/free-solid-svg-icons";
+import { IconName } from "react-icons/fa";
 import MenuTab from "./app/components/MenuTab";
 import CoursePage from "./app/CoursePage";
 import Dashboard from "./app/Dashboard";
+import Login from "./app/Login";
 import Notifications from "./app/Notifications";
-import SeatingPlan from "./app/components/SeatingPlan";
-import NewSeatingPlanForm from "./app/components/NewSeatingPlanForm";
+import AppointmentPage from "./app/AppointmentPage";
 const { Header, Content } = Layout;
 
 function App() {
@@ -31,16 +31,16 @@ function App() {
                 <Dashboard />
               </Route>
               <Route path="/appointment">
-                <ReservationCheck />
+                <AppointmentPage />
               </Route>
               <Route path="/profile">
-                <ProfilePage id = "1"/>
+                <ProfilePage id="1" />
               </Route>
               <Route path="/campusmap">
-                <CoursePage />
+                <Login />
               </Route>
               <Route path="/logout">
-                <SeatingPlan />
+                <InfoBox id={21903224} />
               </Route>
               <Route path="/notifications">
                 <Notifications />

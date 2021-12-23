@@ -23,7 +23,7 @@ public class SeatingObject {
     private Student student;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "seatingObject_id")
+    @JoinColumn(name = "seatingPlan_id")
     @JsonIgnoreProperties("seatingSet")
     private SeatingPlan seatingPlan;
 
