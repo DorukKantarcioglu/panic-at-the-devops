@@ -39,16 +39,13 @@ export default function LoginForm(props) {
     <div className="d-flex justify-content-center">
       <div className="col-5 m-2">
         <Form>
-          <div>
-            <label
-              className="display-6 m-2 justify-content-center"
-              style={{ alignContent: "auto", color: "GrayText" }}
-            >
-              LOGIN
+          <div className="row d-flex justify-content-center">
+            <label className=" display-6 m-2 " style={{ color: "GrayText" }}>
+              Campus Care
             </label>
           </div>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="m-2" controlId="formBasicEmail">
             <Form.Label>ID</Form.Label>
             <Form.Control
               type="id"
@@ -58,7 +55,7 @@ export default function LoginForm(props) {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="m-2" controlId="formBasicPassword">
             <Form.Label className="sr-only">Enter your password</Form.Label>
             <Form.Control
               type="password"
@@ -66,9 +63,6 @@ export default function LoginForm(props) {
               name="password"
               //onChange={handleChange()}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <div className="d-flex justify-content-between">
             <div className="col-6">
