@@ -1,20 +1,12 @@
 package com.panicatthedevops.campuscarebackend.service;
 
-import com.panicatthedevops.campuscarebackend.entity.Cafeteria;
-import com.panicatthedevops.campuscarebackend.entity.SmokingArea;
-import com.panicatthedevops.campuscarebackend.entity.Student;
+import com.panicatthedevops.campuscarebackend.entity.*;
 import com.panicatthedevops.campuscarebackend.exception.*;
-import com.panicatthedevops.campuscarebackend.repository.AreaRepository;
-import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
-import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import com.panicatthedevops.campuscarebackend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,12 +14,17 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
     private final AreaRepository areaRepository;
+    private final SeatingObjectRepository seatingObjectRepository;
+    private final SeatingPlanRepository seatingPlanRepository;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository, AreaRepository areaRepository) {
+    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository,
+                          AreaRepository areaRepository, SeatingObjectRepository seatingObjectRepository, SeatingPlanRepository seatingPlanRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.areaRepository = areaRepository;
+        this.seatingObjectRepository = seatingObjectRepository;
+        this.seatingPlanRepository = seatingPlanRepository;
     }
 
     public List<Student> findAll() {
@@ -46,6 +43,39 @@ public class StudentService {
         else {
             return studentRepository.findByHesCode(hesCode).iterator().next();
         }
+    }
+
+    public List<Student> findNearbyStudents(Long studentId){
+        if(!studentRepository.existsById(studentId)){
+            throw new StudentNotFoundException("Student with id " + studentId + " does not exist.");
+        }
+
+        Student student = findById(studentId);
+        List<Student> nearbyStudents = new ArrayList<>();
+        for( SeatingObject seatingObject : student.getSeatings()){
+            Student nearbyStudent;
+            if(seatingObject.getRowNo() > 0 && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()-1, seatingObject.getColumnNo()) != null){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()-1, seatingObject.getColumnNo()).getStudent();
+                if(!nearbyStudents.contains(nearbyStudent))
+                    nearbyStudents.add(nearbyStudent);
+            }
+            if(seatingObject.getRowNo() < seatingObject.getSeatingPlan().getRowNumber() && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()+1, seatingObject.getColumnNo()) != null){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()+1, seatingObject.getColumnNo()).getStudent();
+                if(!nearbyStudents.contains(nearbyStudent))
+                    nearbyStudents.add(nearbyStudent);
+            }
+            if(seatingObject.getColumnNo() > 0 && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo()-1) != null){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo() - 1).getStudent();
+                if(!nearbyStudents.contains(nearbyStudent))
+                    nearbyStudents.add(nearbyStudent);
+            }
+            if(seatingObject.getColumnNo() < seatingObject.getSeatingPlan().getColumnNumber() && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo()+1) != null){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo() + 1).getStudent();
+                if(!nearbyStudents.contains(nearbyStudent))
+                    nearbyStudents.add(nearbyStudent);
+            }
+        }
+        return nearbyStudents;
     }
 
     public Student updateSelectedCafeteria(Long id, String cafeteriaName) {
@@ -220,27 +250,5 @@ public class StudentService {
         else {
             throw new StudentNotFoundException("Student with id " + id + " does not exist.");
         }
-    }
-
-    public String validateHesCode(String hesCode, String trIdNumber, String eGovernmentPassword) {
-        WebDriver driver = new HtmlUnitDriver();
-        driver.get("https://giris.turkiye.gov.tr/Giris/gir");
-        driver.findElement(By.id("tridField")).sendKeys(trIdNumber);
-        driver.findElement(By.id("egpField")).sendKeys(eGovernmentPassword);
-        driver.findElement(By.name("submitButton")).click();
-        driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama");
-        try {
-            driver.findElement(By.id("hes_kodu")).sendKeys(hesCode);
-        }
-        catch (NoSuchElementException e) {
-            throw new EGovernmentAuthenticationFailedException("Credentials for E-Government authentication are wrong.");
-        }
-        driver.findElement(By.className("actionButton")).click();
-        driver.get("https://www.turkiye.gov.tr/saglik-bakanligi-hes-kodu-sorgulama?sonuc=Goster");
-        List<WebElement> webElements = driver.findElements(By.xpath("//dl"));
-        if (webElements.isEmpty()) {
-            throw new HesCodeNotValidException("HES code " + hesCode + " is not valid.");
-        }
-        return webElements.iterator().next().getText();
     }
 }
