@@ -3,6 +3,7 @@ package com.panicatthedevops.campuscarebackend.controller;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
 import com.panicatthedevops.campuscarebackend.entity.Staff;
 import com.panicatthedevops.campuscarebackend.entity.Student;
+import com.panicatthedevops.campuscarebackend.entity.User;
 import com.panicatthedevops.campuscarebackend.service.CovidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +50,15 @@ public class CovidController {
     @GetMapping("/smokingAreas/{smokingAreaName}")
     public ResponseEntity<List<Student>> getNotAllowedStudentsInSmokingArea(@PathVariable String smokingAreaName) {
         return ResponseEntity.ok(covidService.getNotAllowedStudentsInSmokingArea(smokingAreaName));
+    }
+
+    @PutMapping(headers = "hesCode")
+    public ResponseEntity<User> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
+        return ResponseEntity.ok(covidService.validateHesCode(hesCode, trIdNumber, eGovernmentPassword));
+    }
+
+    @PutMapping
+    public ResponseEntity<List<User>> validateHesCode(@RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
+        return ResponseEntity.ok(covidService.validateHesCodes(trIdNumber, eGovernmentPassword));
     }
 }

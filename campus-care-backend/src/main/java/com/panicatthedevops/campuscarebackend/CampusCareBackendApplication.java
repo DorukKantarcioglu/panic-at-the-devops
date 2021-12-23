@@ -23,15 +23,15 @@ public class CampusCareBackendApplication {
             ReservationRepository reservationRepository, AreaRepository areaRepository, NotificationRepository notificationRepository, SeatingPlanRepository seatingPlanRepository) {
         return args -> {
             studentRepository.saveAll(Arrays.asList(
-                    new Student(1L, "Doruk", "password", "doruk@campuscare.com", "DORUK-HES-CODE", "num", true, true, false, null, null, null, "Cafe-in", null, null),
-                    new Student(2L, "Oğuz", "password", "oğuz@campuscare.com", "Oğuz-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
-                    new Student(3L, "Yağmur", "password", "yağmur@campuscare.com", "Yağmur-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
-                    new Student(28L, "Elif", "password", "elif@campuscare.com", "elif-HES-CODE", "num", false, true, false, null, null, null, null, null, null),
-                    new Student(29L, "Suleyman", "password", "suleyman@campuscare.com", "suleyman-HES-CODE", "num", false, true, false, null, null, null, "Cafe-in", null, null)
+                    new Student(1L, "Doruk", "password", "doruk@campuscare.com", "F4K2-1836-10", "num", false, false, false, null, null, null, "Cafe-in", null, null),
+                    //new Student(2L, "Oğuz", "password", "oğuz@campuscare.com", "Oğuz-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
+                    new Student(3L, "Yağmur", "password", "yağmur@campuscare.com", "C6D9-3181-14", "num", true, true, false, null, null, null, null, null, null)
+                    //new Student(28L, "Elif", "password", "elif@campuscare.com", "A6A2-1832-17", "num", false, true, false, null, null, null, null, null, null),
+                    //new Student(29L, "Suleyman", "password", "suleyman@campuscare.com", "B4V3-8549-14", "num", false, true, false, null, null, null, "Cafe-in", null, null)
             ));
             instructorRepository.saveAll(Arrays.asList(
-                    new Instructor(4L, "Eray Tuzun", "passwrd", "tuzun@campuscare.com", "TUZUN-HES-CODE", "+90", false, true, false , null, null, null),
-                    new Instructor(12L, "David", "passwrd", "david@campuscare.com", "David-HES-CODE", "+90", true, true, false , null, null, null)
+                    new Instructor(4L, "Eray Tuzun", "passwrd", "tuzun@campuscare.com", "B4V3-8549-14", "+90", false, true, false , null, null, null),
+                    new Instructor(12L, "David", "passwrd", "david@campuscare.com", "A6A2-1832-17", "+90", true, true, false , null, null, null)
             ));
             courseRepository.saveAll(Arrays.asList(
                     new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(4L).get(), null, null),
@@ -43,9 +43,9 @@ public class CampusCareBackendApplication {
                     new Notification(0, "Its definitely not 1 am rn", NotificationType.MOTIVATIONAL_QUOTE, studentRepository.findById(1L).get() ),
                     new Notification(0, "You got covid are not allowed to enter the campus", NotificationType.COVID_NOTIFICATION, studentRepository.findById(1L).get() )));
 
-            staffRepository.saveAll(Arrays.asList(
-                    new Staff(5L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", false, true, false, null, null)
-            ));
+            //staffRepository.saveAll(Arrays.asList(
+            //        new Staff(5L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", false, true, false, null, null)
+            //));
 
             reservationRepository.saveAll(Arrays.asList(
                     new Reservation(10L, "10.12.2021", new TimeSlot("10:30", "Tuseday"), "Strudy room - 2", "library-study-room", studentRepository.findById(1L).get()),

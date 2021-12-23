@@ -34,14 +34,14 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findById(id));
     }
 
+    @GetMapping("/{id}/nearbyStudents")
+    public ResponseEntity<List<Student>> getNearbyStudents(@PathVariable Long id){
+        return ResponseEntity.ok(studentService.findNearbyStudents(id));
+    }
+
     @GetMapping(headers = "hesCode")
     public ResponseEntity<Student> getStudentByHesCode(@RequestHeader String hesCode) {
         return ResponseEntity.ok(studentService.findByHesCode(hesCode));
-    }
-
-    @PostMapping(headers = {"hesCode", "trIdNumber", "eGovernmentPassword"})
-    public ResponseEntity<String> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
-        return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eGovernmentPassword));
     }
 
     @PostMapping
