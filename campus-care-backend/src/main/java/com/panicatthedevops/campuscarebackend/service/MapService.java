@@ -43,7 +43,7 @@ public class MapService {
             throw new AreaNotFoundException("Area with name " + name + " doesnt exist");
         }
         else{
-            Area area = areaRepository.getById(name);
+            Area area = areaRepository.findById(name).get();
             area.setLiveCount(count);
             return areaRepository.save(area);
         }
@@ -63,7 +63,7 @@ public class MapService {
             throw new AreaNotFoundException("Area with name " + oldName + " doesnt exist");
         }
         else{
-            Area area = areaRepository.getById(oldName);
+            Area area = areaRepository.findById(oldName).get();
             Cafeteria cafeteria = new Cafeteria(newName, area.getLiveCount(), capacity);
             areaRepository.deleteById(oldName);
             return areaRepository.save(cafeteria);
@@ -75,7 +75,7 @@ public class MapService {
             throw new AreaNotFoundException("Area with name " + oldName + " doesnt exist");
         }
         else{
-            Area smokingArea = areaRepository.getById(oldName);
+            Area smokingArea = areaRepository.findById(oldName).get();
             SmokingArea newArea = new SmokingArea(newName, smokingArea.getLiveCount());
             areaRepository.deleteById(oldName);
             return areaRepository.save(newArea);

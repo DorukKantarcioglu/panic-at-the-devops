@@ -74,11 +74,11 @@ public class NotificationService {
         else {
             User user;
             if(studentExists)
-                user = studentRepository.getById(userId);
+                user = studentRepository.findById(userId).get();
             else if(instructorExists)
-                user = instructorRepository.getById(userId);
+                user = instructorRepository.findById(userId).get();
             else
-                user = staffRepository.getById(userId);
+                user = staffRepository.findById(userId).get();
             return notificationRepository.save(new Notification(0, content, NotificationType.COVID_NOTIFICATION, user));
         }
     }

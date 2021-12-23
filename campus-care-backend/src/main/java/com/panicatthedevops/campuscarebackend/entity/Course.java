@@ -28,4 +28,9 @@ public class Course {
     @ManyToMany(mappedBy = "coursesTaken")
     @JsonIgnoreProperties("coursesTaken")
     List<Student> studentList;
+
+    @OneToOne()
+    @JoinColumn(name = "seatingPlan_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("course")
+    private SeatingPlan seatingPlan;
 }

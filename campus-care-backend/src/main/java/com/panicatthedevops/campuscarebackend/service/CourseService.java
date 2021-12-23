@@ -1,9 +1,12 @@
 package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
+import com.panicatthedevops.campuscarebackend.entity.SeatingPlan;
 import com.panicatthedevops.campuscarebackend.exception.CourseAlreadyExistsException;
 import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.SeatingPlanNotFoundException;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
+import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +15,15 @@ import java.util.List;
 @Service
 public class CourseService {
     private final CourseRepository courseRepository;
+    private final SeatingPlanRepository seatingPlanRepository;
+
+    public CourseService(CourseRepository courseRepository, SeatingPlanRepository seatingPlanRepository) {
+        this.courseRepository = courseRepository;
+        this.seatingPlanRepository = seatingPlanRepository;
+    }
 
     @Autowired
-    public CourseService(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
-    }
+
 
     public List<Course> findAll() {
         return courseRepository.findAll();
@@ -55,6 +62,26 @@ public class CourseService {
         }
         else {
             throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+        }
+    }
+
+    public Course addSeatingPlan(Long seatingPlanId, String courseCode){
+        if(!courseRepository.existsByCourseCode(courseCode)){
+            throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+        }
+        else{
+            Course course = courseRepository.findByCourseCode(courseCode).iterator().next();
+            if(!seatingPlanRepository.existsById(seatingPlanId)){
+                throw new SeatingPlanNotFoundException("Seating plan with id " + seatingPlanId + " does not exist.");
+            }
+            else{
+                SeatingPlan seatingPlan = seatingPlanRepository.findById(seatingPlanId).get();
+                course.setSeatingPlan(seatingPlan);
+                seatingPlan.setCourse(course);
+                seatingPlanRepository.save(seatingPlan);
+                courseRepository.save(course);
+                return course;
+            }
         }
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.Path;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
