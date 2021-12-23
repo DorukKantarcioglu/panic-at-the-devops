@@ -8,7 +8,6 @@ import Dashboard from "../../Dashboard";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 
 export default function LoginForm(props) {
-
   const [show, setShow] = useState(false);
   const [email, showEmail] = useState(true);
   const [newPasswordForm, showNewPasswordForm] = useState(false);
@@ -23,24 +22,19 @@ export default function LoginForm(props) {
     });
   };
 
-  const verifyCode=()=>{
+  const verifyCode = () => {
     showNewPasswordForm(true);
     showVerification(false);
+  };
 
-  }
-
-  const changePassword=()=>{
-
-  }
-  const showModal=()=>{
+  const changePassword = () => {};
+  const showModal = () => {
     setShow(true);
   };
 
-  const hideModal= () => {
+  const hideModal = () => {
     setShow(false);
   };
-
-
 
   const signIn = async () => {
     let path = `home`;
@@ -52,62 +46,63 @@ export default function LoginForm(props) {
     showVerification(true);
   };
   return (
-    <Form>
-      <div>
-        <label
-          className="display-6 m-2 justify-content-center"
-          style={{ alignContent: "auto", color: "GrayText" }}
-        >
-          LOGIN
-        </label>
-      </div>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Id</Form.Label>
-        <Form.Control
-          type="id"
-          placeholder="Enter your id"
-          name="id"
-          //onChange={handleChange()}
-        />
-      </Form.Group>
+    <div className="d-flex justify-content-center">
+      <div className="col-5 m-2">
+        <Form>
+          <div className="row d-flex justify-content-start">
+            <label
+              className="display-6 m-2 justify-content-center"
+              style={{ alignContent: "auto", color: "GrayText" }}
+            >
+              Campus Care
+            </label>
+          </div>
+          <Form.Group className="m-2" controlId="formBasicEmail">
+            <Form.Label>Id</Form.Label>
+            <Form.Control
+              type="id"
+              placeholder="Enter your id"
+              name="id"
+              //onChange={handleChange()}
+            />
+          </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword" >
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          name="password"
-          //onChange={handleChange()}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <div className="d-flex justify-content-between">
-        <div className="col-6">
-          <Card
-            className="button p-2"
-            style={{ backgroundColor: "#a3a9f5" }}
-            type="submit"
-            onClick={signIn}
-          >
-            Submit
-          </Card>
-        </div>
-        <div className="col-6">
-          <Card
-            className=" button  ml-auto p-2"
-            style={{ backgroundColor: "#a3a9f5" }}
-            type="button"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-            onClick={showModal}
-          >
-            Forgot Password
-          </Card>
-          <ForgotPasswordForm show={show} handleClose={hideModal}/>
-        </div>
+          <Form.Group className="m-2" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              //onChange={handleChange()}
+            />
+          </Form.Group>
+          <div className="d-flex justify-content-between">
+            <div className="col-6">
+              <Card
+                className="button p-2"
+                style={{ backgroundColor: "#a3a9f5" }}
+                type="submit"
+                onClick={signIn}
+              >
+                Submit
+              </Card>
+            </div>
+            <div className="col-6">
+              <Card
+                className=" button  ml-auto p-2"
+                style={{ backgroundColor: "#a3a9f5" }}
+                type="button"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                onClick={showModal}
+              >
+                Forgot Password
+              </Card>
+              <ForgotPasswordForm show={show} handleClose={hideModal} />
+            </div>
+          </div>
+        </Form>
       </div>
-    </Form>
+    </div>
   );
 }
