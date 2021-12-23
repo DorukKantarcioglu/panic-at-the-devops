@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/campus-care-backend/campus-care-backend.iml" filepath="$PROJECT_DIR$/campus-care-backend/campus-care-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/panic-at-the-devops.iml" filepath="$PROJECT_DIR$/.idea/panic-at-the-devops.iml" />
     </modules>
   </component>
