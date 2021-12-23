@@ -55,11 +55,6 @@ public class InstructorController {
         return ResponseEntity.ok(instructorService.removeCourse(id, courseCode));
     }
 
-    @GetMapping("/{id}/courses/{courseCode}/notAllowedStudents")
-    public ResponseEntity<List<Student>> getNotAllowedStudents(@PathVariable Long id, @PathVariable String courseCode) {
-        return ResponseEntity.ok(instructorService.findNotAllowedStudents(id, courseCode));
-    }
-
     @PatchMapping(path = "/{id}", headers = "hesCode")
     public ResponseEntity<Instructor> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
         return ResponseEntity.ok(instructorService.updateHesCode(id, hesCode));
