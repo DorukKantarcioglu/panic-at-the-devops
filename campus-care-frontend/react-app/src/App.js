@@ -12,6 +12,7 @@ import CoursePage from "./app/CoursePage";
 import Dashboard from "./app/Dashboard";
 import Login from "./app/Login";
 import Notifications from "./app/Notifications";
+import AppointmentPage from "./app/AppointmentPage";
 const { Header, Content } = Layout;
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
                 <Dashboard />
               </Route>
               <Route path="/appointment">
-                <ReservationCheck />
+                <AppointmentPage/>
               </Route>
               <Route path="/profile">
                 <ProfilePage id="1" />

@@ -10,7 +10,7 @@ const StudentList = (props) => {
   };
 
   return (
-    <table className="justfiy-content-start">
+    <table className="justify-content-start">
       <thead>
         <tr>
           <th> Name</th>

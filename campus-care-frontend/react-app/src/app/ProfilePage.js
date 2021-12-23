@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import InfoBox from "./components/profileComponents/InfoBox";
-import SideBar from "./components/SideBar";
+import {Container, Col, Row} from 'react-bootstrap';
 import StudentList from "./components/profileComponents/StudentList";
+import CoursePage from "./CoursePage";
 
 class MyProfile extends React.Component {
   constructor() {
@@ -17,17 +18,17 @@ class MyProfile extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="row"> </div>
-        <div col-4>
-          {" "}
-          <SideBar id={this.state.id} />
-        </div>
-        <div>
-          <InfoBox />
-          <StudentList />
-        </div>
-      </React.Fragment>
+        <Container>
+            <Row>
+                <InfoBox/>
+            </Row>
+            <Row>
+                <CoursePage/>
+            </Row>
+            <Row>
+                Appointments (To-do)
+            </Row>
+        </Container>
     );
   }
 }

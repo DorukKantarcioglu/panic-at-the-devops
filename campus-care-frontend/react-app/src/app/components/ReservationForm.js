@@ -19,7 +19,6 @@ function ReservationForm() {
                 </Col>
                 <Col sm = {8}>
                     <Form>
-
                         <Form.Group as={Col} >
                             <Form.Label>Sports Hall</Form.Label>
                             <Form.Select defaultValue="Choose..." >
@@ -28,10 +27,9 @@ function ReservationForm() {
                             </Form.Select>
                         </Form.Group>
 
-
                         <Form.Group className="mb-3" controlId="formGridAddress2">
-                            <Form.Label>Address 2</Form.Label>
-                            <Form.Control placeholder="Apartment, studio, or floor" />
+                            <Form.Label>Identification</Form.Label>
+                            <Form.Control placeholder="Please Enter Your ID" />
                         </Form.Group>
 
                         <Form.Group>
