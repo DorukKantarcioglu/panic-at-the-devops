@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InfoBox from "./profileComponents/InfoBox";
 import React from "react";
-import CoursePage from "../CoursePage";
+import CoursePage from "../pages/CoursePage";
 import { Navigation } from "react-minimal-side-navigation";
 import { FaUserAlt, FaBook } from "react-icons/fa";
 import { useEffect, useState } from "react";

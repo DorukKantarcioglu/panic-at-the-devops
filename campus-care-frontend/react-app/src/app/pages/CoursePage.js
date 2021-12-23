@@ -1,7 +1,6 @@
-import StudentService from "../service/StudentService";
-import StudentList from "./components/profileComponents/StudentList";
+import StudentService from "../../service/StudentService";
+import StudentList from "../components/profileComponents/StudentList";
 import {useEffect, useState} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 

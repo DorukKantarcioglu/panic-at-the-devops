@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ResponsivePie } from "@nivo/pie";
-import Dashboard from "../../Dashboard";
+import Dashboard from "../../pages/Dashboard";
 
 function MyResponsivePie(){
 
