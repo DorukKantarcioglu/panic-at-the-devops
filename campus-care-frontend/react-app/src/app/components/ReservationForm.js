@@ -4,16 +4,16 @@ import Button from "react-bootstrap/Button";
 import { Container, Col, Row } from "react-bootstrap";
 import SideBar from "./SideBar";
 
-const ReservationForm = ({create}) => {
-
-
+const ReservationForm = ({ create }) => {
   return (
     <Container>
       <Row>
-        <Col sm={8}>
+        <Col sm={12}>
           <Form>
-            <Form.Group as={Col}>
-              <Form.Label>Sports Hall</Form.Label>
+            <Form.Group>
+              <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
+                Choose location
+              </Form.Label>
               <Form.Select defaultValue="Choose...">
                 <option>Main Sports Hall</option>
                 <option>Dormitory Sports Hall</option>
@@ -24,7 +24,9 @@ const ReservationForm = ({create}) => {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Time Interval</Form.Label>
+              <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
+                Time Interval
+              </Form.Label>
               <Form.Select defaultValue="Choose...">
                 <option>10:30</option>
                 <option>...</option>
@@ -48,6 +50,6 @@ const ReservationForm = ({create}) => {
       </Row>
     </Container>
   );
-}
+};
 
 export default ReservationForm;

@@ -1,42 +1,56 @@
 const ReservationsList = (props) => {
-    const reservations = [
-        {
-            date: "Today ",
-            timeSlot: " 15:00 ",
-            place: "Main Campus Hall",
-            type: "Sport Center",
-            userId: 21901009,
-            id: 323,
-        },
-        {
-            date: "Tomorrow",
-            timeSlot: "21:30 ",
-            place: "Library ( Main Hall ) ",
-            type: "Library",
-            userId: 21901009,
-            id: 3424,
-        },
-    ];
+  const reservations = [
+    {
+      date: "Today ",
+      timeSlot: " 15:00 ",
+      place: "Main Campus Hall",
+      type: "Sport Center",
+      userId: 21901009,
+      id: 323,
+    },
+    {
+      date: "Tomorrow",
+      timeSlot: "21:30 ",
+      place: "Library ( Main Hall ) ",
+      type: "Library",
+      userId: 21901009,
+      id: 3424,
+    },
+  ];
 
-    return (
-        <div>
-            <h1> Reservations List </h1>
-            { reservations &&
-                reservations.map((reservations) => {
-                return (
-                    <div>
-                        <div className="d-flex w-100 justify-content-between">
-                            <h5 className="mb-1">
-                                {reservations.date + " at " + reservations.timeSlot}
-                            </h5>
-                            <h6>
-                                {reservations.place}
-                            </h6>
-                        </div>
-                    </div>
-                );
-            } ) }
-        </div>
-    );
+  return (
+    <>
+      <div className="row justify-content-start">
+        <h5> Reservations List </h5>
+      </div>
+      <table
+        className="border"
+        style={{ position: "relative", width: "100%", marginLeft: "0px" }}
+      >
+        <thead>
+          <tr>
+            <th> Date</th>
+            <th> Time Slot</th>
+            <th> Place </th>
+          </tr>
+        </thead>
+        <tbody>
+          {reservations &&
+            reservations.map((reservations) => {
+              return (
+                <>
+                  <tr className="justify-content-start">
+                    <td>{reservations.date}</td>
+                    <td>{reservations.timeSlot}</td>
+                    <td>{reservations.place}</td>
+                  </tr>
+                </>
+              );
+            })}
+        </tbody>
+      </table>
+      ;
+    </>
+  );
 };
 export default ReservationsList;
