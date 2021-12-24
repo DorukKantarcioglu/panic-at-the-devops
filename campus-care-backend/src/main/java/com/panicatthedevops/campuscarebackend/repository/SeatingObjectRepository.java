@@ -10,6 +10,7 @@ import java.util.List;
 public interface SeatingObjectRepository extends JpaRepository<SeatingObject, Long> {
     List<SeatingObject> findAllBySeatingPlanId(Long id);
     Boolean existsBySeatingPlanId(Long id);
-    SeatingObject findByRowNoAndColumnNo(int rowNo, int columnNo);
-    Boolean existsByRowNoAndColumnNo(int rowNo, int columnNo);
+    SeatingObject findByRowNoAndColumnNoAndSeatingPlanId(int rowNo, int columnNo, Long seatingPlanId);
+    Boolean existsByRowNoAndColumnNoAndSeatingPlanId(int rowNo, int columnNo, Long seatingPlanId);
+    Boolean existsByStudentIdAndSeatingPlanId(Long studentId, Long seatingPlanId);
 }

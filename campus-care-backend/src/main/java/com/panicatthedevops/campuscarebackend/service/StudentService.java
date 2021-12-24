@@ -54,23 +54,23 @@ public class StudentService {
         List<Student> nearbyStudents = new ArrayList<>();
         for( SeatingObject seatingObject : student.getSeatings()){
             Student nearbyStudent;
-            if(seatingObject.getRowNo() > 0 && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()-1, seatingObject.getColumnNo()) != null){
-                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()-1, seatingObject.getColumnNo()).getStudent();
+            if(seatingObject.getRowNo() > 0 && seatingObjectRepository.existsByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo()-1, seatingObject.getColumnNo(), seatingObject.getSeatingPlan().getId())){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo()-1, seatingObject.getColumnNo(), seatingObject.getSeatingPlan().getId()).getStudent();
                 if(!nearbyStudents.contains(nearbyStudent))
                     nearbyStudents.add(nearbyStudent);
             }
-            if(seatingObject.getRowNo() < seatingObject.getSeatingPlan().getRowNumber() && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()+1, seatingObject.getColumnNo()) != null){
-                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo()+1, seatingObject.getColumnNo()).getStudent();
+            if(seatingObject.getRowNo() < seatingObject.getSeatingPlan().getRowNumber() && seatingObjectRepository.existsByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo()+1, seatingObject.getColumnNo(), seatingObject.getSeatingPlan().getId())){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo()+1, seatingObject.getColumnNo(), seatingObject.getSeatingPlan().getId()).getStudent();
                 if(!nearbyStudents.contains(nearbyStudent))
                     nearbyStudents.add(nearbyStudent);
             }
-            if(seatingObject.getColumnNo() > 0 && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo()-1) != null){
-                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo() - 1).getStudent();
+            if(seatingObject.getColumnNo() > 0 && seatingObjectRepository.existsByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo(), seatingObject.getColumnNo()-1, seatingObject.getSeatingPlan().getId())){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo(), seatingObject.getColumnNo() - 1, seatingObject.getSeatingPlan().getId()).getStudent();
                 if(!nearbyStudents.contains(nearbyStudent))
                     nearbyStudents.add(nearbyStudent);
             }
-            if(seatingObject.getColumnNo() < seatingObject.getSeatingPlan().getColumnNumber() && seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo()+1) != null){
-                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNo(seatingObject.getRowNo(), seatingObject.getColumnNo() + 1).getStudent();
+            if(seatingObject.getColumnNo() < seatingObject.getSeatingPlan().getColumnNumber() && seatingObjectRepository.existsByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo(), seatingObject.getColumnNo()+1, seatingObject.getSeatingPlan().getId()) ){
+                nearbyStudent = seatingObjectRepository.findByRowNoAndColumnNoAndSeatingPlanId(seatingObject.getRowNo(), seatingObject.getColumnNo() + 1, seatingObject.getSeatingPlan().getId()).getStudent();
                 if(!nearbyStudents.contains(nearbyStudent))
                     nearbyStudents.add(nearbyStudent);
             }
