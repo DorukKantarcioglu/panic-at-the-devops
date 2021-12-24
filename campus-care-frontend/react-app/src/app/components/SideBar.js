@@ -1,39 +1,26 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InfoBox from "./profileComponents/InfoBox";
 import React from "react";
-import CoursePage from "../pages/CoursePage";
 import { Navigation } from "react-minimal-side-navigation";
 import { FaUserAlt, FaBook } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
+import CourseService from "../../service/CourseService";
 
 const courses = [
   {
     name: "cs319",
-    itemId: "1",
   },
   {
     name: "cs315",
-    itemId: "2",
   },
   {
     name: "math225",
-    itemId: "3",
-  },
-];
-
-const profilePageElements = [
-  {
-    name: "Profile Info",
-  },
-  {
-    name: "Courses",
   },
 ];
 
 const SideBar = (props) => {
-  const [path, setPath] = useState("");
   const history = useHistory();
   let subNavArr = [];
   useEffect(() => {
@@ -41,7 +28,7 @@ const SideBar = (props) => {
   }, []);
 
   const createSubNav = () => {
-    courses.forEach((c) => subNavArr.push({ title: c.name, itemId: c.itemId }));
+    courses.forEach((c) => subNavArr.push({ title: c.name, itemId: c.name }));
   };
   return (
     <div>
@@ -52,10 +39,10 @@ const SideBar = (props) => {
               <Navigation
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
-                onSelect={({ itemId, title }) => {
+                onSelect={({ itemId }) => {
                   if (itemId !== "/management") {
-                    setPath("course/".concat(itemId));
-                    history.push({ path });
+                    let path = "course/".concat(itemId);
+                    history.push(path);
                   }
                 }}
                 items={[
@@ -72,30 +59,12 @@ const SideBar = (props) => {
                     elemBefore: () => <FaBook />,
                     subNav: subNavArr,
                   },
-                  {
-                    title: "Another Item",
-                    itemId: "/another",
-                    subNav: [
-                      {
-                        title: "Teams",
-                        itemId: "/management/teams",
-                      },
-                    ],
-                  },
                 ]}
               />
             </ul>
           </div>
         </div>
       </>
-      {/* We don't need a course list for students*/}
-      {/*<Router>
-        <Switch>
-          <Route path={path}>
-            <CoursePage />
-          </Route>
-        </Switch>
-      </Router>*/}
     </div>
   );
 };

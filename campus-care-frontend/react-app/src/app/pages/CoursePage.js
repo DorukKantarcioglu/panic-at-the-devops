@@ -1,29 +1,24 @@
 import StudentService from "../../service/StudentService";
 import StudentList from "../components/profileComponents/StudentList";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import CourseService from "../../service/CourseService";
 
+const CoursePage = () => {
+  const [data, setData] = useState([]);
 
+  const fetchData = async () => {
+    setData(await CourseService.getStudentList("cs315"));
+  };
 
-const CoursePage =()=>
-{
-    const [data, setData] = useState([])
-    const  data2 = [{name:"Elif"},{name:"Ece"}, {name:"Elif"} ]
+  useEffect(() => {
+    fetchData().then();
+  }, []);
 
-    const fetchData=async () => {
-            setData(await StudentService.fetchAllStudents())
-    }
+  return (
+    <div>
+      <StudentList data={data} />
+    </div>
+  );
+};
 
-    useEffect(()=>{
-        console.log("useEff")
-        fetchData().then()
-    },[])
-
-    return(
-        <div>
-            <StudentList data = {data}/>
-        </div>
-    )
-
-}
-
-export default CoursePage
+export default CoursePage;
