@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 import { Layout } from "antd";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,16 +9,12 @@ import "@fortawesome/free-solid-svg-icons";
 import MenuTab from "./app/components/MenuTab";
 
 import AppRouter from "./app/components/AppRouter";
+import Login from "./app/pages/Login";
 const { Header, Content } = Layout;
 
 function App() {
   return (
     <BrowserRouter>
-      <Header>
-        <div>
-          <MenuTab />
-        </div>
-      </Header>
       <Content>
         <AppRouter />
       </Content>
