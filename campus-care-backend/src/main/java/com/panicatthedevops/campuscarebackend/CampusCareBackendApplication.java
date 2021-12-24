@@ -3,7 +3,6 @@ package com.panicatthedevops.campuscarebackend;
 import com.panicatthedevops.campuscarebackend.entity.*;
 import com.panicatthedevops.campuscarebackend.repository.*;
 import com.panicatthedevops.campuscarebackend.util.NotificationType;
-import com.panicatthedevops.campuscarebackend.util.TimeSlot;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -48,8 +47,8 @@ public class CampusCareBackendApplication {
             //));
 
             reservationRepository.saveAll(Arrays.asList(
-                    new Reservation(10L, "10.12.2021", new TimeSlot("10:30", "Tuseday"), "Strudy room - 2", "library-study-room", studentRepository.findById(1L).get()),
-                    new Reservation(20L, "11.12.2021", new TimeSlot("10:30", "Friday"), "Diagnovir room 1", "diagnovir", studentRepository.findById(1L).get())
+                    new Reservation(10L, "10.12.2021", "Tuesday 10:30", "Strudy room - 2", "library-study-room", studentRepository.findById(1L).get()),
+                    new Reservation(20L, "11.12.2021", "Friday 10:30", "Diagnovir room 1", "diagnovir", studentRepository.findById(1L).get())
             ));
 
             areaRepository.saveAll(Arrays.asList(

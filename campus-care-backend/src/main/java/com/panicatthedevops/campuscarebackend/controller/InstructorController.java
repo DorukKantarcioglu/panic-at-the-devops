@@ -2,9 +2,11 @@ package com.panicatthedevops.campuscarebackend.controller;
 
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
 import com.panicatthedevops.campuscarebackend.entity.Notification;
+import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import com.panicatthedevops.campuscarebackend.service.NotificationService;
+import com.panicatthedevops.campuscarebackend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,18 @@ import java.util.List;
 public class InstructorController {
     private final InstructorService instructorService;
     private final NotificationService notificationService;
+    private final ReservationService reservationService;
 
     @Autowired
-    public InstructorController(InstructorService instructorService, NotificationService notificationService) {
+    public InstructorController(InstructorService instructorService, NotificationService notificationService, ReservationService reservationService) {
         this.instructorService = instructorService;
         this.notificationService = notificationService;
+        this.reservationService = reservationService;
+    }
+
+    @GetMapping("/{id}/reservations")
+    public ResponseEntity<List<Reservation>> getReservations(@PathVariable Long id){
+        return ResponseEntity.ok(reservationService.getReservationsOfUser(id));
     }
 
     @GetMapping

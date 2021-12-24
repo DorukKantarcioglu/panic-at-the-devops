@@ -2,7 +2,6 @@ package com.panicatthedevops.campuscarebackend.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.panicatthedevops.campuscarebackend.util.TimeSlot;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,8 +19,7 @@ public class Reservation {
     private long id;
     private String Date;
 
-    @Transient
-    private TimeSlot timeSlot;
+    private String timeSlot;
     private String place;
     private String type;
 
