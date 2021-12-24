@@ -20,12 +20,12 @@ const ReservationsList = (props) => {
 
   return (
     <>
-      <div className="row justify-content-start">
-        <h5> Reservations List </h5>
+      <div className="row d-flex justify-content-start">
+        <h5> Upcoming Reservations </h5>
       </div>
       <table
         className="border"
-        style={{ position: "relative", width: "100%", marginLeft: "0px" }}
+        style={{ position: "relative", width: "100%", marginLeft: "20px" }}
       >
         <thead>
           <tr>
@@ -49,7 +49,6 @@ const ReservationsList = (props) => {
             })}
         </tbody>
       </table>
-      ;
     </>
   );
 };

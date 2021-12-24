@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { Layout } from "antd";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,17 +14,15 @@ const { Header, Content } = Layout;
 function App() {
   return (
     <BrowserRouter>
-        <Header>
-          <div>
-            <MenuTab />
-          </div>
-        </Header>
-        <Content>
-          <AppRouter/>
-        </Content>
+      <Header>
+        <div>
+          <MenuTab />
+        </div>
+      </Header>
+      <Content>
+        <AppRouter />
+      </Content>
     </BrowserRouter>
-
-
   );
 }
 

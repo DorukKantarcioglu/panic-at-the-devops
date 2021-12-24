@@ -82,7 +82,7 @@ li a.side:hover:not(.active) {
   transition-duration: 0.4s;
 }
 .button:hover {
-  background-color: #644da2; /* Green */
+  background-color: #a48be9; /* Green */
   color: rgb(38, 36, 36);
 }
 
