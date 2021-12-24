@@ -58,7 +58,7 @@ export default function LoginForm(props) {
             </label>
           </div>
           <Form.Group className="m-2" controlId="formBasicEmail">
-            <Form.Label>Id</Form.Label>
+            <Form.Label>ID</Form.Label>
             <Form.Control
               type="id"
               placeholder="Enter your id"

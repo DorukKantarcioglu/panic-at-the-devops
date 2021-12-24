@@ -23,6 +23,15 @@ const courses = [
   },
 ];
 
+const profilePageElements = [
+  {
+    name: "Profile Info",
+  },
+  {
+    name: "Courses",
+  },
+];
+
 const SideBar = (props) => {
   const [path, setPath] = useState("");
   const history = useHistory();

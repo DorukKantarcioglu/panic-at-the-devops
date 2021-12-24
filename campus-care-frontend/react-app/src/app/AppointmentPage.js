@@ -3,10 +3,9 @@ import React from "react";
 import Card from "react-bootstrap/Button";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ReservationForm from "./components/ReservationForm";
-
+import StudentList from "./components/profileComponents/StudentList";
 const AppointmentPage = () => {
   return (
-
     <Router>
       <Link to="/new">
         <div className="row justify-content-center">

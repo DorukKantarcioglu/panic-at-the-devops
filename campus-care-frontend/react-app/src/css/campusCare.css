@@ -82,7 +82,7 @@ li a.side:hover:not(.active) {
   transition-duration: 0.4s;
 }
 .button:hover {
-  background-color: #cbb7da; /* Green */
+  background-color: #644da2; /* Green */
   color: rgb(38, 36, 36);
 }
 
@@ -134,4 +134,20 @@ button[class="table"] {
 
 button :hover {
   background-color: rgb(173, 179, 255);
+}
+
+th {
+  background: rgb(130, 162, 245);
+  border-color: white;
+}
+
+td,
+th {
+  width: 4rem;
+  height: 2rem;
+  border: 1px solid rgb(32, 30, 30);
+  text-align: start;
+}
+body {
+  padding: 1rem;
 }
