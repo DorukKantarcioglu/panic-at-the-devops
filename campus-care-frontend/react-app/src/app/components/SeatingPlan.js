@@ -1,20 +1,53 @@
 import React, {useEffect, useState} from "react";
-import NewSeatingPlanForm from "./NewSeatingPlanForm";
+import NewSeatingPlanForm from "./profileComponents/NewSeatingPlanForm";
+import {  Modal } from "react-bootstrap";
+import {ModalBody} from "react-bootstrap";
+import SeatingPlanService from "../../service/SeatingPlanService";
+import CourseService from "../../service/CourseService";
 
-const SeatingPlan =()=>
+export default function SeatingPlan (props)
 {
 
     const [chart, setChart] = useState([]);
-    const [data, setData] = useState([1,2,3,4,5,6,7,8,9,10,11,12]);
+    const [data, setData] = useState([]);
     const [rowNo, setRowNo] = useState(2);
     const [columnNo, setColumnNo] = useState(4);
     const [read, setRead] = useState(true);
-    const [exist, setExist] = useState(true);
+    const [exist, setExist] = useState(false);
+    const [list, setList] = useState()
 
-    useEffect(()=>{
-        if(exist)
-        fetchSeatingPlan();
-    },[read, exist])
+    useEffect(async () => {
+
+        await fetch()
+        if (exist)
+        {
+            getSeatingPlan();
+            fetchSeatingPlan();
+        }
+    },[exist])
+
+    fetch = async (params = {}) => {
+
+        const seatingList = await CourseService.getSeatingPlan(props.courseCode);
+        setList(seatingList);
+        if (seatingList != null)
+            setExist(true);
+    };
+
+    const getSeatingPlan= () => {
+
+
+        for (let x = 0; x < list.length; x++)
+        {
+            let i = list[x].rowNo;
+            let j = list[x].columnNo;
+            let id = j + (i * 1);
+
+            let temp = data;
+            temp[id] = list[x].student.id;
+            setData(temp);
+        }
+    }
 
     const saveStudent = (event) => {
         let seatId = event.target.id;
@@ -28,18 +61,18 @@ const SeatingPlan =()=>
     {
         let table = [];
         let parent = [];
-        for (let i = 1; i <= rowNo; i++)
+        for (let i = 0; i < rowNo; i++)
         {
             let children = [];
-            for (let j = 1; j <= columnNo; j++)
+            for (let j = 0; j < columnNo; j++)
             {
-                let id = (j-1)+((i-1)*columnNo);
+                let id = j+(i*columnNo);
 
-                    children.push(<td>
-                        <input type="text" name="seat" id = {id}
-                               onChange={saveStudent} readOnly={read}  defaultValue={data[id]} >
+                children.push(<td>
+                    <input type="text" name="seat" id = {id}
+                           onChange={saveStudent} readOnly={read}  defaultValue={data[id]} >
 
-                        </input> </td>);
+                    </input> </td>);
             }
             parent.push(<tr> {children} </tr>);
         }
@@ -63,21 +96,21 @@ const SeatingPlan =()=>
         });
     };
 
-
-        return(
-            <div className="seatingPlanForm">
-            {exist?(<div>
-                    {chart}
-                    <button id = "seatingPlanUpdate" onClick={updateChart}> Update the seating plan </button>
-                    </div>
-                ):
-                    (
-                        <NewSeatingPlanForm onSave = {save}/>
-
-                    )
-            }
-            </div>
-        )
+    return(
+        <div>
+            <Modal show ={props.show} className="seatingPlanForm" >
+                <ModalBody>
+                    {exist?(<div>
+                                {chart}
+                                <button id = "seatingPlanUpdate" onClick={updateChart}> Update the seating plan </button>
+                            </div>
+                        ):
+                        (
+                            <NewSeatingPlanForm onSave = {save} courseCode = {props.courseCode}/>
+                        )
+                    }
+                </ModalBody>
+            </Modal>
+        </div>
+    )
 }
-
-export default SeatingPlan;

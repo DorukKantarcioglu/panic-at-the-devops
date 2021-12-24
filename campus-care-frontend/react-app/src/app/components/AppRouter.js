@@ -29,7 +29,7 @@ const AppRouter = () => {
         <ProfilePage id="1" />
       </Route>
       <Route path="/campusmap">
-        <MenuTab />
+        <CoursePage courseCode = "MATH-230-1"/>
         <Login />
       </Route>
       <Route path="/notifications">

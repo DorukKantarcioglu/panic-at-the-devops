@@ -1,29 +1,47 @@
+import React, {useEffect, useState} from "react";
+import {ModalBody} from "react-bootstrap";
+import Modal from "antd/es/modal/Modal";
 import StudentService from "../../service/StudentService";
 import StudentList from "../components/profileComponents/StudentList";
-import {useEffect, useState} from "react";
+import SeatingPlan from "../components/SeatingPlan";
+import Button from "react-bootstrap/Button";
+import CourseService from "../../service/CourseService";
 
-
-
-const CoursePage =()=>
-{
+const CoursePage =(props) => {
     const [data, setData] = useState([])
-    const  data2 = [{name:"Elif"},{name:"Ece"}, {name:"Elif"} ]
+    const [seatingPlan, setSeatingPlan] = useState()
 
-    const fetchData=async () => {
-            setData(await StudentService.fetchAllStudents())
+    const [showSeating, setSeating] = useState(false);
+
+
+    useEffect(() => {
+        if (seatingPlan == null)
+            fetchData().then()
+        console.log(seatingPlan)
+    }, [seatingPlan])
+
+    const fetchData = async () => {
+        setData(await StudentService.fetchAllStudents().then())
+        setSeatingPlan(await CourseService.getSeatingPlan(props.courseCode).then())
+
     }
 
-    useEffect(()=>{
-        console.log("useEff")
-        fetchData().then()
-    },[])
+    const showSeatingPlan = () => {
+        setSeating(true)
+    }
 
-    return(
+    return (
         <div>
-            <StudentList data = {data}/>
+            <SeatingPlan show={showSeating} seatingPlan={seatingPlan} courseCode={props.courseCode}/>
+            <StudentList data={data}/>
+            <Button onClick={showSeatingPlan}>Seating Plan </Button>
         </div>
     )
-
 }
 
 export default CoursePage
+
+
+
+
+
