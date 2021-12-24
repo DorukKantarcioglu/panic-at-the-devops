@@ -3,6 +3,8 @@ package com.panicatthedevops.campuscarebackend.service;
 import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.entity.User;
 import com.panicatthedevops.campuscarebackend.exception.ReservationNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.StudentNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.UndefinedReservationTypeException;
 import com.panicatthedevops.campuscarebackend.exception.UserNotFoundException;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import com.panicatthedevops.campuscarebackend.repository.ReservationRepository;
@@ -12,6 +14,7 @@ import com.panicatthedevops.campuscarebackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,7 +44,10 @@ public class ReservationService {
 
     public List<Reservation> getReservationsOfUser(Long userId){
         if(!reservationRepository.existsByUserId(userId)){
-            throw new UserNotFoundException("User with id " + userId + " does not exist");
+            if(!studentRepository.existsById(userId) && !instructorRepository.existsById(userId) && !staffRepository.existsById(userId))
+                throw new UserNotFoundException("User with id " + userId + " does not exist.");
+            List<Reservation> reservations = new ArrayList<>();
+            return reservations;
         }
         return reservationRepository.findAllByUserId(userId);
     }
@@ -75,6 +81,9 @@ public class ReservationService {
             reservationBehavior = new LibraryReservationBehavior(reservationRepository);
         else if(reservationType.equals(ReservationType.SPORTS_CENTER_RESERVATION))
             reservationBehavior = new SportCenterReservationBehavior(reservationRepository);
+        else
+            throw new UndefinedReservationTypeException("Reservation type " + reservationType + " is invalid. It can be: " +
+                    ReservationType.SPORTS_CENTER_RESERVATION + ", " + ReservationType.DIAGNOVIR_RESERVATION + ", " + ReservationType.LIBRARY_RESERVATION);
     }
 
     public Reservation save(Long userId, String date, String timeSlot, String place, String type){
