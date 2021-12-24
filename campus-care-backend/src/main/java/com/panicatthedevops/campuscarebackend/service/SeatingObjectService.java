@@ -3,10 +3,7 @@ package com.panicatthedevops.campuscarebackend.service;
 import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
 import com.panicatthedevops.campuscarebackend.entity.SeatingPlan;
 import com.panicatthedevops.campuscarebackend.entity.Student;
-import com.panicatthedevops.campuscarebackend.exception.SeatingObjectNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.SeatingPlanNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.StudentNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.StudentSeatingPositionInvalidException;
+import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingObjectRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
@@ -71,8 +68,15 @@ public class SeatingObjectService {
              throw new SeatingPlanNotFoundException("Seating plan with id " + seatingPlanId + " does not exist.");
          }
          else{
+             Student student = studentRepository.findById(studentId).get();
              SeatingPlan seatingPlan = seatingPlanRepository.findById(seatingPlanId).get();
-             if(rowNo > seatingPlan.getRowNumber() || rowNo < 0){
+             if(seatingObjectRepository.existsByRowNoAndColumnNoAndSeatingPlanId(rowNo, columnNo, seatingPlanId)){
+                throw new SeatAlreadyOccupiedException("Seat in seating plan with id " + seatingPlanId + " with row " + rowNo + " and column " + columnNo + " is already occupied");
+             }
+             else if(seatingObjectRepository.existsByStudentIdAndSeatingPlanId(studentId, seatingPlanId)){
+                 throw new StudentAlreadySeatedElsewhereInSeatingPlan("Student with id " + studentId + " is already seated elsewhere in seating plan with id " + seatingPlanId );
+             }
+             else if(rowNo > seatingPlan.getRowNumber() || rowNo < 0){
                  throw new StudentSeatingPositionInvalidException("Row number " + rowNo + " is invalid for seating plan with id " + seatingPlanId + " with " + seatingPlan.getRowNumber() + " rows");
              }
              else if(columnNo > seatingPlan.getColumnNumber() || columnNo < 0){
@@ -80,7 +84,6 @@ public class SeatingObjectService {
              }
              else{
                  SeatingObject seatingObject = new SeatingObject(0, null, null, rowNo, columnNo);
-                 Student student = studentRepository.findById(studentId).get();
                  seatingObject.setSeatingPlan(seatingPlan);
                  seatingObject.setStudent(student);
                  student.getSeatings().add(seatingObject);

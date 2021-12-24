@@ -55,7 +55,12 @@ public class CourseService {
 
     public List<SeatingObject> getSeatingObjects(String courseCode){
         Course course = findByCourseCode(courseCode);
+
+        if(course.getSeatingPlan() == null)
+            throw new SeatingPlanNotFoundException("Seating plan of course " + courseCode + " was not initialized" );
+
         Long seatingPlanId = course.getSeatingPlan().getId();
+
         if(!seatingObjectRepository.existsBySeatingPlanId(seatingPlanId)){
             throw new SeatingObjectNotFoundException("Seating objects with seating plan id " + seatingPlanId + " do not exist.");
         }
