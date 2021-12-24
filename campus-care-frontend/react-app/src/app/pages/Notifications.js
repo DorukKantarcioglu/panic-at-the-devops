@@ -1,10 +1,10 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import NotificationList from "./components/NotificationList";
-import StudentList from "./components/profileComponents/StudentList";
+import NotificationList from "../components/NotificationList";
+import StudentList from "../components/profileComponents/StudentList";
 import { Dropdown } from "react-bootstrap";
-import LoginForm from "./components/loginComponents/LoginForm";
-import NewSeatingPlanForm from "./components/profileComponents/NewSeatingPlanForm";
+import LoginForm from "../components/loginComponents/LoginForm";
+import NewSeatingPlanForm from "../components/profileComponents/NewSeatingPlanForm";
 
 function Notifications(props) {
   return (

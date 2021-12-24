@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import React from "react";
 import LocalStorageService from "../../../service/LocalStorageService";
 import axios from "axios";
-import Dashboard from "../../Dashboard";
+import Dashboard from "../../pages/Dashboard";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 
 export default function LoginForm(props) {

@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import StudentService from "../../../service/StudentService";
 import { Container, Col, Row } from "react-bootstrap";
 
@@ -39,14 +38,12 @@ class InfoBox extends React.Component {
 
   render() {
     return (
-      <Container
-        style={{ position: "fixed", marginLeft: 120, marginTop: -100 }}
-      >
+      <Container>
         <Row>
-          <Col className="col-4">
+          <Col md = {4}>
             <div
               className="infoBox"
-              style={{ borderStyle: "dashed", width: "auto" }}
+              style={{ borderStyle: "dashed",  }}
             >
               <label className="infoBox">
                 {" "}
@@ -75,7 +72,7 @@ class InfoBox extends React.Component {
               <br />
             </div>
           </Col>
-          <Col className="col-6">
+          <Col md = {8}>
             <div className="updateHesCode" style={{ width: "auto" }}>
               <label className="m-2"> Enter your recent HES code: </label>
               <input

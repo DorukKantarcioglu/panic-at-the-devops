@@ -1,8 +1,10 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
 import com.panicatthedevops.campuscarebackend.entity.Notification;
+import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.service.NotificationService;
+import com.panicatthedevops.campuscarebackend.service.ReservationService;
 import com.panicatthedevops.campuscarebackend.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,18 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
     private final NotificationService notificationService;
+    private final ReservationService reservationService;
 
     @Autowired
-    public StudentController(StudentService studentService, NotificationService notificationService) {
+    public StudentController(StudentService studentService, NotificationService notificationService, ReservationService reservationService) {
         this.studentService = studentService;
         this.notificationService = notificationService;
+        this.reservationService = reservationService;
+    }
+
+    @GetMapping("/{id}/reservations")
+    public ResponseEntity<List<Reservation>> getReservations(@PathVariable Long id){
+        return ResponseEntity.ok(reservationService.getReservationsOfUser(id));
     }
 
     @GetMapping
@@ -34,14 +43,14 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findById(id));
     }
 
+    @GetMapping("/{id}/nearbyStudents")
+    public ResponseEntity<List<Student>> getNearbyStudents(@PathVariable Long id){
+        return ResponseEntity.ok(studentService.findNearbyStudents(id));
+    }
+
     @GetMapping(headers = "hesCode")
     public ResponseEntity<Student> getStudentByHesCode(@RequestHeader String hesCode) {
         return ResponseEntity.ok(studentService.findByHesCode(hesCode));
-    }
-
-    @PostMapping(headers = {"hesCode", "trIdNumber", "eGovernmentPassword"})
-    public ResponseEntity<String> validateHesCode(@RequestHeader String hesCode, @RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
-        return ResponseEntity.ok(studentService.validateHesCode(hesCode, trIdNumber, eGovernmentPassword));
     }
 
     @PostMapping

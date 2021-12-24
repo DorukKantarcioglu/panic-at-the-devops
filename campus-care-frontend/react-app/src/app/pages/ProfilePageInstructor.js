@@ -1,7 +1,6 @@
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import InfoBox from "./components/profileComponents/InfoBox";
-import {Container, Col, Row} from 'react-bootstrap';
-import StudentList from "./components/profileComponents/StudentList";
+import InfoBox from "../components/profileComponents/InfoBox";
+import {Container, Row} from 'react-bootstrap';
+import StudentList from "../components/profileComponents/StudentList";
 import CoursePage from "./CoursePage";
 
 class ProfilePageInstructor extends React.Component {

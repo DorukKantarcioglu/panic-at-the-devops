@@ -4,25 +4,12 @@ import Button from "react-bootstrap/Button";
 import { Container, Col, Row } from "react-bootstrap";
 import SideBar from "./SideBar";
 
-function ReservationForm() {
+const ReservationForm = ({create}) => {
+
+
   return (
     <Container>
       <Row>
-        <Col sm={4}>
-          <h5 style={{ color: "gray" }}> Appointment System</h5>
-          <div className="btn-group-vertical">
-            <Button
-              className="button"
-              style={{ backgroundColor: " #a3a9f5", border: "none" }}
-            >
-              Sports Center
-            </Button>
-            <br />
-            <Button style={{ backgroundColor: " #a3a9f5", border: "none" }}>
-              Library
-            </Button>
-          </div>
-        </Col>
         <Col sm={8}>
           <Form>
             <Form.Group as={Col}>
@@ -30,12 +17,10 @@ function ReservationForm() {
               <Form.Select defaultValue="Choose...">
                 <option>Main Sports Hall</option>
                 <option>Dormitory Sports Hall</option>
+                <option>Library ( Main Campus )</option>
+                <option>Library ( East Campus )</option>
+                <option>Diagnovir</option>
               </Form.Select>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Identification</Form.Label>
-              <Form.Control placeholder="Please Enter Your ID" />
             </Form.Group>
 
             <Form.Group>
@@ -58,9 +43,6 @@ function ReservationForm() {
                 </Button>
               </Col>
             </Row>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
           </Form>
         </Col>
       </Row>

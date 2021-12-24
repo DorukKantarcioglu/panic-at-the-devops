@@ -52,5 +52,10 @@ public class CourseController {
         return ResponseEntity.ok(courseService.addSeatingPlan(seatingPlanId, courseCode));
     }
 
+    @GetMapping("/{courseCode}/seatingPlan")
+    public ResponseEntity<List<SeatingObject>> getSeatingPlan(@RequestHeader String courseCode){
+        return ResponseEntity.ok(courseService.getSeatingObjects(courseCode));
+    }
+
 
 }

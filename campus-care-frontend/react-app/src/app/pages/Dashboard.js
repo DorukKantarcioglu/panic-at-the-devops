@@ -1,12 +1,12 @@
 import React from "react";
-import CovidInfoBox from "./components/dashboardComponents/CovidInfoBox";
-import FormInput from "./components/FormInput";
+import CovidInfoBox from "../components/dashboardComponents/CovidInfoBox";
+import FormInput from "../components/FormInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsivePie } from "@nivo/pie";
-import MyResponsivePie from "./components/dashboardComponents/MyResponsivePie";
-import MyResponsiveLine from "./components/dashboardComponents/MyResponsiveLine";
-import MotivationalQuoteBox from "./components/dashboardComponents/MotivationalQuoteBox";
-import StudentList from "./components/profileComponents/StudentList";
+import MyResponsivePie from "../components/dashboardComponents/MyResponsivePie";
+import MyResponsiveLine from "../components/dashboardComponents/MyResponsiveLine";
+import MotivationalQuoteBox from "../components/dashboardComponents/MotivationalQuoteBox";
+import StudentList from "../components/profileComponents/StudentList";
 
 function Dashboard(props) {
   // handle click event of logout button

@@ -1,11 +1,14 @@
 package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
+import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
 import com.panicatthedevops.campuscarebackend.entity.SeatingPlan;
 import com.panicatthedevops.campuscarebackend.exception.CourseAlreadyExistsException;
 import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.SeatingObjectNotFoundException;
 import com.panicatthedevops.campuscarebackend.exception.SeatingPlanNotFoundException;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
+import com.panicatthedevops.campuscarebackend.repository.SeatingObjectRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +19,12 @@ import java.util.List;
 public class CourseService {
     private final CourseRepository courseRepository;
     private final SeatingPlanRepository seatingPlanRepository;
+    private final SeatingObjectRepository seatingObjectRepository;
 
-    public CourseService(CourseRepository courseRepository, SeatingPlanRepository seatingPlanRepository) {
+    public CourseService(CourseRepository courseRepository, SeatingPlanRepository seatingPlanRepository, SeatingObjectRepository seatingObjectRepository) {
         this.courseRepository = courseRepository;
         this.seatingPlanRepository = seatingPlanRepository;
+        this.seatingObjectRepository = seatingObjectRepository;
     }
 
     @Autowired
@@ -44,6 +49,17 @@ public class CourseService {
         }
         else {
             return courseRepository.findByCourseName(courseName).iterator().next();
+        }
+    }
+
+    public List<SeatingObject> getSeatingObjects(String courseCode){
+        Course course = findByCourseCode(courseCode);
+        Long seatingPlanId = course.getSeatingPlan().getId();
+        if(!seatingObjectRepository.existsBySeatingPlanId(seatingPlanId)){
+            throw new SeatingObjectNotFoundException("Seating objects with seating plan id " + seatingPlanId + " do not exist.");
+        }
+        else {
+            return seatingObjectRepository.findAllBySeatingPlanId(seatingPlanId);
         }
     }
 
