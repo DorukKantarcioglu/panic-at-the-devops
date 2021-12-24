@@ -1,10 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import InfoBox from "../components/profileComponents/InfoBox";
 import { Container, Col, Row } from "react-bootstrap";
-import StudentList from "../components/profileComponents/StudentList";
-import CoursePage from "./CoursePage";
 import SideBar from "../components/SideBar";
+import ReservationsList from "../components/ReservationsList";
 
 class MyProfile extends React.Component {
   constructor() {
@@ -20,14 +18,23 @@ class MyProfile extends React.Component {
   render() {
     return (
       <Container>
-        <div className="col4">
-          <SideBar></SideBar>
-        </div>
         <Row>
-          <InfoBox />
+            <Col md = {4}>
+                <SideBar/>
+            </Col>
+            <Col md = {8}>
+                <Container>
+                    <Row>
+                        <InfoBox/>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <ReservationsList/>
+                    </Row>
+                </Container>
+
+            </Col>
         </Row>
-        <Row></Row>
-        <Row>Appointments (To-do)</Row>
       </Container>
     );
   }

@@ -25,16 +25,14 @@ const ReservationsList = (props) => {
                 reservations.map((reservations) => {
                 return (
                     <div>
-                        <a href="#" className="list-group-item list-group-item-action">
-                            <div className="d-flex w-100 justify-content-between">
-                                <h5 className="mb-1">
-                                    {reservations.date + " at " + reservations.timeSlot}
-                                </h5>
-                                <h6>
-                                    {reservations.place}
-                                </h6>
-                            </div>
-                        </a>
+                        <div className="d-flex w-100 justify-content-between">
+                            <h5 className="mb-1">
+                                {reservations.date + " at " + reservations.timeSlot}
+                            </h5>
+                            <h6>
+                                {reservations.place}
+                            </h6>
+                        </div>
                     </div>
                 );
             } ) }

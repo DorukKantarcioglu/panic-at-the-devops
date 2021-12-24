@@ -79,13 +79,14 @@ const SideBar = (props) => {
           </div>
         </div>
       </>
-      <Router>
+      {/* We don't need a course list for students*/}
+      {/*<Router>
         <Switch>
           <Route path={path}>
             <CoursePage />
           </Route>
         </Switch>
-      </Router>
+      </Router>*/}
     </div>
   );
 };
