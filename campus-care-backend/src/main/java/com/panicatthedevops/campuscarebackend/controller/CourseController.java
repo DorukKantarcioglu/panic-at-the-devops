@@ -2,9 +2,11 @@ package com.panicatthedevops.campuscarebackend.controller;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
+import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
 import com.panicatthedevops.campuscarebackend.service.CourseService;
 import com.panicatthedevops.campuscarebackend.service.SeatingObjectService;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,6 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-
-
 
 
     @GetMapping
@@ -53,8 +53,13 @@ public class CourseController {
     }
 
     @GetMapping("/{courseCode}/seatingPlan")
-    public ResponseEntity<List<SeatingObject>> getSeatingPlan(@RequestHeader String courseCode){
+    public ResponseEntity<List<SeatingObject>> getSeatingPlan(@PathVariable String courseCode){
         return ResponseEntity.ok(courseService.getSeatingObjects(courseCode));
+    }
+
+    @GetMapping("/{courseCode}/studentList")
+    public ResponseEntity<List<Student>> getStudentList(@PathVariable String courseCode){
+        return ResponseEntity.ok(courseService.getStudentList(courseCode));
     }
 
 

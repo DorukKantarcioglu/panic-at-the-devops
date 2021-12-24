@@ -3,6 +3,7 @@ package com.panicatthedevops.campuscarebackend.service;
 import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
 import com.panicatthedevops.campuscarebackend.entity.SeatingPlan;
+import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.CourseAlreadyExistsException;
 import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
 import com.panicatthedevops.campuscarebackend.exception.SeatingObjectNotFoundException;
@@ -10,6 +11,7 @@ import com.panicatthedevops.campuscarebackend.exception.SeatingPlanNotFoundExcep
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingObjectRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
+import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +23,12 @@ public class CourseService {
     private final SeatingPlanRepository seatingPlanRepository;
     private final SeatingObjectRepository seatingObjectRepository;
 
+    @Autowired
     public CourseService(CourseRepository courseRepository, SeatingPlanRepository seatingPlanRepository, SeatingObjectRepository seatingObjectRepository) {
         this.courseRepository = courseRepository;
         this.seatingPlanRepository = seatingPlanRepository;
         this.seatingObjectRepository = seatingObjectRepository;
     }
-
-    @Autowired
 
 
     public List<Course> findAll() {
@@ -78,6 +79,16 @@ public class CourseService {
         }
         else {
             throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+        }
+    }
+
+    public List<Student> getStudentList(String courseCode){
+        if (!courseRepository.existsByCourseCode(courseCode)) {
+            throw new CourseNotFoundException("Course with code " + courseCode + " does not exist.");
+        }
+        else {
+            Course course = courseRepository.findByCourseCode(courseCode).iterator().next();
+            return course.getStudentList();
         }
     }
 
