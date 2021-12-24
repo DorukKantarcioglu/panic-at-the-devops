@@ -16,14 +16,20 @@ function Dashboard(props) {
 
   return (
     <React.Fragment>
-      <div className="row justify-content-center">
+      <div
+        className="row justify-content-center"
+        style={{ height: "0px", marginTop: "10px" }}
+      >
         <MotivationalQuoteBox
           value={
             "Success is not final; failure is not fatal: It is the courage to continue that counts"
           }
         />
       </div>
-      <div className="row justify-content-center">
+      <div
+        className="row justify-content-center"
+        style={{ position: "fixed", marginTop: "10px" }}
+      >
         <div className="col-6" style={{ height: 550 }}>
           <label style={{ fontSize: 20 }}>Covid Statistics</label>
           <MyResponsiveLine />
