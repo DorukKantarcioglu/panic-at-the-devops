@@ -16,7 +16,6 @@ public class StudentService {
     private final CourseRepository courseRepository;
     private final AreaRepository areaRepository;
     private final SeatingObjectRepository seatingObjectRepository;
-    private final SeatingPlanRepository seatingPlanRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository, CourseRepository courseRepository,
@@ -25,7 +24,6 @@ public class StudentService {
         this.courseRepository = courseRepository;
         this.areaRepository = areaRepository;
         this.seatingObjectRepository = seatingObjectRepository;
-        this.seatingPlanRepository = seatingPlanRepository;
     }
 
     public List<Student> findAll() {
@@ -202,6 +200,17 @@ public class StudentService {
             }
             Student student = studentRepository.findById(id).get();
             student.setHesCode(hesCode);
+            return studentRepository.save(student);
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
+    public Student updatePhoneNumber(Long id, String phoneNumber) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            student.setPhoneNumber(phoneNumber);
             return studentRepository.save(student);
         }
         else {

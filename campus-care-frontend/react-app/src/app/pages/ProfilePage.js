@@ -1,8 +1,8 @@
 import React from "react";
 import InfoBox from "../components/profileComponents/InfoBox";
 import { Container, Col, Row } from "react-bootstrap";
-import SideBar from "../components/SideBar";
-import ReservationsList from "../components/ReservationsList";
+import SideBar from "../components/SideBar/SideBar";
+import ReservationsList from "../components/appointmentComponents/ReservationsList";
 
 class MyProfile extends React.Component {
   constructor() {

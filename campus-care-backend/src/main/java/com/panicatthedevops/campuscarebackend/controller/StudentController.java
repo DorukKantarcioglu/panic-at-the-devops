@@ -63,6 +63,11 @@ public class StudentController {
         return ResponseEntity.ok(studentService.updateHesCode(id, hesCode));
     }
 
+    @PatchMapping(path = "/{id}", headers = "phoneNumber")
+    public ResponseEntity<Student> updatePhoneNumber(@PathVariable Long id, @RequestHeader String phoneNumber) {
+        return ResponseEntity.ok(studentService.updatePhoneNumber(id, phoneNumber));
+    }
+
     @PatchMapping(path = "/{id}/area", headers = "cafeteriaName")
     public ResponseEntity<Student> updateSelectedCafeteria(@PathVariable Long id, @RequestHeader String cafeteriaName) {
         return ResponseEntity.ok(studentService.updateSelectedCafeteria(id, cafeteriaName));

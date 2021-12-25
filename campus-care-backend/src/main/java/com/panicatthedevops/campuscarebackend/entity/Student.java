@@ -15,8 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Student extends User {
-    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings, Collection<? extends GrantedAuthority> authorities) {
-        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet, authorities);
+    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings) {
+        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet);
         this.coursesTaken = coursesTaken;
         this.selectedCafeteria = selectedCafeteria;
         this.selectedSmokingArea = selectedSmokingArea;

@@ -66,7 +66,10 @@ class NewSeatingPlanForm extends React.Component {
       }
       parent.push(<tr> {children} </tr>);
     }
-    table.push(<table>{parent}</table>);
+    table.push(<div className="row justify-content-start">
+
+                <table className="table" style={{position:"relative",marginLeft:"-80px"}}>{parent}</table>
+    </div>);
     this.setState({ table: table });
   };
 
@@ -110,11 +113,14 @@ class NewSeatingPlanForm extends React.Component {
           {" "}
           Create the seating plan{" "}
         </button>
-        {this.state.table}
         <button className="button m-3" id="seatingPlanSave" onClick={this.save}>
           Save
         </button>
+
+        {this.state.table}
+
       </div>
+
     );
   }
 }

@@ -1,11 +1,11 @@
-import Reservations from "./Reservations";
-import ReservationService from "../../service/ReservationService";
+
 import {useEffect, useState} from "react";
+import ReservationService from "../../../service/ReservationService";
 
 const ReservationsList = ({}) => {
     const[reservations, setReservations] = useState([
         {
-            date: "29.12.2021 ",
+            date: "22.12.2021 ",
             timeSlot: " 15:00 ",
             place: "Main Campus Hall",
             type: "Sport Center",
@@ -25,48 +25,45 @@ const ReservationsList = ({}) => {
 
         setReservations([...reservations, newReservation])
     }
-
     async function fetchReservations(){
 
         const response = await ReservationService.getReservations();
         {response&& response.map(response0 =>
             setReservations([response0])
         )}
-
     }
     useEffect( async () => {
         await fetchReservations();
     }, [])
+
     return (
         <>
-          <div className="row d-flex justify-content-start">
-            <h5> Upcoming Reservations </h5>
-          </div>
-          <table
-            className="border"
-            style={{ position: "relative", width: "100%", marginLeft: "20px" }}
-          >
-            <thead>
-              <tr>
-                <th> Date</th>
-                <th> Time Slot</th>
-                <th> Place </th>
-              </tr>
-            </thead>
-              <tbody>
+            <div className="row d-flex justify-content-start">
+                <h5> Upcoming Reservations </h5>
+            </div>
+            <table
+                className="border"
+                style={{ position: "relative", width: "100%", marginLeft: "20px" }}
+            >
+                <thead>
+                <tr>
+                    <th> Date</th>
+                    <th> Time Slot</th>
+                    <th> Place </th>
+                </tr>
+                </thead>
+                <tbody>
+                {reservations.map(reservation =>
+                    <tr>
+                        <td>{reservation.date}</td>
+                        <td>{reservation.timeSlot}</td>
+                        <td>{reservation.place}</td>
+                    </tr>
+                )}
 
-              {reservations.map(reservation =>
-                  <tr>
-                      <td>{reservation.date}</td>
-                      <td>{reservation.timeSlot}</td>
-                      <td>{reservation.place}</td>
-                  </tr>
-              )}
-
-
-              </tbody>
-          </table>
+                </tbody>
+            </table>
         </>
-  );
+    );
 };
 export default ReservationsList;

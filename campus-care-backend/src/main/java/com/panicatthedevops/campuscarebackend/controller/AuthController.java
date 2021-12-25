@@ -3,6 +3,8 @@ package com.panicatthedevops.campuscarebackend.controller;
 import com.panicatthedevops.campuscarebackend.security.AuthRequest;
 import com.panicatthedevops.campuscarebackend.security.JwtUtil;
 import com.panicatthedevops.campuscarebackend.service.CustomUserDetailsService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,13 +27,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String creteToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public ResponseEntity<String> createToken(@RequestBody AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         } catch (BadCredentialsException ex) {
-            throw new Exception("Incorrect username or password", ex);
+            return new ResponseEntity<>("Bad credentials.", HttpStatus.UNAUTHORIZED);
         }
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
-        return jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(jwtUtil.generateToken(userDetailsService.loadUserByUsername(authRequest.getUsername())));
     }
 }
