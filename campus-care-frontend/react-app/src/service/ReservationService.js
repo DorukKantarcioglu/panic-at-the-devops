@@ -8,7 +8,7 @@ const ReservationService = (function () {
   const _getReservations = async () => {
 
     const response = await axios.get(
-      "http://localhost:8080/api/v1/reservations",{Headers:{'Authorization': `Bearer ${LocalStorageService.getToken()}`}}
+      "http://localhost:8080/api/v1/reservations",{Headers:{Authorization: "Bearer " + LocalStorageService.getToken()}}
     );
     if (response) {
       return response.data;
