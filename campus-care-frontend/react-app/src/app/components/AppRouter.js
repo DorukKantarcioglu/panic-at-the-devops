@@ -65,7 +65,7 @@ const AppRouter = () => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
-              <div className="col-6 mt-2" >
+              <div className="col-6 " style={{ marginTop: "-70px",  marginLeft: "-110px" }} >
                   <SideBar id = {LocalStorageService.getId()}/>
               </div>
               <div>

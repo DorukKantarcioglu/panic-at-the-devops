@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorageService from "./LocalStorageService";
+import {notification} from "antd";
 
 const StudentService = (function () {
 
@@ -79,6 +80,16 @@ const StudentService = (function () {
         }
     }
 
+    const _getNotifications=async (id) => {
+        const url = "http://localhost:8080/api/v1/students/" + id + "/notifications"
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: "Bearer " + LocalStorageService.getToken()
+            }
+        })
+    }
+
+
     return {
         fetchAllStudents: _fetchAllStudents,
         getStudentById: _getStudentById,
@@ -86,7 +97,10 @@ const StudentService = (function () {
         getStudentByHesCode: _getStudentByHesCode,
         updateHesCode: _updateHesCode,
         deleteStudent: _deleteStudent,
-        validateHesCode: _validateHesCode
+        validateHesCode: _validateHesCode,
+        getNotifications: _getNotifications
     };
 })();
 export default StudentService;
+
+
