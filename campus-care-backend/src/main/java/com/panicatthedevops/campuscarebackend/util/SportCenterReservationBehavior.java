@@ -14,15 +14,36 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+/**
+ * Strategy design pattern for sports center reservation behavior
+ * @version 1.0
+ */
 public class SportCenterReservationBehavior implements ReservationBehavior{
     ReservationRepository reservationRepository;
     ReservationService reservationService;
 
+    /**
+     * Creates an instance
+     * @param reservationRepository reservation repository
+     * @param reservationService reservation service
+     */
     public SportCenterReservationBehavior(ReservationRepository reservationRepository, ReservationService reservationService) {
         this.reservationRepository = reservationRepository;
         this.reservationService = reservationService;
     }
 
+    /**
+     * Creates a reservation of sports center and saves it in reservation repository
+     * @param date date of reservation
+     * @param timeSlot time slot of reservation
+     * @param place place of reservation
+     * @param user the user that is reserving
+     * @throws InvalidDateException input is an invalid date
+     * @throws PlaceNotFoundForReservationType place wasn't found for particular reservation type
+     * @throws InvalidReservationTimeSlotException time slot specified was in wrong format or unavailable
+     * @throws ReservationAlreadyExistsException a reservation with the same parameters already exists in the database
+     * @return reservation object that is created
+     */
     @Override
     public Reservation reserve(String date, String timeSlot, String place, User user) {
 

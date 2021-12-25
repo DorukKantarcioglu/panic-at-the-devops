@@ -14,17 +14,35 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+/**
+ * Strategy design pattern for sports center reservation behavior
+ * @version 1.0
+ */
 public class DiagnovirReservationBehavior implements ReservationBehavior{
 
     ReservationRepository reservationRepository;
     ReservationService reservationService;
 
+
+    /**
+     * Creates an instance
+     * @param reservationRepository reservation repository
+     * @param reservationService reservation service
+     */
     public DiagnovirReservationBehavior(ReservationRepository reservationRepository, ReservationService reservationService) {
         this.reservationRepository = reservationRepository;
         this.reservationService = reservationService;
     }
 
+    /**
+     * @param date     date of reservation
+     * @param timeSlot time of reservation
+     * @param place    place of reservation
+     * @param user     user that is reserving
+     * @return reservation object that is created if all input is valid
+     */
     @Override
+
     public Reservation reserve(String date, String timeSlot, String place, User user) {
 
         if(!ReservationInformation.DIAGNOVIR_PLACES.contains(place))

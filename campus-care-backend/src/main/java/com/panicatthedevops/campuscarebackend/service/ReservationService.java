@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service layer for Reservation related functionalities
+ * @version 1.0
+ */
 @Service
 public class ReservationService {
     private final ReservationRepository reservationRepository;

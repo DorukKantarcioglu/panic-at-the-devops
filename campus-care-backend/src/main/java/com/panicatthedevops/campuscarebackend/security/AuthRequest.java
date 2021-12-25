@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Auth request object, contains username and password of user
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -12,6 +12,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Base user class, implemented by Instructor, Staff and Student classes.
+ * Implements UserDetails by Spring for authentication convenience.
+ * @version 1.0
+ * @see org.springframework.security.core.userdetails.UserDetails
+ */
+
 @Inheritance
 @Entity
 @Table(name = "user")
@@ -43,6 +50,10 @@ public class User implements UserDetails  {
         return null;
     }
 
+    /**
+     * Username is assigned to the id of the student, similar to SRS and PeerPanda systems.
+     * @return returns the username which the user can authenticate, in this case, id.
+     */
     @Override
     public String getUsername() {
         return id.toString();

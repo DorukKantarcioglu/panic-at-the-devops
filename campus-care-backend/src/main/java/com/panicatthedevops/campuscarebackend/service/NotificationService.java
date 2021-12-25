@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Service layer for Notification related functionalities
+ * @version 1.0
+ */
 @Service
 public class NotificationService {
     private final NotificationRepository notificationRepository;
