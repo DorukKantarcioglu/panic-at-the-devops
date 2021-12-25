@@ -113,10 +113,12 @@ class NewSeatingPlanForm extends React.Component {
                   {" "}
                   Create the seating plan{" "}
               </button>
-              {this.state.table}
               <button className="button m-3" id="seatingPlanSave" onClick={this.save}>
                   Save
               </button>
+              {this.state.table}
+
+
           </div>
       );
   }

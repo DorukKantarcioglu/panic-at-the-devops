@@ -66,7 +66,7 @@ const AppRouter = () => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
-              <SideBar/>
+              <SideBar id = {LocalStorageService.getId()}/>
             <CoursePage courseCode ={course.courseCode}/>
           </Route>
         );
