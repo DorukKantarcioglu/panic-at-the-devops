@@ -3,6 +3,7 @@ package com.panicatthedevops.campuscarebackend.service;
 import com.panicatthedevops.campuscarebackend.entity.*;
 import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.*;
+import com.panicatthedevops.campuscarebackend.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -189,6 +190,7 @@ public class StudentService {
             throw new StudentAlreadyExistsException("Student with id " + student.getId() + " already exists.");
         }
         else {
+            student.setPassword(WebSecurityConfig.passwordEncoder().encode(student.getPassword()));
             return studentRepository.save(student);
         }
     }

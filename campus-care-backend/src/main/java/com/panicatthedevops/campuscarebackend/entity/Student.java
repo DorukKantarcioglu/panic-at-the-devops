@@ -2,8 +2,10 @@ package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,8 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Student extends User {
-    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings) {
-        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet);
+    public Student(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, List<Course> coursesTaken, List<Notification> notificationList, Set<Reservation> reservationSet, String selectedCafeteria, String selectedSmokingArea, Set<SeatingObject> seatings, Collection<? extends GrantedAuthority> authorities) {
+        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservationSet, authorities);
         this.coursesTaken = coursesTaken;
         this.selectedCafeteria = selectedCafeteria;
         this.selectedSmokingArea = selectedSmokingArea;
