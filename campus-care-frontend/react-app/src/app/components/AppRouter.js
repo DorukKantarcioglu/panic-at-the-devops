@@ -30,7 +30,7 @@ const AppRouter = () => {
   useEffect( async () => {
       await fetchData();
       console.log(courses)
-  }, [fetchData]);
+  }, []);
 
   return (
     <Switch>

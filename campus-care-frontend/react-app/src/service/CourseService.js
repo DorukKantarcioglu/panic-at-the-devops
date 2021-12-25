@@ -13,7 +13,7 @@ const CourseService = (function () {
 
   const _getAllCourses = async () => {
 
-    const response = await axios.get(path, {headers: {'Authorization': `Bearer ${LocalStorageService.getToken()}`}});
+    const response = await axios.get(path, {headers: {Authorization: 'Bearer' + LocalStorageService.getToken()}});
     if (response) {
       return response.data;
     }
