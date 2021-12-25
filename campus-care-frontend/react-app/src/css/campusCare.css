@@ -11,7 +11,9 @@ ul.menu {
   padding: 0;
   overflow: hidden;
   background-color: #3d44af;
-  position: fixed;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
   top: 0;
   width: 100%;
 }

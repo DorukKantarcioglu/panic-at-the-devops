@@ -9,7 +9,7 @@ const MenuTab = (props) => {
   };
   return (
     <div className="d-flex justify-content-between">
-      <ul className="menu" style={{ padding: "10 px", marginTop: 10 }}>
+      <ul className="menu" style={{ padding: "10 px", marginTop: 10, position:"auto" }}>
         <li className="menu">
           {" "}
           <Link to="/home"> Home </Link>{" "}

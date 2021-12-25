@@ -72,7 +72,12 @@ export default function LoginForm(props) {
               placeholder="Password"
               name="password"
               onChange={e => handleChange(e)}
+              id="show_hide_password"
             />
+            <small id="passwordHelpInline" className="text-muted">
+            Must be 8-20 characters long.
+          </small>
+
           </Form.Group>
           <div className="d-flex justify-content-between">
             <div className="col-6">
