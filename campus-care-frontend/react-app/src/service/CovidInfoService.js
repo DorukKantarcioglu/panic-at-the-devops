@@ -88,6 +88,43 @@ const CovidInfoService = (function () {
     }
   };
 
+  const _getNotAllowedStatistics = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/v1/covid/statistics/notAllowed"
+    );
+    if (response) {
+      return response.data;
+    }
+  };
+
+  const _getVaccinatedStatistics = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/v1/covid/statistics/vaccinated"
+    );
+    if (response) {
+      return response.data;
+    }
+  };
+
+  const _getNotVaccinatedStatistics = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/v1/covid/statistics/notVaccinated"
+    );
+    if (response) {
+      return response.data;
+    }
+  };
+
+  const _getTestedStatistics = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/v1/covid/statistics/tested"
+    );
+    if (response) {
+      return response.data;
+    }
+  };
+
+
   return {
     getNotAllowedStudents: _getNotAllowedStudents,
     getNotAllowedInstructors: _getNotAllowedInstructors,
@@ -97,7 +134,12 @@ const CovidInfoService = (function () {
     getNotAllowedStudentsInSmokingArea: _getNotAllowedStudentsInSmokingArea,
     validateHesCode: _validateHesCode,
     validateHesCode2: _validateHesCode2,
+    getNotAllowedStatistics: _getNotAllowedStatistics,
+    getVaccinatedStatistics:_getVaccinatedStatistics,
+    getNotVaccinatedStatistics:_getNotVaccinatedStatistics,
+    getTestedStatistics:_getTestedStatistics,
   };
 })();
 
 export default CovidInfoService;
+

@@ -4,7 +4,7 @@ const MyOptions = ({options}) => {
     return (
         <div>
             {options.map(option =>
-                <option> lmao</option>
+                <option>{option}</option>
             )}
         </div>
     );

@@ -5,13 +5,13 @@ import SideBar from "../components/SideBar/SideBar";
 import ReservationsList from "../components/appointmentComponents/ReservationsList";
 
 class MyProfile extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      name: "",
-      surname: "",
-      id: '',
-      hesCode: "",
+      name: "Elif",
+      surname: "Cenesiz",
+      id: 21902461,
+      hesCode: "XXX",
     };
   }
 
@@ -19,17 +19,17 @@ class MyProfile extends React.Component {
     return (
       <Container>
         <Row>
-            <Col md = {4}>
-                <SideBar id ={this.props.id} />
-            </Col>
+            <div className="col-md-4" style={{ marginTop: "-30px",  marginLeft: "-40px" }}>
+                <SideBar/>
+            </div>
             <Col md = {8}>
                 <Container>
                     <Row>
-                        <InfoBox id ={this.props.id}/>
+                        <InfoBox/>
                     </Row>
                     <br/>
                     <Row>
-
+                        <ReservationsList/>
                     </Row>
                 </Container>
 

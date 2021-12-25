@@ -66,9 +66,9 @@ class NewSeatingPlanForm extends React.Component {
       }
       parent.push(<tr> {children} </tr>);
     }
-    table.push(<div className="row justify-content-center">
+    table.push(<div className="row justify-content-start">
 
-                <table className="" style={{position:"fixed"}}>{parent}</table>
+                <table className="" style={{position:"relative",width:"30%"}}>{parent}</table>
     </div>);
     this.setState({ table: table });
   };
@@ -82,7 +82,7 @@ class NewSeatingPlanForm extends React.Component {
   render() {
       return (
           <div className="seatingPlanForm">
-              <label className="seatingPlanForm" id="rowNo">
+              <label className="seatingPlanForm m-2" id="rowNo">
                   {" "}
                   Number of rows:{" "}
               </label>

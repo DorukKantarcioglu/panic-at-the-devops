@@ -2,17 +2,17 @@ import * as ReactDOM from "react-dom";
 import InfoBox from "./InfoBox";
 import {useEffect, useState} from "react";
 import CourseService from "../../../service/CourseService";
-import {useHistory} from "react-router-dom";
 
 const StudentList = (props) => {
 
-  const history = useHistory()
   const [riskColor, setColor] = useState(false);
   const [data, setData] = useState();
 
   const handleShow = (id) => {
     const path = "/student-info/".concat(id);
-    history.push(path)
+    console.log(path);
+    //history.back()
+    ReactDOM.render(<InfoBox id={id} />, document.getElementById("root"));
   };
 
   useEffect(async () => {
@@ -51,7 +51,7 @@ const StudentList = (props) => {
   return (
     <table
       className="border"
-      style={{ position: "relative", width: "70%", marginLeft: "0px" }}
+      style={{ position: "relative", width: "60%", marginLeft: "300px" }}
     >
       <thead>
         <tr>
