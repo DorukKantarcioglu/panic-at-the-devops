@@ -14,17 +14,21 @@ import { useContext, useEffect, useState } from "react";
 import courseContext from "../CourseContext";
 
 const AppRouter = () => {
+
   const [courses, setCourses] = useState([]);
-  console.log(courses);
+  const courses2= CourseService.getAllCourses().then();
+
 
   const fetchData = async () => {
-    let list = await CourseService.getAllCourses().then();
+    let list = await CourseService.getAllCourses();
       setCourses(list)
+      console.log(list)
 
   };
 
-  useEffect(() => {
-    fetchData().then();
+  useEffect( async () => {
+      await fetchData();
+      console.log(courses)
   }, []);
 
   return (
@@ -53,11 +57,11 @@ const AppRouter = () => {
         <Notifications />
       </Route>
 
-      {courses.map((course) => {
+      {courses && courses.map((course) => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
-            <CoursePage courseCode = "MATH-230-1"/>
+            <CoursePage courseCode ={course.courseCode}/>
           </Route>
         );
       })}

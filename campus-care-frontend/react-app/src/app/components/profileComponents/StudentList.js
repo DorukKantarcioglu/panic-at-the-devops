@@ -6,7 +6,7 @@ import CourseService from "../../../service/CourseService";
 const StudentList = (props) => {
 
   const [riskColor, setColor] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   const handleShow = (id) => {
     const path = "/student-info/".concat(id);

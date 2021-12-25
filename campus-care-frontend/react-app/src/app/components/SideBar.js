@@ -41,7 +41,7 @@ const SideBar = (props) => {
                 activeItemId="/management/members"
                 onSelect={({ itemId }) => {
                   if (itemId !== "/management") {
-                    let path = "course/".concat(itemId);
+                    let path = "/course/".concat(itemId);
                     history.push(path);
                   }
                 }}
