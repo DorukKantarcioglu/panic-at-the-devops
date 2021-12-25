@@ -2,10 +2,8 @@ package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
-import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.HesCodeAlreadyExistsException;
-import com.panicatthedevops.campuscarebackend.exception.InstructorAlreadyExistsException;
-import com.panicatthedevops.campuscarebackend.exception.InstructorNotFoundException;
+import com.panicatthedevops.campuscarebackend.entity.Student;
+import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +97,17 @@ public class InstructorService {
             }
             Instructor instructor = instructorRepository.findById(id).get();
             instructor.setHesCode(hesCode);
+            return instructorRepository.save(instructor);
+        }
+        else {
+            throw new InstructorNotFoundException("Instructor with id " + id + " does not exist.");
+        }
+    }
+
+    public Instructor updatePhoneNumber(Long id, String phoneNumber) {
+        if (instructorRepository.existsById(id)) {
+            Instructor instructor = instructorRepository.findById(id).get();
+            instructor.setPhoneNumber(phoneNumber);
             return instructorRepository.save(instructor);
         }
         else {

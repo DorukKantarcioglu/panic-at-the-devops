@@ -34,9 +34,9 @@ public class CampusCareBackendApplication {
                     new Instructor(12L, "David", "passwrd", "david@campuscare.com", "A6A2-1832-17", "+90", true, true, false , null, null, null)
             ));
             courseRepository.saveAll(Arrays.asList(
-                    new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(4L).get(), null, null),
-                    new Course("CS-315-1", "Programming Languages",1, 50, instructorRepository.findById(12L).get(), null, null),
-                    new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, null, null, null)
+                    new Course("CS-319-1", "Object-Oriented Software Engineering", 1, 50, instructorRepository.findById(4L).get(), null, null, "1 2 5"),
+                    new Course("CS-315-1", "Programming Languages",1, 50, instructorRepository.findById(12L).get(), null, null, "1 4 5"),
+                    new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, null, null, null, "3 4 5")
             ));
 
             notificationRepository.saveAll(Arrays.asList(new Notification(0, "Motivational quote1", NotificationType.MOTIVATIONAL_QUOTE, instructorRepository.findById(4L).get(), null),

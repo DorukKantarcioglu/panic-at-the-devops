@@ -4,7 +4,6 @@ import com.panicatthedevops.campuscarebackend.entity.*;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import com.panicatthedevops.campuscarebackend.service.NotificationService;
 import com.panicatthedevops.campuscarebackend.service.ReservationService;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +69,11 @@ public class InstructorController {
     @PatchMapping(path = "/{id}", headers = "hesCode")
     public ResponseEntity<Instructor> updateHesCode(@PathVariable Long id, @RequestHeader String hesCode) {
         return ResponseEntity.ok(instructorService.updateHesCode(id, hesCode));
+    }
+
+    @PatchMapping(path = "/{id}", headers = "phoneNumber")
+    public ResponseEntity<Instructor> updatePhoneNumber(@PathVariable Long id, @RequestHeader String phoneNumber) {
+        return ResponseEntity.ok(instructorService.updatePhoneNumber(id, phoneNumber));
     }
 
     @DeleteMapping("/{id}")
