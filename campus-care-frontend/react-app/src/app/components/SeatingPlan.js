@@ -104,7 +104,7 @@ export default function SeatingPlan(props) {
     />
         </div >
 
-        <ModalBody style={{width:"100%", position:"relative"}} >
+        <ModalBody style={{width:"100%", position:"relative", flexDirection:"row"}} >
           {exist ? (
             <div className="row justify-content-start">
               {chart}
