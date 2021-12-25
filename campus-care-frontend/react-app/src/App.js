@@ -8,7 +8,7 @@ import "@fortawesome/react-fontawesome";
 import "@fortawesome/free-solid-svg-icons";
 import MenuTab from "./app/components/MenuTab";
 
-import AppRouter from "./app/components/AppRouter";
+import AppRouter from "./app/components/Navigation/AppRouter";
 import Login from "./app/pages/Login";
 import {useEffect} from "react";
 const { Header, Content } = Layout;

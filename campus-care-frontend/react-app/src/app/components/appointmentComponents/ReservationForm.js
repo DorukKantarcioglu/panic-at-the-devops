@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { Container, Col, Row } from "react-bootstrap";
 import MyButton from "../MyButton/MyButton";
 import ReservationService from "../../../service/ReservationService";
-import MyOptions from "../MyOptions";
+import MyOptions from "../MyOptions/MyOptions";
 
 const ReservationForm = ({ create }) => {
 
@@ -27,7 +27,6 @@ const ReservationForm = ({ create }) => {
 
   useEffect( async () => {
     await fetchAvailableTime();
-
   }, [])
 
   const addNewReservation = (e) => {
@@ -38,6 +37,7 @@ const ReservationForm = ({ create }) => {
       ...reservation, id: Date.now()
     }
     create(newReservation)
+    console.log(ReservationService.createReservation(newReservation))
     setReservation({place: '', timeSlot: ''})
   }
 
@@ -77,6 +77,7 @@ const ReservationForm = ({ create }) => {
                     setTemp({...temp, place: e.target.value})}}
                   type= "text"
               >
+                <option>...</option>
                 <option>Main Sports Hall</option>
                 <option>Dormitory Sports Hall</option>
                 <option>Library ( Main Campus )</option>
@@ -120,10 +121,8 @@ const ReservationForm = ({ create }) => {
                     setReservation({...reservation, timeSlot : e.target.value})}}
                   type= "text"
               >
+                  <option>...</option>
                   <MyOptions options = {options}/>
-                )}
-
-
               </Form.Select>
             </Form.Group>
 
