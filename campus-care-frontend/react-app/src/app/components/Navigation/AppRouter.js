@@ -14,17 +14,21 @@ import { useContext, useEffect, useState } from "react";
 import courseContext from "../../CourseContext";
 import SideBar from "../SideBar/SideBar";
 import CampusMap from "../../pages/CampusMap";
+import LocalStorageService from "../../service/LocalStorageService";
+import StudentInfoBox from "./profileComponents/StudentInfoBox";
+import StudentService from "../../service/StudentService";
 
 const AppRouter = () => {
 
   const [courses, setCourses] = useState([]);
-
-
+  const [students, setStudents] = useState([]);
 
   const fetchData = async () => {
     let list = await CourseService.getAllCourses();
-      setCourses(list)
-      console.log(list)
+      setCourses(list);
+      let studentList = await StudentService.fetchAllStudents();
+      setStudents(studentList);
+
 
   };
 
@@ -48,7 +52,7 @@ const AppRouter = () => {
       </Route>
       <Route path="/profile">
         <MenuTab />
-        <ProfilePage id="1" />
+          <ProfilePage id = {LocalStorageService.getId()} />
       </Route>
       <Route path="/campusmap">
         <MenuTab />
@@ -59,16 +63,27 @@ const AppRouter = () => {
         <MenuTab />
         <Notifications />
       </Route>
-
       {courses && courses.map((course) => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
-              <SideBar/>
-            <CoursePage courseCode ={course.courseCode}/>
+              <div className="col-6 mt-2" >
+                  <SideBar/>
+              </div>
+              <div>
+                  <CoursePage courseCode ={course.courseCode}/>
+              </div>
           </Route>
         );
       })}
+        {students && students.map((student) => {
+            return (
+                <Route path={"/student-info/".concat(student.id)}>
+                    <MenuTab />
+                    <StudentInfoBox id ={student.id}/>
+                </Route>
+            );
+        })}
       <Redirect to="/login" />
     </Switch>
   );

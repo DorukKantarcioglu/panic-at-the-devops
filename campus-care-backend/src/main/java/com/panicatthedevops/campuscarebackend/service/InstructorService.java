@@ -2,8 +2,10 @@ package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
-import com.panicatthedevops.campuscarebackend.entity.Student;
-import com.panicatthedevops.campuscarebackend.exception.*;
+import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.HesCodeAlreadyExistsException;
+import com.panicatthedevops.campuscarebackend.exception.InstructorAlreadyExistsException;
+import com.panicatthedevops.campuscarebackend.exception.InstructorNotFoundException;
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;

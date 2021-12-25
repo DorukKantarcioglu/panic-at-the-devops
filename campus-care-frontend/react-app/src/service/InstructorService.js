@@ -27,7 +27,7 @@ const InstructorService =(function () {
 
     const _getInstructorById=async(id)=>
     {
-        const url = "http://localhost:8080/api/v1/instructors".concat(id);
+        const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
         if (response) {
             return response.data;
@@ -56,7 +56,7 @@ const InstructorService =(function () {
         }
     }
 
-    const _getNotAllowedStudents =async(courseCode)=>
+    const _getNotAllowedStudents =async(courseCode, id)=>
     {
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.get(url,{}, {headers: {
@@ -76,7 +76,7 @@ const InstructorService =(function () {
         }
     }
 
-    const _addCourse =async(courseCode)=>{
+    const _addCourse =async(courseCode, id)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.patch(url,{}, {headers: {
                 "courseCode": courseCode,
@@ -87,7 +87,7 @@ const InstructorService =(function () {
         }
     }
 
-    const _deleteCourse =async(courseCode)=>{
+    const _deleteCourse =async(courseCode, id)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.delete(url,{}, {headers: {
                 "courseCode": courseCode,
@@ -98,6 +98,12 @@ const InstructorService =(function () {
         }
     }
 
+    const _getCourses=async (id) => {
+        const url = "http://localhost:8080/api/v1/instructors/".concat(id).concat("/courses");
+        const response = await axios.get(url, {headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }});
+    }
 
     return(
         {
@@ -109,7 +115,8 @@ const InstructorService =(function () {
             getNotAllowedStudents: _getNotAllowedStudents,
             deleteInstructor: _deleteInstructor,
             addCourse: _addCourse,
-            deleteCourse: _deleteCourse
+            deleteCourse: _deleteCourse,
+            getCourses: _getCourses
         }
     );
 

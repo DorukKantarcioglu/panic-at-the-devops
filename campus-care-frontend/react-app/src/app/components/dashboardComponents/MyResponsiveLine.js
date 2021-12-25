@@ -1,116 +1,64 @@
 import { ResponsiveLine } from "@nivo/line";
 import MyResponsivePie from "./MyResponsivePie";
+import {useEffect, useState} from "react";
+import CovidInfoService from "../../../service/CovidInfoService";
 
 function MyResponsiveLine() {
+  const [notAllowed, setNotAllowedStudentNum] = useState();
+  const [vaccinated, setVaccinatedStudentNum] = useState();
+  const [tested, setTestedStudentNum] = useState();
+
+  async function fetchStatistics(){
+    const response1 = await CovidInfoService.getNotAllowedStatistics();
+    const response2 = await CovidInfoService.getVaccinatedStatistics();
+    const response3 = await CovidInfoService.getTestedStatistics();
+    {
+      setNotAllowedStudentNum(response1);
+      setVaccinatedStudentNum(response2);
+      setTestedStudentNum(response3);
+    }
+  }
+  useEffect(async () => {
+    console.log(vaccinated)
+    await fetchStatistics()
+  })
+
   const data = [
     {
-      id: "japan",
+      id: "covid cases",
       color: "hsl(222, 70%, 50%)",
       data: [
         {
-          x: "plane",
-          y: 284,
+          x: "monday",
+          y: 20,
         },
         {
-          x: "helicopter",
-          y: 163,
+          x: "tuesday",
+          y: 12,
         },
         {
-          x: "boat",
-          y: 97,
+          x: "wednesday",
+          y: 16,
         },
         {
-          x: "train",
-          y: 201,
+          x: "thursday",
+          y: 10,
         },
         {
-          x: "subway",
-          y: 66,
+          x: "friday",
+          y: 17,
         },
         {
-          x: "bus",
-          y: 263,
-        },
-        {
-          x: "car",
-          y: 208,
-        },
-        {
-          x: "moto",
-          y: 88,
-        },
-        {
-          x: "bicycle",
-          y: 148,
-        },
-        {
-          x: "horse",
-          y: 21,
-        },
-        {
-          x: "skateboard",
-          y: 204,
-        },
-        {
-          x: "others",
-          y: 168,
-        },
-      ],
-    },
-    {
-      id: "france",
-      color: "hsl(3, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 238,
-        },
-        {
-          x: "helicopter",
-          y: 29,
-        },
-        {
-          x: "boat",
-          y: 98,
-        },
-        {
-          x: "train",
-          y: 224,
-        },
-        {
-          x: "subway",
-          y: 224,
-        },
-        {
-          x: "bus",
+          x: "saturday",
           y: 13,
         },
         {
-          x: "car",
-          y: 125,
-        },
-        {
-          x: "moto",
-          y: 262,
-        },
-        {
-          x: "bicycle",
-          y: 232,
-        },
-        {
-          x: "horse",
-          y: 130,
-        },
-        {
-          x: "skateboard",
-          y: 229,
-        },
-        {
-          x: "others",
-          y: 224,
+          x: "sunday",
+          y: 15,
         },
       ],
     },
+
   ];
   return (
     <ResponsiveLine
@@ -132,7 +80,7 @@ function MyResponsiveLine() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "transportation",
+        legend: "",
         legendOffset: 36,
         legendPosition: "middle",
       }}
