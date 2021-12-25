@@ -1,6 +1,9 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
-import com.panicatthedevops.campuscarebackend.entity.*;
+import com.panicatthedevops.campuscarebackend.entity.Course;
+import com.panicatthedevops.campuscarebackend.entity.Instructor;
+import com.panicatthedevops.campuscarebackend.entity.Notification;
+import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import com.panicatthedevops.campuscarebackend.service.NotificationService;
 import com.panicatthedevops.campuscarebackend.service.ReservationService;

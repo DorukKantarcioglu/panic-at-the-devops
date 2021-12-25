@@ -1,6 +1,9 @@
 package com.panicatthedevops.campuscarebackend.service;
 
-import com.panicatthedevops.campuscarebackend.entity.*;
+import com.panicatthedevops.campuscarebackend.entity.Cafeteria;
+import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
+import com.panicatthedevops.campuscarebackend.entity.SmokingArea;
+import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.*;
 import com.panicatthedevops.campuscarebackend.security.WebSecurityConfig;
@@ -19,7 +22,7 @@ public class StudentService {
 
     @Autowired
     public StudentService(StudentRepository studentRepository, CourseRepository courseRepository,
-                          AreaRepository areaRepository, SeatingObjectRepository seatingObjectRepository, SeatingPlanRepository seatingPlanRepository) {
+                          AreaRepository areaRepository, SeatingObjectRepository seatingObjectRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.areaRepository = areaRepository;

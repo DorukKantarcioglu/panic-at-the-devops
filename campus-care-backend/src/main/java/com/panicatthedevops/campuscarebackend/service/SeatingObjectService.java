@@ -4,7 +4,6 @@ import com.panicatthedevops.campuscarebackend.entity.SeatingObject;
 import com.panicatthedevops.campuscarebackend.entity.SeatingPlan;
 import com.panicatthedevops.campuscarebackend.entity.Student;
 import com.panicatthedevops.campuscarebackend.exception.*;
-import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingObjectRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
 import com.panicatthedevops.campuscarebackend.repository.StudentRepository;

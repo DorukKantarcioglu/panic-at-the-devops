@@ -11,10 +11,7 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class SmokingArea extends Area{
-
     public SmokingArea(String name, int liveCount) {
         super(name, liveCount);
     }
-
-
 }
