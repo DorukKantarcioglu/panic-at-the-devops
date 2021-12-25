@@ -43,21 +43,14 @@ const AppRouter = () => {
         <ProfilePage id="1" />
       </Route>
       <Route path="/campusmap">
-        <CoursePage courseCode = "MATH-230-1"/>
-        <Login />
+        <MenuTab />
+        <CoursePage courseCode="MATH-230-1" />
       </Route>
       <Route path="/notifications">
         <MenuTab />
         <Notifications />
       </Route>
-      {courses.map((course) => {
-        return (
-          <Route path={"/course/".concat(course.courseCode)}>
-            <MenuTab />
-            <CoursePage />
-          </Route>
-        );
-      })}
+
       <Redirect to="/login" />
     </Switch>
   );
