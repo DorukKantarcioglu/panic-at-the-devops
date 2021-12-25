@@ -3,16 +3,18 @@ import Form from "react-bootstrap/Form";
 import { Container, Col, Row } from "react-bootstrap";
 import MyButton from "../MyButton/MyButton";
 import ReservationService from "../../../service/ReservationService";
+import MyOptions from "../MyOptions";
 
 const ReservationForm = ({ create }) => {
 
   const [reservation, setReservation] = useState({type: '', place: '', timeSlot: '', date: ''})
   const [temp, setTemp] = useState({type: '', date: '', place: ''})
-  const [options, setOptions] = useState({})
+  const [options, setOptions] = useState([])
 
   const addAvailableTimes = (e) => {
     e.preventDefault()
     console.log(temp)
+    fetchAvailableTime()
 
   }
   async function fetchAvailableTime(){
@@ -118,6 +120,8 @@ const ReservationForm = ({ create }) => {
                     setReservation({...reservation, timeSlot : e.target.value})}}
                   type= "text"
               >
+                  <MyOptions options = {options}/>
+                )}
 
 
               </Form.Select>
