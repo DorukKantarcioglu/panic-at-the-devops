@@ -2,6 +2,8 @@ package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.*;
 
 import javax.persistence.*;

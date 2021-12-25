@@ -1,7 +1,6 @@
 package com.panicatthedevops.campuscarebackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.panicatthedevops.campuscarebackend.util.NotificationType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +22,9 @@ public class Notification {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("notificationList")
+    @JsonIgnoreProperties({"notificationList", "password"})
     private User user;
+
+    private String date;
 
 }

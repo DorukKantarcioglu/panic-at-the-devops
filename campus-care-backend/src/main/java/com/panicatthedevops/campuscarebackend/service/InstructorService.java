@@ -1,5 +1,6 @@
 package com.panicatthedevops.campuscarebackend.service;
 
+import com.panicatthedevops.campuscarebackend.entity.Course;
 import com.panicatthedevops.campuscarebackend.entity.Instructor;
 import com.panicatthedevops.campuscarebackend.exception.CourseNotFoundException;
 import com.panicatthedevops.campuscarebackend.exception.HesCodeAlreadyExistsException;
@@ -30,6 +31,15 @@ public class InstructorService {
     public Instructor findById(Long id) {
         return instructorRepository.findById(id).orElseThrow(()
                 -> new InstructorNotFoundException("Instructor with id " + id + " does not exist."));
+    }
+
+    public List<Course> getCourses(Long id){
+        if (!instructorRepository.existsById(id)) {
+            throw new InstructorNotFoundException("Instructor with id " + id + " does not exist.");
+        }
+        else {
+            return courseRepository.findAllByInstructorId(id);
+        }
     }
 
     public Instructor findByHesCode(String hesCode) {

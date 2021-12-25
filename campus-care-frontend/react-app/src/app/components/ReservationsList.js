@@ -54,6 +54,7 @@ const ReservationsList = ({}) => {
               </tr>
             </thead>
               <tbody>
+
               {reservations.map(reservation =>
                   <tr>
                       <td>{reservation.date}</td>
@@ -61,6 +62,8 @@ const ReservationsList = ({}) => {
                       <td>{reservation.place}</td>
                   </tr>
               )}
+
+
               </tbody>
           </table>
         </>

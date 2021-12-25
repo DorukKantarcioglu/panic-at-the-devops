@@ -12,6 +12,8 @@ import com.panicatthedevops.campuscarebackend.util.NotificationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,7 +38,7 @@ public class NotificationService {
     }
 
     public Notification saveMotivationalQuote(String quote){
-        return notificationRepository.save(new Notification(0, quote, NotificationType.MOTIVATIONAL_QUOTE, null));
+        return notificationRepository.save(new Notification(0, quote, NotificationType.MOTIVATIONAL_QUOTE, null, null));
     }
 
     public Notification getRandomMotivationalQuote(){
@@ -47,6 +49,7 @@ public class NotificationService {
 
 
     public List<Notification> findAll() {
+        saveCovidNotification("test covid notification", 1);
         return notificationRepository.findAll();
     }
 
@@ -79,7 +82,9 @@ public class NotificationService {
                 user = instructorRepository.findById(userId).get();
             else
                 user = staffRepository.findById(userId).get();
-            return notificationRepository.save(new Notification(0, content, NotificationType.COVID_NOTIFICATION, user));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            LocalDateTime now = LocalDateTime.now();
+            return notificationRepository.save(new Notification(0, content, NotificationType.COVID_NOTIFICATION, user, dtf.format(now)));
         }
     }
 

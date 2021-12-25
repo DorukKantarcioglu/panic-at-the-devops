@@ -3,8 +3,10 @@ package com.panicatthedevops.campuscarebackend.entity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 

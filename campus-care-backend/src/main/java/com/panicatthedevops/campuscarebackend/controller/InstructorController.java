@@ -1,12 +1,10 @@
 package com.panicatthedevops.campuscarebackend.controller;
 
-import com.panicatthedevops.campuscarebackend.entity.Instructor;
-import com.panicatthedevops.campuscarebackend.entity.Notification;
-import com.panicatthedevops.campuscarebackend.entity.Reservation;
-import com.panicatthedevops.campuscarebackend.entity.Student;
+import com.panicatthedevops.campuscarebackend.entity.*;
 import com.panicatthedevops.campuscarebackend.service.InstructorService;
 import com.panicatthedevops.campuscarebackend.service.NotificationService;
 import com.panicatthedevops.campuscarebackend.service.ReservationService;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +50,11 @@ public class InstructorController {
     @PostMapping
     public ResponseEntity<Instructor> createInstructor(@RequestBody Instructor instructor) {
         return new ResponseEntity<>(instructorService.save(instructor), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<List<Course>> getCourses(@PathVariable Long id){
+        return ResponseEntity.ok(instructorService.getCourses(id));
     }
 
     @PatchMapping("/{id}/courses")

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StudentService from "../../service/StudentService";
+import StudentService from "../../../service/StudentService";
 import { Form, Button } from "react-bootstrap";
 
 const ReservationCheck = () => {

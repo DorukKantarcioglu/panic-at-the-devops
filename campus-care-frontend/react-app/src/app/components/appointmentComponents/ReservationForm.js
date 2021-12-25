@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import { Container, Col, Row } from "react-bootstrap";
-import MyButton from "./MyButton";
+import MyButton from "../MyButton/MyButton";
 
 const ReservationForm = ({ create }) => {
 
@@ -52,8 +52,8 @@ const ReservationForm = ({ create }) => {
                     setReservation({...reservation, timeSlot : e.target.value})}}
                   type= "text"
               >
-                <option>10:30</option>
                 <option>...</option>
+
               </Form.Select>
             </Form.Group>
 
