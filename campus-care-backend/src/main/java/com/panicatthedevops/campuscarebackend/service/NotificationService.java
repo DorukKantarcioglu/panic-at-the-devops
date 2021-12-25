@@ -53,7 +53,6 @@ public class NotificationService {
 
 
     public List<Notification> findAll() {
-        saveCovidNotification("test covid notification", 1);
         return notificationRepository.findAll();
     }
 
