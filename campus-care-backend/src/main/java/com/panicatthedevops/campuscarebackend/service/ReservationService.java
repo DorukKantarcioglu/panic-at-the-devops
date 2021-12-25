@@ -2,10 +2,7 @@ package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.entity.User;
-import com.panicatthedevops.campuscarebackend.exception.PlaceNotFoundForReservationType;
-import com.panicatthedevops.campuscarebackend.exception.ReservationNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.UndefinedReservationTypeException;
-import com.panicatthedevops.campuscarebackend.exception.UserNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import com.panicatthedevops.campuscarebackend.repository.ReservationRepository;
 import com.panicatthedevops.campuscarebackend.repository.StaffRepository;
@@ -166,6 +163,9 @@ public class ReservationService {
                 user = instructorRepository.findById(userId).get();
             else
                 user = staffRepository.findById(userId).get();
+            if(!user.isAllowedOnCampus()){
+                throw new UserIsBannedFromCampusException("User " + userId + " cannot proceed with the reservation since he/she is banned from campus");
+            }
             return reservationBehavior.reserve(date, timeSlot, place, user);
         }
     }
