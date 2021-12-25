@@ -1,12 +1,35 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Form from "react-bootstrap/Form";
 import { Container, Col, Row } from "react-bootstrap";
 import MyButton from "../MyButton/MyButton";
+import ReservationService from "../../../service/ReservationService";
 
 const ReservationForm = ({ create }) => {
 
-  const [reservation, setReservation] = useState({place: '', timeSlot: ''})
+  const [reservation, setReservation] = useState({type: '', place: '', timeSlot: '', date: ''})
+  const [temp, setTemp] = useState({type: '', date: '', place: ''})
+  const [options, setOptions] = useState({})
+
+  const addAvailableTimes = (e) => {
+    e.preventDefault()
+    console.log(temp)
+
+  }
+  async function fetchAvailableTime(){
+    const response = await ReservationService.getAvailableTimes(temp.type, temp.date, temp.place);
+    console.log( " I was ", response)
+    {response&& response.map(response0 =>
+        setOptions([response0])
+    )}
+  }
+
+  useEffect( async () => {
+    await fetchAvailableTime();
+
+  }, [])
+
   const addNewReservation = (e) => {
+    console.log(e)
     e.preventDefault()
     console.log(reservation)
     const newReservation = {
@@ -14,7 +37,6 @@ const ReservationForm = ({ create }) => {
     }
     create(newReservation)
     setReservation({place: '', timeSlot: ''})
-
   }
 
   return (
@@ -24,13 +46,33 @@ const ReservationForm = ({ create }) => {
           <Form>
             <Form.Group>
               <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
-                Choose location
+                Choose Type
+              </Form.Label>
+              <Form.Select
+                  as="select"
+                  value={reservation.type}
+                  onChange= { e => {
+                    setReservation({...reservation, type : e.target.value})
+                    setTemp(({...temp, type: e.target.value}))}}
+                  type= "text"
+              >
+                <option>...</option>
+                <option>Diagnovir</option>
+                <option>Library</option>
+                <option>Sports Center</option>
+
+              </Form.Select>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
+                Choose Location
               </Form.Label>
               <Form.Select
                   as="select"
                   value={reservation.place}
                   onChange= { e => {
-                    setReservation({...reservation, place: e.target.value})}}
+                    setReservation({...reservation, place: e.target.value})
+                    setTemp({...temp, place: e.target.value})}}
                   type= "text"
               >
                 <option>Main Sports Hall</option>
@@ -40,6 +82,30 @@ const ReservationForm = ({ create }) => {
                 <option>Diagnovir</option>
               </Form.Select>
             </Form.Group>
+            <Form.Group>
+              <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
+                Date (dd.mm.yy)
+              </Form.Label>
+              <Form.Control
+                  as="textarea"
+                  value={reservation.date}
+                  onChange= { e => {
+                    setReservation({...reservation, date : e.target.value})
+                    setTemp({...temp, date: e.target.value})}}
+                  type= "date"
+                  placeholder="Date"
+              >
+
+              </Form.Control>
+            </Form.Group>
+
+            <Row className="mb-2">
+              <Col>
+                <MyButton onClick = {addAvailableTimes} >
+                       Get Available Times
+                </MyButton>
+              </Col>
+            </Row>
 
             <Form.Group>
               <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
@@ -52,7 +118,7 @@ const ReservationForm = ({ create }) => {
                     setReservation({...reservation, timeSlot : e.target.value})}}
                   type= "text"
               >
-                <option>...</option>
+
 
               </Form.Select>
             </Form.Group>
