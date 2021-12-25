@@ -17,7 +17,7 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    private String Date;
+    private String date;
 
     private String timeSlot;
     private String place;

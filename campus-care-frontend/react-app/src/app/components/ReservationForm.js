@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { Container, Col, Row } from "react-bootstrap";
-import SideBar from "./SideBar";
+import MyButton from "./MyButton";
 
 const ReservationForm = ({ create }) => {
+
+  const [reservation, setReservation] = useState({place: '', timeSlot: ''})
+  const addNewReservation = (e) => {
+    e.preventDefault()
+    console.log(reservation)
+    const newReservation = {
+      ...reservation, id: Date.now()
+    }
+    create(newReservation)
+    setReservation({place: '', timeSlot: ''})
+
+  }
+
   return (
     <Container>
       <Row>
@@ -14,7 +26,13 @@ const ReservationForm = ({ create }) => {
               <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
                 Choose location
               </Form.Label>
-              <Form.Select defaultValue="Choose...">
+              <Form.Select
+                  as="select"
+                  value={reservation.place}
+                  onChange= { e => {
+                    setReservation({...reservation, place: e.target.value})}}
+                  type= "text"
+              >
                 <option>Main Sports Hall</option>
                 <option>Dormitory Sports Hall</option>
                 <option>Library ( Main Campus )</option>
@@ -27,7 +45,13 @@ const ReservationForm = ({ create }) => {
               <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
                 Time Interval
               </Form.Label>
-              <Form.Select defaultValue="Choose...">
+              <Form.Select
+                  as="select"
+                  value={reservation.timeSlot}
+                  onChange= { e => {
+                    setReservation({...reservation, timeSlot : e.target.value})}}
+                  type= "text"
+              >
                 <option>10:30</option>
                 <option>...</option>
               </Form.Select>
@@ -35,14 +59,14 @@ const ReservationForm = ({ create }) => {
 
             <Row className="mb-2">
               <Col>
-                <Button variant="primary" type="submit">
+                <MyButton onClick = {addNewReservation} >
                   Reserve
-                </Button>
+                </MyButton>
               </Col>
               <Col>
-                <Button variant="primary" type="submit">
+                <MyButton>
                   Cancel
-                </Button>
+                </MyButton>
               </Col>
             </Row>
           </Form>

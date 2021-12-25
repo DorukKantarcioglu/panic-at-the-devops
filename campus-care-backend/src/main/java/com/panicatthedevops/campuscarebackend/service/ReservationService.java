@@ -2,10 +2,7 @@ package com.panicatthedevops.campuscarebackend.service;
 
 import com.panicatthedevops.campuscarebackend.entity.Reservation;
 import com.panicatthedevops.campuscarebackend.entity.User;
-import com.panicatthedevops.campuscarebackend.exception.ReservationNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.StudentNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.UndefinedReservationTypeException;
-import com.panicatthedevops.campuscarebackend.exception.UserNotFoundException;
+import com.panicatthedevops.campuscarebackend.exception.*;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import com.panicatthedevops.campuscarebackend.repository.ReservationRepository;
 import com.panicatthedevops.campuscarebackend.repository.StaffRepository;
@@ -14,8 +11,11 @@ import com.panicatthedevops.campuscarebackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -52,6 +52,66 @@ public class ReservationService {
         return reservationRepository.findAllByUserId(userId);
     }
 
+    public List<String> getAvailableTimes(String date, String place, String reservationType){
+        if(reservationType.equals(ReservationInformation.DIAGNOVIR_RESERVATION)){
+            if(!ReservationInformation.DIAGNOVIR_PLACES.contains(place))
+                throw new PlaceNotFoundForReservationType("Place " + place + " not found for reservation type " + reservationType);
+            return ReservationInformation.DIAGNOVIR_TIME_SLOTS.stream().filter(t -> !reservationRepository.existsByPlaceAndTimeSlotAndDateAndType(place, t, date, reservationType)).collect(Collectors.toList());
+        }
+        else if(reservationType.equals(ReservationInformation.LIBRARY_RESERVATION)){
+            if(!ReservationInformation.LIBRARY_PLACES.contains(place))
+                throw new PlaceNotFoundForReservationType("Place " + place + " not found for reservation type " + reservationType);
+            List<String> times = ReservationInformation.LIBRARY_TIME_SLOTS.stream().filter(t -> !reservationRepository.existsByPlaceAndTimeSlotAndDateAndType(place, t, date, reservationType)).collect(Collectors.toList());
+            List<Reservation> reservations = reservationRepository.findAllByPlaceAndDateAndType(place, date, reservationType);
+
+            for(Reservation reservation : reservations){
+                times = times.stream().filter(t -> !(Math.abs(ChronoUnit.MINUTES.between(LocalTime.of(Integer.parseInt(reservation.getTimeSlot().split(":")[0]), Integer.parseInt(reservation.getTimeSlot().split(":")[1] )),
+                        LocalTime.of(Integer.parseInt(t.split(":")[0]), Integer.parseInt(t.split(":")[1] )))) < 180  && ChronoUnit.MINUTES.between(LocalTime.of(Integer.parseInt(reservation.getTimeSlot().split(":")[0]), Integer.parseInt(reservation.getTimeSlot().split(":")[1] )),
+                        LocalTime.of(Integer.parseInt(t.split(":")[0]), Integer.parseInt(t.split(":")[1] ))) > 0 )).collect(Collectors.toList());
+            }
+            return times;
+        }
+        else if(reservationType.equals(ReservationInformation.SPORTS_CENTER_RESERVATION)){
+            if(!ReservationInformation.SPORTS_CENTER_PLACES.contains(place))
+                throw new PlaceNotFoundForReservationType("Place " + place + " not found for reservation type " + reservationType);
+            return ReservationInformation.SPORTS_CENTER_TIME_SLOTS.stream().filter(t -> !reservationRepository.existsByPlaceAndTimeSlotAndDateAndType(place, t, date, reservationType)).collect(Collectors.toList());
+        }
+        else
+            throw new UndefinedReservationTypeException("Reservation type " + reservationType + " is invalid. It can be: " +
+                    ReservationInformation.SPORTS_CENTER_RESERVATION + ", " + ReservationInformation.DIAGNOVIR_RESERVATION + ", " + ReservationInformation.LIBRARY_RESERVATION);
+    }
+
+    public List<String> getPlaces(String reservationType){
+        if(reservationType.equals(ReservationInformation.DIAGNOVIR_RESERVATION)){
+            return ReservationInformation.DIAGNOVIR_PLACES;
+        }
+        else if(reservationType.equals(ReservationInformation.LIBRARY_RESERVATION)){
+            return ReservationInformation.LIBRARY_PLACES;
+        }
+        else if(reservationType.equals(ReservationInformation.SPORTS_CENTER_RESERVATION)){
+            return ReservationInformation.SPORTS_CENTER_PLACES;
+        }
+        else{
+            throw new UndefinedReservationTypeException("Reservation type " + reservationType + " is invalid. It can be: " +
+                    ReservationInformation.SPORTS_CENTER_RESERVATION + ", " + ReservationInformation.DIAGNOVIR_RESERVATION + ", " + ReservationInformation.LIBRARY_RESERVATION);
+        }
+    }
+
+    public List<String> getAllTimeSlots(String reservationType){
+        if(reservationType.equals(ReservationInformation.DIAGNOVIR_RESERVATION)){
+            return ReservationInformation.DIAGNOVIR_TIME_SLOTS;
+        }
+        else if(reservationType.equals(ReservationInformation.LIBRARY_RESERVATION)){
+            return ReservationInformation.LIBRARY_TIME_SLOTS;
+        }
+        else if(reservationType.equals(ReservationInformation.SPORTS_CENTER_RESERVATION)){
+            return ReservationInformation.SPORTS_CENTER_TIME_SLOTS;
+        }
+        else
+            throw new UndefinedReservationTypeException("Reservation type " + reservationType + " is invalid. It can be: " +
+                    ReservationInformation.SPORTS_CENTER_RESERVATION + ", " + ReservationInformation.DIAGNOVIR_RESERVATION + ", " + ReservationInformation.LIBRARY_RESERVATION);
+    }
+
     public List<Reservation> getReservations(){
         return reservationRepository.findAll();
     }
@@ -75,15 +135,15 @@ public class ReservationService {
     }
 
     public void setReservationBehavior(String reservationType){
-        if(reservationType.equals(ReservationType.DIAGNOVIR_RESERVATION))
-            reservationBehavior = new DiagnovirReservationBehavior(reservationRepository);
-        else if(reservationType.equals(ReservationType.LIBRARY_RESERVATION))
-            reservationBehavior = new LibraryReservationBehavior(reservationRepository);
-        else if(reservationType.equals(ReservationType.SPORTS_CENTER_RESERVATION))
-            reservationBehavior = new SportCenterReservationBehavior(reservationRepository);
+        if(reservationType.equals(ReservationInformation.DIAGNOVIR_RESERVATION))
+            reservationBehavior = new DiagnovirReservationBehavior(reservationRepository, this);
+        else if(reservationType.equals(ReservationInformation.LIBRARY_RESERVATION))
+            reservationBehavior = new LibraryReservationBehavior(reservationRepository, this);
+        else if(reservationType.equals(ReservationInformation.SPORTS_CENTER_RESERVATION))
+            reservationBehavior = new SportCenterReservationBehavior(reservationRepository, this);
         else
             throw new UndefinedReservationTypeException("Reservation type " + reservationType + " is invalid. It can be: " +
-                    ReservationType.SPORTS_CENTER_RESERVATION + ", " + ReservationType.DIAGNOVIR_RESERVATION + ", " + ReservationType.LIBRARY_RESERVATION);
+                    ReservationInformation.SPORTS_CENTER_RESERVATION + ", " + ReservationInformation.DIAGNOVIR_RESERVATION + ", " + ReservationInformation.LIBRARY_RESERVATION);
     }
 
     public Reservation save(Long userId, String date, String timeSlot, String place, String type){
@@ -103,6 +163,9 @@ public class ReservationService {
                 user = instructorRepository.findById(userId).get();
             else
                 user = staffRepository.findById(userId).get();
+            if(!user.isAllowedOnCampus()){
+                throw new UserIsBannedFromCampusException("User " + userId + " cannot proceed with the reservation since he/she is banned from campus");
+            }
             return reservationBehavior.reserve(date, timeSlot, place, user);
         }
     }
