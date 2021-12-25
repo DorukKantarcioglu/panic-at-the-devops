@@ -7,6 +7,7 @@ import SeatingPlan from "../components/SeatingPlan";
 import Button from "react-bootstrap/Button";
 import CourseService from "../../service/CourseService";
 
+
 const CoursePage = (props) => {
   const [data, setData] = useState([]);
   const [seatingPlan, setSeatingPlan] = useState();
@@ -33,13 +34,14 @@ const CoursePage = (props) => {
 
   return (
     <div>
+      <>{props.courseCode}</>
       <SeatingPlan
         show={showSeating}
         seatingPlan={seatingPlan}
         courseCode={props.courseCode}
         handleClose={closeSeatingPlan}
       />
-      <StudentList data={data} />
+      <StudentList data={data} courseCode={props.courseCode}/>
       <button className="button m-2" onClick={showSeatingPlan}>
         Seating Plan{" "}
       </button>
@@ -48,3 +50,4 @@ const CoursePage = (props) => {
 };
 
 export default CoursePage;
+

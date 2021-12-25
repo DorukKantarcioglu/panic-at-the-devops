@@ -5,6 +5,8 @@ import { ModalBody } from "react-bootstrap";
 import SeatingPlanService from "../../service/SeatingPlanService";
 import CourseService from "../../service/CourseService";
 
+
+
 export default function SeatingPlan(props) {
   const [chart, setChart] = useState([]);
   const [data, setData] = useState([]);
@@ -59,13 +61,13 @@ export default function SeatingPlan(props) {
         children.push(
           <td>
             <input
-              type="text"
-              name="seat"
-              id={id}
-              onChange={saveStudent}
-              readOnly={read}
-              defaultValue={data[id]}
-            ></input>{" "}
+    type="text"
+    name="seat"
+    id={id}
+    onChange={saveStudent}
+    readOnly={read}
+    defaultValue={data[id]}
+    />{" "}
           </td>
         );
       }
@@ -95,11 +97,11 @@ export default function SeatingPlan(props) {
         <div className="row justify-content-end">
           {" "}
           <button
-            type="button"
-            className="btn-close"
-            data-dismiss="modal"
-            onClick={props.handleClose}
-          ></button>
+    type="button"
+    className="btn-close"
+    data-dismiss="modal"
+    onClick={props.handleClose}
+    />
         </div>
         <ModalBody>
           {exist ? (
