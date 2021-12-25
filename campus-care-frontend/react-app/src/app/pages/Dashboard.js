@@ -30,11 +30,11 @@ function Dashboard(props) {
         className="row justify-content-center"
         style={{ position: "fixed", marginTop: "10px" }}
       >
-        <div className="col-6" style={{ height: 550 }}>
+        <div className="col-6" style={{ height: 540 }}>
           <label style={{ fontSize: 20 }}>Covid Statistics</label>
           <MyResponsiveLine />
         </div>
-        <div className="col-6 mt-5 " style={{ height: 550 }}>
+        <div className="col-6 mt-5 " style={{ height: 540 }}>
           <MyResponsivePie />
         </div>
       </div>

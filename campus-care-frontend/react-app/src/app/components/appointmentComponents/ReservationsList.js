@@ -17,7 +17,8 @@ const ReservationsList = ({reservations}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {reservations.map(reservation =>
+                {reservations &&
+                    reservations.map(reservation =>
                     <tr>
                         <td>{reservation.date}</td>
                         <td>{reservation.timeSlot}</td>

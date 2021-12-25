@@ -1,18 +1,45 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ResponsivePie } from "@nivo/pie";
+import NotificationService from "../../../service/NotificationService";
+import CovidInfoService from "../../../service/CovidInfoService";
 
 function MyResponsivePie() {
+
+  const [notAllowed, setNotAllowedStudentNum] = useState();
+  const [vaccinated, setVaccinatedStudentNum] = useState();
+  const [tested, setTestedStudentNum] = useState();
+
+  async function fetchStatistics(){
+    const response1 = await CovidInfoService.getNotAllowedStatistics();
+    const response2 = await CovidInfoService.getVaccinatedStatistics();
+    const response3 = await CovidInfoService.getTestedStatistics();
+    {
+      setNotAllowedStudentNum(response1);
+      setVaccinatedStudentNum(response2);
+      setTestedStudentNum(response3);
+    }
+  }
+  useEffect(async () => {
+    console.log(vaccinated)
+    await fetchStatistics()
+  })
   const data = [
     {
-      id: "New Cases",
-      label: "New Cases",
-      value: 195,
+      id: "Not Allowed Students",
+      label: "Not Allowed Students",
+      value: notAllowed,
       color: "hsl(90, 70%, 50%)",
     },
     {
-      id: "Total Count",
-      label: "Toral Count",
-      value: 419,
+      id: "Vaccinated Students",
+      label: "Vaccinated Students",
+      value: vaccinated,
+      color: "hsl(56, 70%, 50%)",
+    },
+    {
+      id: "Tested Students",
+      label: "Tested Students",
+      value: tested,
       color: "hsl(56, 70%, 50%)",
     },
   ];
@@ -107,5 +134,6 @@ function MyResponsivePie() {
       legends={[]}
     />
   );
+
 }
 export default MyResponsivePie;

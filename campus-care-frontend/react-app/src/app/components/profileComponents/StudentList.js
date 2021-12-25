@@ -51,7 +51,7 @@ const StudentList = (props) => {
   return (
     <table
       className="border"
-      style={{ position: "relative", width: "100%", marginLeft: "0px" }}
+      style={{ position: "relative", width: "60%", marginLeft: "300px" }}
     >
       <thead>
         <tr>

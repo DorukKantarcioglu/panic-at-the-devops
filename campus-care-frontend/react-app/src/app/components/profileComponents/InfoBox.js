@@ -1,6 +1,8 @@
 import React from "react";
 import StudentService from "../../../service/StudentService";
 import { Container, Col, Row } from "react-bootstrap";
+import LocalStorageService from "../../../service/LocalStorageService";
+import InstructorService from "../../../service/InstructorService";
 
 class InfoBox extends React.Component {
   constructor(props) {
@@ -30,13 +32,20 @@ class InfoBox extends React.Component {
     );
   };
 
+
   async componentDidMount() {
+
+
+    let student = await InstructorService.getInstructorById(LocalStorageService.getId())
+
     this.setState({
-      student: await StudentService.getStudentById(this.props.id),
+      student: student,
     });
+
   }
 
   render() {
+
     return (
       <Container>
         <Row>

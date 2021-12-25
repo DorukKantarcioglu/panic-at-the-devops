@@ -42,7 +42,7 @@ const CoursePage = (props) => {
         handleClose={closeSeatingPlan}
       />
       <StudentList data={data} courseCode={props.courseCode}/>
-      <button className="button m-2" onClick={showSeatingPlan}>
+      <button  style={{marginLeft: "300px"}} className="button " onClick={showSeatingPlan}>
         Seating Plan{" "}
       </button>
     </div>
