@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import InfoBox from "./profileComponents/InfoBox";
+import InfoBox from "../profileComponents/InfoBox";
 import React from "react";
 import { Navigation } from "react-minimal-side-navigation";
 import { FaUserAlt, FaBook } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
-import CourseService from "../../service/CourseService";
+import CourseService from "../../../service/CourseService";
 
 const courses = [
   {

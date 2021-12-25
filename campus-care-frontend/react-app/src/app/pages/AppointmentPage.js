@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import ReservationForm from "../components/ReservationForm";
+import ReservationForm from "../components/appointmentComponents/ReservationForm";
 import MyModal from "../components/MyModal/MyModal";
 import Card from "react-bootstrap/Button";
-import ReservationsList from "../components/ReservationsList";
+import ReservationsList from "../components/appointmentComponents/ReservationsList";
 import ReservationService from "../../service/ReservationService";
 
 const AppointmentPage = () => {
@@ -17,6 +17,7 @@ const AppointmentPage = () => {
 
     async function fetchReservations(){
         const response = await ReservationService.getReservations();
+        console.log( " I was here, didn't get the responses", response)
         {response&& response.map(response0 =>
             setReservations([response0])
         )}
