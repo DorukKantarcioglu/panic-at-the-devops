@@ -1,19 +1,19 @@
 import { Route, Switch, Router } from "react-router-dom";
-import Dashboard from "../../pages/Dashboard";
-import AppointmentPage from "../../pages/AppointmentPage";
-import ProfilePage from "../../pages/ProfilePage";
-import Login from "../../pages/Login";
-import InfoBox from "../profileComponents/InfoBox";
-import Notifications from "../../pages/Notifications";
-import CoursePage from "../../pages/CoursePage";
+import Dashboard from "../pages/Dashboard";
+import AppointmentPage from "../pages/AppointmentPage";
+import ProfilePage from "../pages/ProfilePage";
+import Login from "../pages/Login";
+import InfoBox from "./profileComponents/InfoBox";
+import Notifications from "../pages/Notifications";
+import CoursePage from "../pages/CoursePage";
 import { Redirect } from "react-router-dom";
-import NewSeatingPlanForm from "../profileComponents/NewSeatingPlanForm";
-import MenuTab from "../MenuTab";
-import CourseService from "../../../service/CourseService";
+import NewSeatingPlanForm from "./profileComponents/NewSeatingPlanForm";
+import MenuTab from "./MenuTab";
+import CourseService from "../../service/CourseService";
 import { useContext, useEffect, useState } from "react";
-import courseContext from "../../CourseContext";
-import SideBar from "../SideBar/SideBar";
-import CampusMap from "../../pages/CampusMap";
+import courseContext from "../CourseContext";
+import SideBar from "./SideBar/SideBar";
+import CampusMap from "../pages/CampusMap";
 import LocalStorageService from "../../service/LocalStorageService";
 import StudentInfoBox from "./profileComponents/StudentInfoBox";
 import StudentService from "../../service/StudentService";
@@ -28,8 +28,6 @@ const AppRouter = () => {
       setCourses(list);
       let studentList = await StudentService.fetchAllStudents();
       setStudents(studentList);
-
-
   };
 
   useEffect( async () => {
