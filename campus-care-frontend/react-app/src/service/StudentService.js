@@ -1,9 +1,12 @@
 import axios from "axios";
+import LocalStorageService from "./LocalStorageService";
 
 const StudentService = (function () {
 
     const _fetchAllStudents = async()=>{
-        const response = await axios.get("http://localhost:8080/api/v1/students");
+        const response = await axios.get("http://localhost:8080/api/v1/students",{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }});
         if (response) {
             return response.data;
         }
@@ -12,7 +15,9 @@ const StudentService = (function () {
 
     const _getStudentById = async (id)=>{
         const url = "http://localhost:8080/api/v1/students/"+id
-        const response = await axios.get(url)
+        const response = await axios.get(url,{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }})
         if (response) {
             return response.data;
         }
@@ -33,7 +38,10 @@ const StudentService = (function () {
         const response = await axios.post("http://localhost:8080/api/v1/students",{}, {headers: {
                 "hesCode": hesCode,
                 "tridNumber": trIdNumber,
-                "eGovernmentPassword": eGovernmentPassword
+                "eGovernmentPassword": eGovernmentPassword,
+
+            Authorization : "Bearer " + LocalStorageService.getToken()
+
             }})
         if (response) {
               return response.data;
@@ -41,7 +49,9 @@ const StudentService = (function () {
     }
 
     const _createStudent = async()=>{
-        const response = await axios.post("http://localhost:8080/api/v1/students");
+        const response = await axios.post("http://localhost:8080/api/v1/students",[],{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }});
         if (response) {
             return response.data;
         }
@@ -51,7 +61,8 @@ const StudentService = (function () {
     const _updateHesCode = async (id, hesCode)=>{
         const url = "http://localhost:8080/api/v1/students/" + id
         const response = await axios.patch(url,{}, {headers: {
-                "hesCode": hesCode
+                "hesCode": hesCode,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }})
         if (response) {
             return response.data;
@@ -60,7 +71,9 @@ const StudentService = (function () {
 
     const _deleteStudent = async (id)=>{
         const url = "http://localhost:8080/api/v1/students/" + id
-        const response = await axios.delete(url)
+        const response = await axios.delete(url,{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }} )
         if (response) {
             return response.data;
         }
