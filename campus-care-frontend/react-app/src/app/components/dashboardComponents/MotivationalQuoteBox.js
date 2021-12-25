@@ -18,7 +18,7 @@ export default function MotivationalQuoteBox(props) {
   return (
     <div>
       <div className="card" style={{}}>
-        <p class="card-text"> Today's Quote: {motivationalQuote}.</p>
+        <p class="card-text"> Today's Quote: {motivationalQuote}</p>
       </div>
     </div>
   );
