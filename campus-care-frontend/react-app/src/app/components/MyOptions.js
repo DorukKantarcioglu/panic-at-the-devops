@@ -1,11 +1,12 @@
 import React from 'react';
-import classes from './MyButton.module.css';
 
-const MyOptions = ({children, ...props}) => {
+const MyOptions = ({options}) => {
     return (
-        <option {...props} className={classes.myBtn}>
-            {children}
-        </option>
+        <div>
+            {options.map(option =>
+                <option> lmao</option>
+            )}
+        </div>
     );
 };
 

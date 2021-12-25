@@ -46,8 +46,7 @@ public class ReservationService {
         if(!reservationRepository.existsByUserId(userId)){
             if(!studentRepository.existsById(userId) && !instructorRepository.existsById(userId) && !staffRepository.existsById(userId))
                 throw new UserNotFoundException("User with id " + userId + " does not exist.");
-            List<Reservation> reservations = new ArrayList<>();
-            return reservations;
+            return new ArrayList<>();
         }
         return reservationRepository.findAllByUserId(userId);
     }

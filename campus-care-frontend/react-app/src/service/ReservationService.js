@@ -61,7 +61,10 @@ const ReservationService = (function () {
       }
     });
     if (response) {
+      console.log("This is the return of the available dates: ", response.data)
       return response.data;
+    }else {
+      console.log("Nothing returned")
     }
   }
 

@@ -1,8 +1,5 @@
 package com.panicatthedevops.campuscarebackend.service;
 
-import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
-import com.panicatthedevops.campuscarebackend.repository.StaffRepository;
-import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import com.panicatthedevops.campuscarebackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +12,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository, StudentRepository studentRepository, StaffRepository staffRepository, InstructorRepository instructorRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

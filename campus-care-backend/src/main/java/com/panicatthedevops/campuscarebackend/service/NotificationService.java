@@ -1,8 +1,8 @@
 package com.panicatthedevops.campuscarebackend.service;
 
-import com.panicatthedevops.campuscarebackend.entity.*;
+import com.panicatthedevops.campuscarebackend.entity.Notification;
+import com.panicatthedevops.campuscarebackend.entity.User;
 import com.panicatthedevops.campuscarebackend.exception.NotificationNotFoundException;
-import com.panicatthedevops.campuscarebackend.exception.StaffNotFoundException;
 import com.panicatthedevops.campuscarebackend.exception.UserNotFoundException;
 import com.panicatthedevops.campuscarebackend.repository.InstructorRepository;
 import com.panicatthedevops.campuscarebackend.repository.NotificationRepository;
@@ -53,7 +53,6 @@ public class NotificationService {
 
 
     public List<Notification> findAll() {
-        saveCovidNotification("test covid notification", 1);
         return notificationRepository.findAll();
     }
 
