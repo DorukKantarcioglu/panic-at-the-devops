@@ -47,8 +47,10 @@ public class CampusCareBackendApplication {
             //));
 
             reservationRepository.saveAll(Arrays.asList(
-                    new Reservation(10L, "10.12.2021", "Tuesday 10:30", "Strudy room - 2", "library-study-room", studentRepository.findById(1L).get()),
-                    new Reservation(20L, "11.12.2021", "Friday 10:30", "Diagnovir room 1", "diagnovir", studentRepository.findById(1L).get())
+                    new Reservation(10L, "10.12.2021", "10:30", "Study_Room_1", "library", studentRepository.findById(1L).get()),
+                    new Reservation(10L, "10.12.2021", "16:00", "Study_Room_1", "library", studentRepository.findById(1L).get()),
+                    new Reservation(10L, "10.12.2021", "22:00", "Study_Room_1", "library", studentRepository.findById(1L).get()),
+                    new Reservation(20L, "11.12.2021", "10:30", "room1", "diagnovir", studentRepository.findById(1L).get())
             ));
 
             areaRepository.saveAll(Arrays.asList(

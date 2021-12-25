@@ -38,4 +38,14 @@ public class ReservationController {
     public void deleteReservation(@PathVariable Long id){
         reservationService.deleteReservation(id);
     }
+
+    @GetMapping("/timeSlots")
+    public ResponseEntity<List<String>> getAvailableTimes(@RequestHeader String type, @RequestHeader String date, @RequestHeader String place){
+        return ResponseEntity.ok(reservationService.getAvailableTimes(date, place, type));
+    }
+
+    @GetMapping("/places")
+    public ResponseEntity<List<String>> getPlaces(@RequestHeader String type){
+        return ResponseEntity.ok(reservationService.getPlaces(type));
+    }
 }

@@ -11,4 +11,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     public List<Reservation> findByType(String type);
     public List<Reservation> findAllByUserId(Long id);
     public Boolean existsByUserId(Long id);
+    public Boolean existsByPlaceAndTimeSlotAndDateAndType(String place, String timeSlot, String date, String type);
+    public List<Reservation> findAllByPlaceAndDateAndType(String place, String date, String type);
 }
