@@ -25,8 +25,8 @@ class NewSeatingPlanForm extends React.Component {
   };
 
   save = async () => {
-    for (let i = 0; i <= this.state.rowNo; i++) {
-      for (let j = 0; j <= this.state.columnNo; j++) {
+    for (let i = 0; i < this.state.rowNo; i++) {
+      for (let j = 0; j < this.state.columnNo; j++) {
         let id = j + i * this.state.columnNo;
         await SeatingPlanService.addSeating({
           seatingPlanId: this.state.id,
@@ -49,9 +49,9 @@ class NewSeatingPlanForm extends React.Component {
     console.log("hello");
     let table = [];
     let parent = [];
-    for (let i = 0; i <= this.state.rowNo; i++) {
+    for (let i = 0; i < this.state.rowNo; i++) {
       let children = [];
-      for (let j = 0; j <= this.state.columnNo; j++) {
+      for (let j = 0; j < this.state.columnNo; j++) {
         let id = j + i * this.state.columnNo;
         children.push(
           <td>
@@ -66,7 +66,10 @@ class NewSeatingPlanForm extends React.Component {
       }
       parent.push(<tr> {children} </tr>);
     }
-    table.push(<table>{parent}</table>);
+    table.push(<div className="row justify-content-start">
+
+                <table className="table" style={{position:"relative",marginLeft:"-80px"}}>{parent}</table>
+    </div>);
     this.setState({ table: table });
   };
 
@@ -110,11 +113,14 @@ class NewSeatingPlanForm extends React.Component {
           {" "}
           Create the seating plan{" "}
         </button>
-        {this.state.table}
         <button className="button m-3" id="seatingPlanSave" onClick={this.save}>
           Save
         </button>
+
+        {this.state.table}
+
       </div>
+
     );
   }
 }

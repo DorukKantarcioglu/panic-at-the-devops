@@ -92,20 +92,21 @@ export default function SeatingPlan(props) {
   };
 
   return (
-    <div>
-      <Modal show={props.show} className="seatingPlanForm">
-        <div className="row justify-content-end">
+    <div >
+      <Modal show={props.show} className="row seatingPlanForm" style={{width:"100%"}}>
+        <div className="row justify-content-end ">
           {" "}
           <button
     type="button"
-    className="btn-close"
+    className="btn-close justify-content-end"
     data-dismiss="modal"
     onClick={props.handleClose}
     />
-        </div>
-        <ModalBody>
+        </div >
+
+        <ModalBody style={{width:"100%", position:"relative"}} >
           {exist ? (
-            <div>
+            <div className="row justify-content-start">
               {chart}
               <button id="seatingPlanUpdate" onClick={updateChart}>
                 {" "}
@@ -113,7 +114,9 @@ export default function SeatingPlan(props) {
               </button>
             </div>
           ) : (
+
             <NewSeatingPlanForm onSave={save} courseCode={props.courseCode} />
+
           )}
         </ModalBody>
       </Modal>
