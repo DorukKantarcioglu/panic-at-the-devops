@@ -68,7 +68,7 @@ class NewSeatingPlanForm extends React.Component {
     }
     table.push(<div className="row justify-content-start">
 
-                <table className="" style={{position:"relative",width:"30%"}}>{parent}</table>
+                <table className="" style={{tableLayout: "fixed" ,position:"relative",width:"30%"}}>{parent}</table>
     </div>);
     this.setState({ table: table });
   };
