@@ -8,9 +8,9 @@ import Button from "react-bootstrap/Button";
 import CourseService from "../../service/CourseService";
 
 const CoursePage =(props) => {
+
     const [data, setData] = useState([])
     const [seatingPlan, setSeatingPlan] = useState()
-
     const [showSeating, setSeating] = useState(false);
 
 
@@ -33,7 +33,7 @@ const CoursePage =(props) => {
     return (
         <div>
             <SeatingPlan show={showSeating} seatingPlan={seatingPlan} courseCode={props.courseCode}/>
-            <StudentList data={data}/>
+            <StudentList data={data} courseCode={props.courseCode}/>
             <Button onClick={showSeatingPlan}>Seating Plan </Button>
         </div>
     )

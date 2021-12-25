@@ -14,11 +14,13 @@ import { useContext, useEffect, useState } from "react";
 import courseContext from "../CourseContext";
 
 const AppRouter = () => {
-  const courses = useContext(courseContext);
+  const [courses, setCourses] = useState([]);
   console.log(courses);
 
   const fetchData = async () => {
-    let list = await CourseService.getAllCourses();
+    let list = await CourseService.getAllCourses().then();
+      setCourses(list)
+
   };
 
   useEffect(() => {
@@ -43,8 +45,8 @@ const AppRouter = () => {
         <ProfilePage id="1" />
       </Route>
       <Route path="/campusmap">
+          <MenuTab/>
         <CoursePage courseCode = "MATH-230-1"/>
-        <Login />
       </Route>
       <Route path="/notifications">
         <MenuTab />
@@ -54,7 +56,7 @@ const AppRouter = () => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
-            <CoursePage />
+            <CoursePage courseCode = "MATH-230-1"/>
           </Route>
         );
       })}

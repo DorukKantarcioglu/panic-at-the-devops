@@ -1,9 +1,13 @@
 import * as ReactDOM from "react-dom";
 import InfoBox from "./InfoBox";
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import CourseService from "../../../service/CourseService";
 
 const StudentList = (props) => {
+
   const [riskColor, setColor] = useState(false);
+  const [data, setData] = useState([]);
+
   const handleShow = (id) => {
     const path = "/student-info/".concat(id);
     console.log(path);
@@ -11,6 +15,14 @@ const StudentList = (props) => {
     ReactDOM.render(<InfoBox id={id} />, document.getElementById("root"));
   };
 
+  useEffect(async () => {
+    await fetch();
+  })
+
+  const fetch=async () => {
+    const list = await CourseService.getStudentList(props.courseCode);
+    setData(list)
+  }
   const students = [
     {
       name: "Yağmur",
@@ -51,8 +63,8 @@ const StudentList = (props) => {
         </tr>
       </thead>
       <tbody>
-        {students &&
-          students.map((student) => {
+        {data &&
+          data.map((student) => {
             return (
               <>
                 <tr>

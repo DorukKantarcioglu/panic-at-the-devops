@@ -16,6 +16,7 @@ export default function SeatingPlan (props)
     const [exist, setExist] = useState(false);
     const [list, setList] = useState()
 
+
     useEffect(async () => {
 
         await fetch()
