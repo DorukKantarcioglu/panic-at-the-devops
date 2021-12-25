@@ -61,7 +61,7 @@ const ReservationService = (function () {
     }
   }
 
-  const _getPlaces=async () => {
+  const _getPlaces=async (type) => {
     const response = await axios.get(path.concat("/places"), {
       headers: {
         type: type
