@@ -12,7 +12,7 @@ import MenuTab from "./MenuTab";
 import CourseService from "../../service/CourseService";
 import { useContext, useEffect, useState } from "react";
 import courseContext from "../CourseContext";
-import SideBar from "./SideBar";
+import SideBar from "./SideBar/SideBar";
 
 const AppRouter = () => {
 
