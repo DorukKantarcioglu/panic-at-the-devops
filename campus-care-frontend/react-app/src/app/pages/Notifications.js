@@ -17,7 +17,6 @@ function Notifications(props) {
           <NotificationList />
         </div>
         <div className="col-6 m-0">
-          <StudentList></StudentList>
         </div>
       </div>
     </React.Fragment>

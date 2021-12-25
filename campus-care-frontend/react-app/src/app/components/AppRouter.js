@@ -62,8 +62,12 @@ const AppRouter = () => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
+              <div className="col-6 mt-2" >
               <SideBar/>
+              </div>
+              <div>
             <CoursePage courseCode ={course.courseCode}/>
+              </div>
           </Route>
         );
       })}

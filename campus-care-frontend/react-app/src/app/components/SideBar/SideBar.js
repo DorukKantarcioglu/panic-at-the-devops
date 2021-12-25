@@ -25,7 +25,7 @@ const SideBar = (props) => {
   let subNavArr = [];
   useEffect(() => {
     createSubNav();
-  }, []);
+  });
 
   const createSubNav = () => {
     courses.forEach((c) => subNavArr.push({ title: c.name, itemId: c.name }));
@@ -34,8 +34,8 @@ const SideBar = (props) => {
     <div>
       <>
         <div className="">
-          <div className="col-3 justify-content-start">
-            <ul className="side " style={{ margin: "1" }}>
+          <div className="col-md-3 justify-content-start">
+            <ul className="side " style={{ marginTop: "-95px",  marginLeft: "-100px",position:"absolute" }}>
               <Navigation
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
