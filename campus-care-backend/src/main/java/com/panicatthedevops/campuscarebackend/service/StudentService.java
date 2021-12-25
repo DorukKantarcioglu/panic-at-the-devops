@@ -207,6 +207,17 @@ public class StudentService {
         }
     }
 
+    public Student updatePhoneNumber(Long id, String phoneNumber) {
+        if (studentRepository.existsById(id)) {
+            Student student = studentRepository.findById(id).get();
+            student.setPhoneNumber(phoneNumber);
+            return studentRepository.save(student);
+        }
+        else {
+            throw new StudentNotFoundException("Student with id " + id + " does not exist.");
+        }
+    }
+
     public Student addCourse(Long id, String courseCode) {
         if (studentRepository.existsById(id)) {
             Student student = studentRepository.findById(id).get();

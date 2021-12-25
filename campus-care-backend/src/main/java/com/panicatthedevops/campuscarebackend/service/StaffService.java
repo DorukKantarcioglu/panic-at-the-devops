@@ -60,6 +60,17 @@ public class StaffService {
         }
     }
 
+    public Staff updatePhoneNumber(Long id, String phoneNumber) {
+        if (staffRepository.existsById(id)) {
+            Staff staff = staffRepository.findById(id).get();
+            staff.setPhoneNumber(phoneNumber);
+            return staffRepository.save(staff);
+        }
+        else {
+            throw new StaffNotFoundException("Staff with id " + id + " does not exist.");
+        }
+    }
+
     public void deleteById(Long id) {
         if (staffRepository.existsById(id)) {
             staffRepository.deleteById(id);

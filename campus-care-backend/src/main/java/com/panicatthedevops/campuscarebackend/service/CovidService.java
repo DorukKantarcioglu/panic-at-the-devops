@@ -131,4 +131,20 @@ public class CovidService {
             throw new UserNotFoundException("User with HES code " + hesCode + " does not exist.");
         }
     }
+
+    public int getNotAllowedStatistics() {
+        return (int) userRepository.findAll().stream().filter(user -> !user.isAllowedOnCampus()).count();
+    }
+
+    public int getVaccinatedStatistics() {
+        return (int) userRepository.findAll().stream().filter(User::isVaccinated).count();
+    }
+
+    public int getNotVaccinatedStatistics() {
+        return (int) userRepository.findAll().stream().filter(user -> !user.isVaccinated()).count();
+    }
+
+    public int getTestedStatistics() {
+        return (int) userRepository.findAll().stream().filter(User::isTested).count();
+    }
 }

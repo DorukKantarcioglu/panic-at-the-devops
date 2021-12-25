@@ -24,8 +24,8 @@ public class Instructor extends User {
         this.coursesGiven = coursesGiven;
     }
 
-    @OneToMany(mappedBy = "instructor")
-    @JsonIgnoreProperties("instructor")
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"instructor", "studentList"})
     private Set<Course> coursesGiven;
 
     public void addCourse(Course course) {

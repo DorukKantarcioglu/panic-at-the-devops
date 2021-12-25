@@ -61,4 +61,25 @@ public class CovidController {
     public ResponseEntity<List<User>> validateHesCode(@RequestHeader String trIdNumber, @RequestHeader String eGovernmentPassword) {
         return ResponseEntity.ok(covidService.validateHesCodes(trIdNumber, eGovernmentPassword));
     }
+
+    @GetMapping("/statistics/notAllowed")
+    public ResponseEntity<Integer> getNotAllowedStatistics() {
+        return ResponseEntity.ok(covidService.getNotAllowedStatistics());
+    }
+
+    @GetMapping("/statistics/vaccinated")
+    public ResponseEntity<Integer> getVaccinatedStatistics() {
+        return ResponseEntity.ok(covidService.getVaccinatedStatistics());
+    }
+
+    @GetMapping("/statistics/notVaccinated")
+    public ResponseEntity<Integer> getNotVaccinatedStatistics() {
+        return ResponseEntity.ok(covidService.getNotVaccinatedStatistics());
+    }
+
+    @GetMapping("/statistics/tested")
+    public ResponseEntity<Integer> getTestedStatistics() {
+        return ResponseEntity.ok(covidService.getTestedStatistics());
+    }
+
 }

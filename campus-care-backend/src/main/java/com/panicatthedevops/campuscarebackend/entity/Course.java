@@ -25,7 +25,7 @@ public class Course {
     @JsonIgnoreProperties({"coursesTaken", "reservations", "password"})
     private Instructor instructor;
 
-    @ManyToMany(mappedBy = "coursesTaken")
+    @ManyToMany(mappedBy = "coursesTaken", fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"coursesTaken", "reservations", "password"})
     List<Student> studentList;
 
@@ -33,4 +33,6 @@ public class Course {
     @JoinColumn(name = "seatingPlan_id", referencedColumnName = "id")
     @JsonIgnoreProperties("course")
     private SeatingPlan seatingPlan;
+
+    private String schedule;
 }
