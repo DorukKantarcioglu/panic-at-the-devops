@@ -1,9 +1,13 @@
 import axios from "axios";
+import LocalStorageService from "./LocalStorageService";
 
 const CovidInfoService = (function () {
   const _getNotAllowedStudents = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/students"
+      "http://localhost:8080/api/v1/covid/students",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -12,7 +16,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedInstructors = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/instructors"
+      "http://localhost:8080/api/v1/covid/instructors",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -21,7 +28,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedStaffs = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/staffs"
+      "http://localhost:8080/api/v1/covid/staffs",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -30,7 +40,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedStudentsInCourse = async (courseCode) => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/courses/".concat(courseCode)
+      "http://localhost:8080/api/v1/covid/courses/".concat(courseCode),{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -39,7 +52,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedStudentsInCafeteria = async (cafeteriaName) => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/cafeterias/".concat(cafeteriaName)
+      "http://localhost:8080/api/v1/covid/cafeterias/".concat(cafeteriaName),{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -48,7 +64,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedStudentsInSmokingArea = async (smokingAreaName) => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/covid/smokingAreas/".concat(smokingAreaName)
+      "http://localhost:8080/api/v1/covid/smokingAreas/".concat(smokingAreaName),{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -64,6 +83,7 @@ const CovidInfoService = (function () {
           hesCode: hesCode,
           tridNumber: trIdNumber,
           eGovernmentPassword: eGovernmentPassword,
+          Authorization: "Bearer " + LocalStorageService.getToken()
         },
       }
     );
@@ -80,6 +100,7 @@ const CovidInfoService = (function () {
         headers: {
           tridNumber: trIdNumber,
           eGovernmentPassword: eGovernmentPassword,
+          Authorization: "Bearer " + LocalStorageService.getToken()
         },
       }
     );
@@ -90,7 +111,10 @@ const CovidInfoService = (function () {
 
   const _getNotAllowedStatistics = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/v1/covid/statistics/notAllowed"
+        "http://localhost:8080/api/v1/covid/statistics/notAllowed",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -99,7 +123,10 @@ const CovidInfoService = (function () {
 
   const _getVaccinatedStatistics = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/v1/covid/statistics/vaccinated"
+        "http://localhost:8080/api/v1/covid/statistics/vaccinated",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -108,7 +135,10 @@ const CovidInfoService = (function () {
 
   const _getNotVaccinatedStatistics = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/v1/covid/statistics/notVaccinated"
+        "http://localhost:8080/api/v1/covid/statistics/notVaccinated",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -117,7 +147,10 @@ const CovidInfoService = (function () {
 
   const _getTestedStatistics = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/v1/covid/statistics/tested"
+        "http://localhost:8080/api/v1/covid/statistics/tested",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;

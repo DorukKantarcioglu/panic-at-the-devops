@@ -19,7 +19,7 @@ class MyProfile extends React.Component {
     return (
       <Container>
         <Row>
-            <div className="col-md-4" style={{ marginTop: "-110px",  marginLeft: "-160px" }}>
+            <div className="col-md-4" style={{ marginTop: "-133px",  marginLeft: "-330px" }}>
                 <SideBar/>
             </div>
             <Col md = {8}>

@@ -1,9 +1,14 @@
 import axios from "axios";
+import LocalStorageService from "./LocalStorageService";
 
 const NotificationService = (function () {
   const _getNotifications = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/notifications"
+      "http://localhost:8080/api/v1/notifications",
+        {
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -12,7 +17,11 @@ const NotificationService = (function () {
 
   const _getNotification = async (id) => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/notifications/".concat(id)
+      "http://localhost:8080/api/v1/notifications/".concat(id),
+        {
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
@@ -21,7 +30,10 @@ const NotificationService = (function () {
 
   const _getRandomMotivationalQuote = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/notifications/motivationalQuotes"
+      "http://localhost:8080/api/v1/notifications/motivationalQuotes",{
+          headers: {
+            Authorization: "Bearer " + LocalStorageService.getToken()
+          }}
     );
     if (response) {
       return response.data;
