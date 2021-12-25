@@ -15,8 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Instructor extends User {
-    public Instructor(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, Set<Course> coursesGiven, List<Notification> notificationList, Set<Reservation> reservations, Collection<? extends GrantedAuthority> authorities) {
-        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservations, authorities);
+    public Instructor(Long id, String name, String password, String email, String hesCode, String phoneNumber, boolean allowedOnCampus, boolean vaccinated, boolean tested, Set<Course> coursesGiven, List<Notification> notificationList, Set<Reservation> reservations) {
+        super(id, name, password, email, hesCode, phoneNumber, allowedOnCampus, vaccinated, tested, notificationList, reservations);
         this.coursesGiven = coursesGiven;
     }
 

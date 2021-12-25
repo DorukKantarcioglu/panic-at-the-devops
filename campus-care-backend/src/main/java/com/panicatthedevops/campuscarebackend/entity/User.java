@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
-
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Inheritance
 @Entity
@@ -36,9 +37,6 @@ public class User implements UserDetails  {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private Set<Reservation> reservations;
-
-    @Transient
-    private Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

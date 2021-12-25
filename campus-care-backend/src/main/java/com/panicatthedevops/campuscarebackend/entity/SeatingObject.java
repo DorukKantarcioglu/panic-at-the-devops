@@ -19,7 +19,7 @@ public class SeatingObject {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
-    @JsonIgnoreProperties("seatings")
+    @JsonIgnoreProperties({"seatings", "password"})
     private Student student;
 
     @ManyToOne(fetch = FetchType.EAGER)

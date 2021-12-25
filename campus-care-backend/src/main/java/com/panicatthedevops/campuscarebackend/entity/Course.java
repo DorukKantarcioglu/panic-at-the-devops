@@ -22,14 +22,14 @@ public class Course {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "instructor_id")
-    @JsonIgnoreProperties("coursesGiven")
+    @JsonIgnoreProperties({"coursesTaken", "reservations", "password"})
     private Instructor instructor;
 
     @ManyToMany(mappedBy = "coursesTaken")
-    @JsonIgnoreProperties("coursesTaken")
+    @JsonIgnoreProperties({"coursesTaken", "reservations", "password"})
     List<Student> studentList;
 
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "seatingPlan_id", referencedColumnName = "id")
     @JsonIgnoreProperties("course")
     private SeatingPlan seatingPlan;

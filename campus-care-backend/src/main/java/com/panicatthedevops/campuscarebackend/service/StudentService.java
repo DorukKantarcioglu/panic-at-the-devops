@@ -16,7 +16,6 @@ public class StudentService {
     private final CourseRepository courseRepository;
     private final AreaRepository areaRepository;
     private final SeatingObjectRepository seatingObjectRepository;
-    private final SeatingPlanRepository seatingPlanRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository, CourseRepository courseRepository,
@@ -25,7 +24,6 @@ public class StudentService {
         this.courseRepository = courseRepository;
         this.areaRepository = areaRepository;
         this.seatingObjectRepository = seatingObjectRepository;
-        this.seatingPlanRepository = seatingPlanRepository;
     }
 
     public List<Student> findAll() {
