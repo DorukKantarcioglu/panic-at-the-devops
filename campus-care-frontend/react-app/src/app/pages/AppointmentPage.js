@@ -8,40 +8,8 @@ import ReservationService from "../../service/ReservationService";
 const AppointmentPage = () => {
     const [modal, setModal] = useState(false);
 
-    const[reservations, setReservations] = useState([
-        {
-            date: "Today ",
-            timeSlot: " 15:00 ",
-            place: "Main Campus Hall",
-            type: "Sport Center",
-            userId: 21901009,
-            id: 323,
-        },
-        {
-            date: "Tomorrow",
-            timeSlot: "21:30 ",
-            place: "Library ( Main Hall ) ",
-            type: "Library",
-            userId: 21901009,
-            id: 3424,
-        },
-    ])
 
-    async function fetchReservations(){
-        const response = await ReservationService.getReservations();
-        console.log(response);
-        {response.map(response0 =>
-            setReservations([...reservations, response0])
-        )}
-        console.log("asdfasf", reservations)
-    }
-    useEffect( () =>
-    {fetchReservations(); }, [])
 
-    const createReservation = (newReservation) => {
-        console.log( " I am here")
-        setReservations([...reservations, newReservation])
-    }
   return (
     <React.Fragment>
       <div className="row justify-content-start">
@@ -61,7 +29,7 @@ const AppointmentPage = () => {
         </div>
 
         <div className="col-7 " style={{ alignContent: "center" }}>
-          <ReservationsList reservations = {reservations}/>
+          <ReservationsList/>
         </div>
       </div>
       <MyModal
@@ -69,7 +37,7 @@ const AppointmentPage = () => {
         visible={modal}
         setVisible={setModal}
       >
-        <ReservationForm create={createReservation}/>
+        <ReservationForm/>
       </MyModal>
     </React.Fragment>
   );

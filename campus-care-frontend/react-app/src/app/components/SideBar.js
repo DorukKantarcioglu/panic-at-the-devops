@@ -10,13 +10,13 @@ import CourseService from "../../service/CourseService";
 
 const courses = [
   {
-    name: "cs319",
+    name: "CS-319-1",
   },
   {
-    name: "cs315",
+    name: "CS-315-1",
   },
   {
-    name: "math225",
+    name: "MATH-230-1",
   },
 ];
 
@@ -41,7 +41,7 @@ const SideBar = (props) => {
                 activeItemId="/management/members"
                 onSelect={({ itemId }) => {
                   if (itemId !== "/management") {
-                    let path = "course/".concat(itemId);
+                    let path = "/course/".concat(itemId);
                     history.push(path);
                   }
                 }}

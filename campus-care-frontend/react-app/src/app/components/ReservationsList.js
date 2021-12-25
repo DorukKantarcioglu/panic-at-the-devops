@@ -1,6 +1,42 @@
 import Reservations from "./Reservations";
+import ReservationService from "../../service/ReservationService";
+import {useEffect, useState} from "react";
 
-const ReservationsList = ({reservations}) => {
+const ReservationsList = ({}) => {
+    const[reservations, setReservations] = useState([
+        {
+            date: "29.12.2021 ",
+            timeSlot: " 15:00 ",
+            place: "Main Campus Hall",
+            type: "Sport Center",
+            userId: 21901009,
+            id: 323,
+        },
+        {
+            date: "30.11.2021",
+            timeSlot: "21:30 ",
+            place: "Library ( Main Hall ) ",
+            type: "Library",
+            userId: 21901009,
+            id: 3424,
+        },
+    ])
+    const createReservation = (newReservation) => {
+
+        setReservations([...reservations, newReservation])
+    }
+
+    async function fetchReservations(){
+
+        const response = await ReservationService.getReservations();
+        {response&& response.map(response0 =>
+            setReservations([response0])
+        )}
+
+    }
+    useEffect( async () => {
+        await fetchReservations();
+    }, [])
     return (
         <>
           <div className="row d-flex justify-content-start">
@@ -17,11 +53,18 @@ const ReservationsList = ({reservations}) => {
                 <th> Place </th>
               </tr>
             </thead>
-            <tbody>
+              <tbody>
+
               {reservations.map(reservation =>
-                    <Reservations reservation = {reservation} key = {reservation.id}/>
+                  <tr>
+                      <td>{reservation.date}</td>
+                      <td>{reservation.timeSlot}</td>
+                      <td>{reservation.place}</td>
+                  </tr>
               )}
-            </tbody>
+
+
+              </tbody>
           </table>
         </>
   );
