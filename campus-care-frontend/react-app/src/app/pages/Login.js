@@ -5,7 +5,7 @@ function Login(props) {
   return (
     <React.Fragment>
       <div>
-        <LoginForm>hello</LoginForm>
+        <LoginForm/>
       </div>
     </React.Fragment>
   );

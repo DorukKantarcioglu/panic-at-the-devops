@@ -12,11 +12,12 @@ import MenuTab from "./MenuTab";
 import CourseService from "../../service/CourseService";
 import { useContext, useEffect, useState } from "react";
 import courseContext from "../CourseContext";
+import SideBar from "./SideBar";
 
 const AppRouter = () => {
 
   const [courses, setCourses] = useState([]);
-  const courses2= CourseService.getAllCourses().then();
+
 
 
   const fetchData = async () => {
@@ -29,7 +30,7 @@ const AppRouter = () => {
   useEffect( async () => {
       await fetchData();
       console.log(courses)
-  }, []);
+  }, [fetchData]);
 
   return (
     <Switch>
@@ -61,6 +62,7 @@ const AppRouter = () => {
         return (
           <Route path={"/course/".concat(course.courseCode)}>
             <MenuTab />
+              <SideBar/>
             <CoursePage courseCode ={course.courseCode}/>
           </Route>
         );

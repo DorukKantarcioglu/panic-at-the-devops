@@ -1,12 +1,14 @@
 import axios from "axios";
+import LocalStorageService from "./LocalStorageService";
 
 const ReservationService = (function () {
 
   const path = "http://localhost:8080/api/v1/reservations";
 
   const _getReservations = async () => {
+
     const response = await axios.get(
-      "http://localhost:8080/api/v1/reservations"
+      "http://localhost:8080/api/v1/reservations",{Headers:{'Authorization': `Bearer ${LocalStorageService.getToken()}`}}
     );
     if (response) {
       return response.data;
@@ -15,7 +17,7 @@ const ReservationService = (function () {
 
   const _getReservation = async (id) => {
     const url = "http://localhost:8080/api/v1/reservations/" + id;
-    const response = await axios.get(url);
+    const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
     if (response) {
       return response.data;
     }
@@ -32,6 +34,7 @@ const ReservationService = (function () {
           timeSlot: reservation.timeSlot,
           place: reservation.place,
           type: reservation.type,
+          Authorization : "Bearer " + LocalStorageService.getToken()
         },
       }
     );
@@ -42,7 +45,7 @@ const ReservationService = (function () {
 
   const _deleteReservation = async (id) => {
     const url = "http://localhost:8080/api/v1/reservations/" + id;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
     if (response) {
       return response.data;
     }
@@ -53,7 +56,8 @@ const ReservationService = (function () {
       headers: {
         type: type,
         date: date,
-        place: place
+        place: place,
+        Authorization : "Bearer " + LocalStorageService.getToken()
       }
     });
     if (response) {
@@ -64,7 +68,8 @@ const ReservationService = (function () {
   const _getPlaces=async (type) => {
     const response = await axios.get(path.concat("/places"), {
       headers: {
-        type: type
+        type: type,
+        Authorization : "Bearer " + LocalStorageService.getToken()
       }
     });
     if (response) {

@@ -27,7 +27,7 @@ export default function SeatingPlan(props) {
   fetch = async (params = {}) => {
     const seatingList = await CourseService.getSeatingPlan(props.courseCode);
     setList(seatingList);
-    if (seatingList != null) setExist(true);
+    if (seatingList != null ) setExist(true);
   };
 
   const getSeatingPlan = () => {

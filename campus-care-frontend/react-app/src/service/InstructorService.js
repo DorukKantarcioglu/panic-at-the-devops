@@ -1,4 +1,5 @@
-/*import axios from "axios";
+import axios from "axios";
+import LocalStorageService from "./LocalStorageService";
 
 const InstructorService =(function () {
     
@@ -27,7 +28,7 @@ const InstructorService =(function () {
     const _getInstructorById=async(id)=>
     {
         const url = "http://localhost:8080/api/v1/instructors".concat(id);
-        const response = await axios.get(url);
+        const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
         if (response) {
             return response.data;
         }
@@ -36,7 +37,8 @@ const InstructorService =(function () {
     const _getInstructorByHesCode=async(hesCode)=>
     {
         const response = await axios.get("http://localhost:8080/api/v1/instructors", { headers:{
-                "hesCode": {hesCode}.toString()
+                "hesCode": {hesCode}.toString(),
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -46,7 +48,8 @@ const InstructorService =(function () {
     const _updateHesCode = async (id, hesCode)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id)
         const response = await axios.patch(url,{}, {headers: {
-                "hesCode": hesCode
+                "hesCode": hesCode,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -57,7 +60,8 @@ const InstructorService =(function () {
     {
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.get(url,{}, {headers: {
-                "courseCode": courseCode
+                "courseCode": courseCode,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -66,7 +70,7 @@ const InstructorService =(function () {
 
     const _deleteInstructor = async (id)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
-        const response = await axios.delete(url)
+        const response = await axios.delete(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}})
         if (response) {
             return response.data;
         }
@@ -75,7 +79,8 @@ const InstructorService =(function () {
     const _addCourse =async(courseCode)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.patch(url,{}, {headers: {
-                "courseCode": courseCode
+                "courseCode": courseCode,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -85,7 +90,8 @@ const InstructorService =(function () {
     const _deleteCourse =async(courseCode)=>{
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.delete(url,{}, {headers: {
-                "courseCode": courseCode
+                "courseCode": courseCode,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -109,4 +115,4 @@ const InstructorService =(function () {
 
 })();
 export default InstructorService;
-*/
+

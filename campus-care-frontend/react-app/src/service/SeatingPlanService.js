@@ -1,5 +1,6 @@
 import axios from "axios";
 import SeatingPlan from "../app/components/SeatingPlan";
+import LocalStorageService from "./LocalStorageService";
 
 const SeatingPlanService = (function () {
 
@@ -9,7 +10,8 @@ const SeatingPlanService = (function () {
         const response = await axios.post(path,{}, {
             headers: {
                 rowNo: rowNo,
-                columnNo: columnNo
+                columnNo: columnNo,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }
         })
         if (response) {
@@ -18,14 +20,19 @@ const SeatingPlanService = (function () {
     }
 
     const _getSeatingPlan=async (seatingPlanId) => {
-        const response = await axios.get(path.concat("/").concat(seatingPlanId));
+        const response = await axios.get(path.concat("/").concat(seatingPlanId),{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }});
         if (response) {
             return response.data;
         }
     }
 
     const _delete=async (seatingPlanId) => {
-        const response = await axios.delete(path, {headers: {id:seatingPlanId}});
+        const response = await axios.delete(path, {headers: {
+            id:seatingPlanId,
+                Authorization : "Bearer " + LocalStorageService.getToken()
+        }});
         if (response) {
             return response.data;
         }
@@ -35,7 +42,8 @@ const SeatingPlanService = (function () {
         const response = await axios.post(path.concat("/").concat(props.seatingPlanId).concat("/seatings"),{}, {headers:{
                 studentId: props.studentId,
                 rowNo: props.rowNo,
-                columnNo: props.columnNo
+                columnNo: props.columnNo,
+                Authorization : "Bearer " + LocalStorageService.getToken()
             }});
         if (response) {
             return response.data;
@@ -43,7 +51,9 @@ const SeatingPlanService = (function () {
     }
 
     const _getSeatings=async (seatingPlanId)=>{
-        const response = await axios.get(path.concat("/").concat(seatingPlanId).concat("/seatings"));
+        const response = await axios.get(path.concat("/").concat(seatingPlanId).concat("/seatings"),{headers:{
+                Authorization : "Bearer " + LocalStorageService.getToken()
+            }});
         if (response) {
             return response.data;
         }
@@ -51,7 +61,10 @@ const SeatingPlanService = (function () {
 
     const _removeSeating =async (props)=>
     {
-        const response = await axios.delete(path.concat("/").concat(props.seatingPlanId).concat("/seatings").concat(props.seatingId));
+        const response = await axios.delete(path.concat("/").concat(props.seatingPlanId).concat("/seatings").concat(props.seatingId),
+            {headers:{
+                    Authorization : "Bearer " + LocalStorageService.getToken()
+                }});
         if (response) {
             return response.data;
         }

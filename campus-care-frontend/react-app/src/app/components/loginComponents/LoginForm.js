@@ -6,6 +6,7 @@ import LocalStorageService from "../../../service/LocalStorageService";
 import axios from "axios";
 import Dashboard from "../../pages/Dashboard";
 import ForgotPasswordForm from "./ForgotPasswordForm";
+import AuthService from "../../../service/AuthService";
 
 export default function LoginForm(props) {
   const [show, setShow] = useState(false);
@@ -22,14 +23,9 @@ export default function LoginForm(props) {
     });
   };
 
-  const verifyCode = () => {
-    showNewPasswordForm(true);
-    showVerification(false);
-  };
-
-  const changePassword = () => {};
   const showModal = () => {
     setShow(true);
+    console.log(credentials)
   };
 
   const hideModal = () => {
@@ -37,14 +33,16 @@ export default function LoginForm(props) {
   };
 
   const signIn = async () => {
-    let path = `home`;
-    history.push(path);
+
+    console.log(credentials.id)
+    console.log(credentials.password)
+     const jwtToken =  await AuthService.signIn({username: credentials.id, password: credentials.password})
+     LocalStorageService.setId(credentials.id);
+     LocalStorageService.setToken(jwtToken);
+    history.push(`home`);
   };
 
-  const handleEmail = () => {
-    showEmail(false);
-    showVerification(true);
-  };
+
   return (
     <div className="d-flex justify-content-center">
       <div className="col-5 m-2">
@@ -63,7 +61,7 @@ export default function LoginForm(props) {
               type="id"
               placeholder="Enter your id"
               name="id"
-              //onChange={handleChange()}
+              onChange={e => handleChange(e)}
             />
           </Form.Group>
 
@@ -73,7 +71,7 @@ export default function LoginForm(props) {
               type="password"
               placeholder="Password"
               name="password"
-              //onChange={handleChange()}
+              onChange={e => handleChange(e)}
             />
           </Form.Group>
           <div className="d-flex justify-content-between">
