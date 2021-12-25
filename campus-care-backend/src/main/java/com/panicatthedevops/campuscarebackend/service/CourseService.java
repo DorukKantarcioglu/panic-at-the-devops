@@ -11,7 +11,6 @@ import com.panicatthedevops.campuscarebackend.exception.SeatingPlanNotFoundExcep
 import com.panicatthedevops.campuscarebackend.repository.CourseRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingObjectRepository;
 import com.panicatthedevops.campuscarebackend.repository.SeatingPlanRepository;
-import com.panicatthedevops.campuscarebackend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

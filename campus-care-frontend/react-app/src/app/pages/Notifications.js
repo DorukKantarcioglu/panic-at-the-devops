@@ -9,14 +9,12 @@ import NewSeatingPlanForm from "../components/profileComponents/NewSeatingPlanFo
 function Notifications(props) {
   return (
     <React.Fragment>
-      <div className="row justify-content-start">
+      <div className="row justify-content-center">
         <h1 className="display-6 m-2" style={{ color: "grey" }}>
           Notifications
         </h1>
-        <div className="col-6 m-0">
+        <div className="col-8 m-0">
           <NotificationList />
-        </div>
-        <div className="col-6 m-0">
         </div>
       </div>
     </React.Fragment>

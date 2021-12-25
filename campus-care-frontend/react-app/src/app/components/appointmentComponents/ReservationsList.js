@@ -1,41 +1,5 @@
 
-import {useEffect, useState} from "react";
-import ReservationService from "../../../service/ReservationService";
-
-const ReservationsList = ({}) => {
-    const[reservations, setReservations] = useState([
-        {
-            date: "22.12.2021 ",
-            timeSlot: " 15:00 ",
-            place: "Main Campus Hall",
-            type: "Sport Center",
-            userId: 21901009,
-            id: 323,
-        },
-        {
-            date: "30.11.2021",
-            timeSlot: "21:30 ",
-            place: "Library ( Main Hall ) ",
-            type: "Library",
-            userId: 21901009,
-            id: 3424,
-        },
-    ])
-    const createReservation = (newReservation) => {
-
-        setReservations([...reservations, newReservation])
-    }
-    async function fetchReservations(){
-
-        const response = await ReservationService.getReservations();
-        {response&& response.map(response0 =>
-            setReservations([response0])
-        )}
-    }
-    useEffect( async () => {
-        await fetchReservations();
-    }, [])
-
+const ReservationsList = ({reservations}) => {
     return (
         <>
             <div className="row d-flex justify-content-start">

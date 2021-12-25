@@ -25,6 +25,7 @@ const AppointmentPage = () => {
 
     useEffect( async () => {
         await fetchReservations();
+
     }, [])
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import InfoBox from "../profileComponents/InfoBox";
 import React from "react";
 import { Navigation } from "react-minimal-side-navigation";
@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import CourseService from "../../../service/CourseService";
+import InstructorService from "../../../service/InstructorService";
+import LocalStorageService from "../../../service/LocalStorageService";
 
 const courses = [
   {
@@ -21,29 +23,45 @@ const courses = [
 ];
 
 const SideBar = (props) => {
+
+  const [courses, setCourses] = useState()
   const history = useHistory();
   let subNavArr = [];
-  useEffect(() => {
+
+  useEffect(async () => {
+    await fetchCourses()
+    if (courses)
     createSubNav();
-  });
+
+  }, []);
+
+  const fetchCourses=async () => {
+    const list = await InstructorService.getCourses(LocalStorageService.getId());
+
+    setCourses(list);
+
+  }
 
   const createSubNav = () => {
+    console.log(courses)
     courses.forEach((c) => subNavArr.push({ title: c.name, itemId: c.name }));
   };
   return (
     <div>
       <>
         <div className="">
-          <div className="col-md-3 justify-content-start">
-            <ul className="side " style={{ marginTop: "-95px",  marginLeft: "-100px",position:"absolute" }}>
+          <div className="col-3 justify-content-start">
+            <ul className="side " style={{ margin: "1" }}>
               <Navigation
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
                 onSelect={({ itemId }) => {
-                  if (itemId !== "/management") {
+                  if (itemId !== "/management" && itemId !== "/dashboard") {
+
                     let path = "/course/".concat(itemId);
                     history.push(path);
                   }
+
                 }}
                 items={[
                   {

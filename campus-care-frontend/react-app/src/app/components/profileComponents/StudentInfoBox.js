@@ -1,5 +1,5 @@
 import React from "react";
-import "./LoginFormStyle.css";
+
 
 const StudentInfoBox =(props)=>
 {
