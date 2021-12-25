@@ -66,9 +66,9 @@ class NewSeatingPlanForm extends React.Component {
       }
       parent.push(<tr> {children} </tr>);
     }
-    table.push(<div className="row justify-content-start">
+    table.push(<div className="row justify-content-center">
 
-                <table className="table" style={{position:"relative",marginLeft:"-80px"}}>{parent}</table>
+                <table className="" style={{position:"fixed"}}>{parent}</table>
     </div>);
     this.setState({ table: table });
   };
@@ -80,48 +80,45 @@ class NewSeatingPlanForm extends React.Component {
   };
 
   render() {
-    return (
-      <div className="seatingPlanForm">
-        <label className="seatingPlanForm m-2" id="rowNo">
-          {" "}
-          Number of rows:{" "}
-        </label>
-        <input
-          type="text"
-          id="rowNo"
-          name="rowNo"
-          value={this.state.rowNo}
-          onChange={this.handleChange}
-        />
-        <br />
-        <label className="seatingPlanForm m-2" id="columnNo">
-          {" "}
-          Number of seats:{" "}
-        </label>
-        <input
-          type="text"
-          id="columnNo"
-          name="columnNo"
-          value={this.state.columnNo}
-          onChange={this.handleChange}
-        />
-        <button
-          className="button m-3"
-          id="seatingPlanSubmit"
-          onClick={this.createSeatingPlan}
-        >
-          {" "}
-          Create the seating plan{" "}
-        </button>
-        <button className="button m-3" id="seatingPlanSave" onClick={this.save}>
-          Save
-        </button>
-
-        {this.state.table}
-
-      </div>
-
-    );
+      return (
+          <div className="seatingPlanForm">
+              <label className="seatingPlanForm" id="rowNo">
+                  {" "}
+                  Number of rows:{" "}
+              </label>
+              <input
+                  type="text"
+                  id="rowNo"
+                  name="rowNo"
+                  value={this.state.rowNo}
+                  onChange={this.handleChange}
+              />
+              <br />
+              <label className="seatingPlanForm m-2" id="columnNo">
+                  {" "}
+                  Number of seats:{" "}
+              </label>
+              <input
+                  type="text"
+                  id="columnNo"
+                  name="columnNo"
+                  value={this.state.columnNo}
+                  onChange={this.handleChange}
+              />
+              <button
+                  className="button m-3"
+                  id="seatingPlanSubmit"
+                  onClick={this.createSeatingPlan}
+              >
+                  {" "}
+                  Create the seating plan{" "}
+              </button>
+              {this.state.table}
+              <button className="button m-3" id="seatingPlanSave" onClick={this.save}>
+                  Save
+              </button>
+          </div>
+      );
   }
 }
 export default NewSeatingPlanForm;

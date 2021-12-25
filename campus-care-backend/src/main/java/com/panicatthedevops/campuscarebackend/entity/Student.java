@@ -39,7 +39,7 @@ public class Student extends User {
     private String selectedCafeteria;
     private String selectedSmokingArea;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("student")
     private Set<SeatingObject> seatings;
 

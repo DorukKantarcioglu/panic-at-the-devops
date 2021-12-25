@@ -19,7 +19,7 @@ const NotificationService = (function () {
     }
   };
 
-  const _getRandomMotivationalQuote = async (id) => {
+  const _getRandomMotivationalQuote = async () => {
     const response = await axios.get(
       "http://localhost:8080/api/v1/notifications/motivationalQuotes"
     );
