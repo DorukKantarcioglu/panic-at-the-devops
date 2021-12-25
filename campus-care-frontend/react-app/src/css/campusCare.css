@@ -100,9 +100,13 @@ div {
 }
 
 table {
+
   width: 1200px;
-  margin-left: 230px;
   background: #ffffff;
+  table-layout: fixed;
+  overflow: hidden;
+  flex-direction: column;
+
 }
 
 label,
@@ -118,15 +122,15 @@ td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  flex: fit-content;
+  width:100%;
 }
 
 th {
   background-color: rgb(183, 189, 256);
   color: white;
 }
-table {
-  table-layout: fixed;
-}
+
 
 tr:hover {
   background-color: #f1f0f2;
@@ -151,6 +155,7 @@ th {
   height: 2rem;
   border: 1px solid rgb(32, 30, 30);
   text-align: start;
+  min-width: fit-content;
 }
 body {
   padding: 1rem;
