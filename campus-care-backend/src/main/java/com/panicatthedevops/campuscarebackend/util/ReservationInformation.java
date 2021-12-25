@@ -3,6 +3,10 @@ package com.panicatthedevops.campuscarebackend.util;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Hard coded information about different reservation names, places, timeslots
+ * @version 1.0
+ */
 public interface ReservationInformation {
     String DIAGNOVIR_RESERVATION = "diagnovir";
     String LIBRARY_RESERVATION = "library";

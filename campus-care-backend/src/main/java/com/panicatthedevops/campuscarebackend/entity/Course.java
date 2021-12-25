@@ -6,6 +6,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents the courses being taught in the university.
+ * Each course has one instructor, and many students.
+ * @version 1.0
+ */
+
 @Entity
 @Table(name = "course")
 @Getter

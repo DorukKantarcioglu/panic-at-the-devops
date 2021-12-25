@@ -5,6 +5,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Seating object that has the row and column info of a specific student in a specific seating plan of a specific course
+ * @version 1.0
+ */
+
 @Entity
 @Table(name = "SeatingObject")
 @Getter

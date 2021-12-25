@@ -15,18 +15,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Jwt filter class
+ * @version 1.0
+ */
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
     private final CustomUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 
+    /**
+     * @param userDetailsService user details service
+     * @param jwtUtil jwt util instance
+     */
     @Autowired
     public JwtFilter(CustomUserDetailsService userDetailsService, JwtUtil jwtUtil) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
     }
 
+    /**
+     * filters the requests, does jwt token verification from bearer token
+     * @param request request
+     * @param response response
+     * @param filterChain filter chain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");

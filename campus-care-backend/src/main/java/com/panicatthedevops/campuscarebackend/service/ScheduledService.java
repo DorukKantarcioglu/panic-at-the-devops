@@ -18,6 +18,10 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+/**
+ * methods that are done periodically
+ * @version 1.0
+ */
 @Service
 @Configuration
 @EnableScheduling
@@ -28,6 +32,14 @@ public class ScheduledService {
     private final InstructorService instructorService;
     private final StudentService studentService;
 
+    /**
+     * creates an instance
+     * @param notificationService notification service
+     * @param seatingPlanService seating plan service
+     * @param covidService covid service
+     * @param instructorService instuctor service
+     * @param studentService student service
+     */
     @Autowired
     public ScheduledService(NotificationService notificationService, SeatingPlanService seatingPlanService, CovidService covidService, InstructorService instructorService, StudentService studentService){
         this.notificationServices = notificationService;
@@ -37,6 +49,10 @@ public class ScheduledService {
         this.studentService = studentService;
     }
 
+    /**
+     * notifies instructors of current covid cases in their classes for that day
+     * this function is scheduled to be called in week days on 8:20 AM
+     */
     @Scheduled(cron = "0 20 8 * * MON-FRI")
     public void notifyInstructors(){
         List<Instructor> instructors = instructorService.findAll();
@@ -67,6 +83,10 @@ public class ScheduledService {
         }
     }
 
+    /**
+     * notifies nearby students in all seating plans in all secitons of a covid case that they need to take a covid test
+     * this method is scheduled to run everyday in 6:45 AM
+     */
     @Scheduled( cron = "0 45 6 * * *")
     public void notifyNearbyStudents(){
         List<Student> notAllowedStudents = covidService.getNotAllowedStudents();
@@ -90,13 +110,17 @@ public class ScheduledService {
     /**
      * This method will be used to validate all HES codes in the databases. To properly run this,
      * trIdNumber and eGovernmentPassword fields must be consisting of a valid credential pair.
-     * @implNote Without valid credentials, this method will not work.
+     * this method is scheduled to run every day in 6:30 AM
      */
     @Scheduled( cron = "0 30 6 * * *")
     public void periodicHEScodeValidation(){
         covidService.validateHesCodes("----TC KIMLIK-----", "---edevlet şifresi---");
     }
 
+    /**
+     * deletes all notifications of all users after 14 days has passed since the issuement of said notification
+     * this method is scheduled to run every day in 6:00 AM
+     */
     @Scheduled(cron = "0 0 6 * * *")
     public void deleteExpiredNotifications(){
         List<Notification> notificationList = notificationServices.getCovidNotifications();
