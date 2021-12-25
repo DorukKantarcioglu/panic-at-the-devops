@@ -58,6 +58,11 @@ public class StaffController {
         return ResponseEntity.ok(staffService.updateHesCode(id, hesCode));
     }
 
+    @PatchMapping(path = "/{id}", headers = "phoneNumber")
+    public ResponseEntity<Staff> updatePhoneNumber(@PathVariable Long id, @RequestHeader String phoneNumber) {
+        return ResponseEntity.ok(staffService.updatePhoneNumber(id, phoneNumber));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteStaff(@PathVariable Long id) {
         staffService.deleteById(id);
