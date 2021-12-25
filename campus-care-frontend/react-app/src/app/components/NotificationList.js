@@ -1,3 +1,7 @@
+import ReservationService from "../../service/ReservationService";
+import {useEffect, useState} from "react";
+import NotificationService from "../../service/NotificationService";
+
 const NotificationList = (props) => {
   const notifications = [
     {
@@ -11,18 +15,30 @@ const NotificationList = (props) => {
       content: "Risky student in your cs className",
     },
   ];
+  const [notification,setNotification]=useState();
+  async function fetchNotifications(){
+
+    const response = await NotificationService.getNotifications();
+    {
+        setNotification(response)
+    }
+
+  }
+  useEffect( async () => {
+    await fetchNotifications();
+  }, [])
 
   return (
     <div>
-      {notifications &&
-        notifications.map((notifications) => {
+      {notification &&
+        notification.map((notification ) => {
           return (
             <a href="#" className="list-group-item list-group-item-action">
               <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">{notifications.header}</h5>
-                <small>{notifications.date} days ago</small>
+                <h5 className="mb-1">{notification.type}</h5>
+                <small> {notification.date} days ago</small>
               </div>
-              <p className="mb-1">{notifications.content}</p>
+              <p className="mb-1">{notification.content}</p>
             </a>
           );
         })}
