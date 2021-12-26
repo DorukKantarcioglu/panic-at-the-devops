@@ -10,6 +10,13 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents the students enrolled in the campus.
+ * Students have current selected cafeterias and smoking areas to indicate where they are located in.
+ * A student also has many enrolled courses.
+ * @version 1.0
+ * @see com.panicatthedevops.campuscarebackend.entity.User
+ */
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)

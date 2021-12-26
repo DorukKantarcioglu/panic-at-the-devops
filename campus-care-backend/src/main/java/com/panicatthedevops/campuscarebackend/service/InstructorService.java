@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service layer for Instructor related functionalities
+ * @version 1.0
+ */
 @Service
 public class InstructorService {
     private final InstructorRepository instructorRepository;

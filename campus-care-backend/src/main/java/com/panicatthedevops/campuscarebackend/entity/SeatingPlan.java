@@ -6,6 +6,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Seating plan object that has a list of seating objects that belong to it.
+ * It is assigned to one course and has the row and column numbers of the seating plan
+ * @version 1.0
+ */
 @Entity
 @Table(name = "seatingPlan")
 @Getter

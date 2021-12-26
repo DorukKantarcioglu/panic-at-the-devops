@@ -9,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.Table;
 
+/**
+ * Represents the possible place a student can be located in.
+ * Extended by Cafeteria and SmokingArea classes
+ * @version 1.0
+ */
 @Inheritance
 @Entity
 @Table(name = "area")
@@ -21,10 +26,16 @@ public abstract class Area {
     String name;
     int liveCount;
 
+    /**
+     * Increases the count by one.
+     */
     public void incrementLiveCount() {
         liveCount++;
     }
 
+    /**
+     * Decreases the count by one.
+     */
     public void decrementLiveCount() {
         liveCount--;
     }

@@ -9,43 +9,34 @@ import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import CourseService from "../../../service/CourseService";
 import InstructorService from "../../../service/InstructorService";
 import LocalStorageService from "../../../service/LocalStorageService";
-
-const courses = [
-  {
-    name: "CS-319-1",
-  },
-  {
-    name: "CS-315-1",
-  },
-  {
-    name: "MATH-230-1",
-  },
-];
-
 const SideBar = (props) => {
 
   const [courses, setCourses] = useState()
   const history = useHistory();
   let subNavArr = [];
+  let list = [];
+
 
   useEffect(async () => {
     await fetchCourses()
-    if (courses)
-    createSubNav();
-
   }, []);
 
+  useEffect(async () => {
+    if (courses)
+    createSubNav()
+  }, [courses]);
+
   const fetchCourses=async () => {
-    const list = await InstructorService.getCourses(LocalStorageService.getId());
-
+    list = await InstructorService.getCourses(LocalStorageService.getId());
     setCourses(list);
-
   }
 
   const createSubNav = () => {
-    console.log(courses)
-    courses.forEach((c) => subNavArr.push({ title: c.name, itemId: c.name }));
+
+    courses.forEach((c) => subNavArr.push({ itemId: c.courseCode, title: c.courseCode }));
+    console.log(subNavArr)
   };
+
   return (
     <div>
       <>
@@ -56,17 +47,21 @@ const SideBar = (props) => {
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
                 onSelect={({ itemId }) => {
-                  if (itemId !== "/management" && itemId !== "/dashboard") {
+                  if (itemId !== "/management" && itemId !== "/profile") {
 
                     let path = "/course/".concat(itemId);
                     history.push(path);
+                  }
+                  else if (itemId === "/profile")
+                  {
+                    history.push(itemId)
                   }
 
                 }}
                 items={[
                   {
                     title: "Profile Info",
-                    itemId: "/dashboard",
+                    itemId: "/profile",
                     // you can use your own custom Icon component as well
                     // icon is optional
                     elemBefore: () => <FaUserAlt />,

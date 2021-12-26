@@ -34,7 +34,6 @@ const CoursePage = (props) => {
 
   return (
     <div>
-      <>{props.courseCode}</>
       <SeatingPlan
         show={showSeating}
         seatingPlan={seatingPlan}

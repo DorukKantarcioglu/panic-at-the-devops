@@ -5,6 +5,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Represents the notifications to be sent to the users.
+ * A notification can target only one user.
+ * @version 1.0
+ */
 @Entity
 @Table(name = "notification")
 @Getter

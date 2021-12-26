@@ -36,8 +36,6 @@ const CourseService = (function () {
   };
 
   const _addSeatingPlan=async (seatingPlanId, courseCode) => {
-    console.log(seatingPlanId)
-    debugger
     const response = await axios.patch(path.concat("/").concat(courseCode).concat("/seatingPlan"),{}, {
       headers: {
         seatingPlanId: seatingPlanId,

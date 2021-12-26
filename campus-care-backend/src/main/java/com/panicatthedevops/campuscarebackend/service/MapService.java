@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service layer for Map related functionalities
+ * @version 1.0
+ */
 @Service
 public class MapService {
     private final AreaRepository areaRepository;

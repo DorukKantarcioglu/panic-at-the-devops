@@ -30,6 +30,7 @@ const InstructorService =(function () {
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
         const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
         if (response) {
+
             return response.data;
         }
     }
@@ -103,6 +104,17 @@ const InstructorService =(function () {
         const response = await axios.get(url, {headers:{
                 Authorization : "Bearer " + LocalStorageService.getToken()
             }});
+        if (response) {
+            return response.data;
+        }
+    }
+    const _getNotifications=async (id) => {
+        const url = "http://localhost:8080/api/v1/instructor/" + id + "/notifications"
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: "Bearer " + LocalStorageService.getToken()
+            }
+        })
     }
 
     return(
@@ -116,7 +128,8 @@ const InstructorService =(function () {
             deleteInstructor: _deleteInstructor,
             addCourse: _addCourse,
             deleteCourse: _deleteCourse,
-            getCourses: _getCourses
+            getCourses: _getCourses,
+            getNotifications: _getNotifications
         }
     );
 

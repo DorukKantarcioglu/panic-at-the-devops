@@ -1,0 +1,8 @@
+com.panicatthedevops.campuscarebackend
+com.panicatthedevops.campuscarebackend.controller
+com.panicatthedevops.campuscarebackend.entity
+com.panicatthedevops.campuscarebackend.exception
+com.panicatthedevops.campuscarebackend.repository
+com.panicatthedevops.campuscarebackend.security
+com.panicatthedevops.campuscarebackend.service
+com.panicatthedevops.campuscarebackend.util

@@ -6,6 +6,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Represents the reservations a user can make.
+ * A reservation can be made by only one user.
+ * @version 1.0
+ */
+
 @Entity
 @Table(name = "reservation")
 @Getter

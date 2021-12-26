@@ -19,13 +19,13 @@ class MyProfile extends React.Component {
     return (
       <Container>
         <Row>
-            <div className="col-md-4" style={{ marginTop: "-30px",  marginLeft: "-40px" }}>
+            <div className="col-md-4" style={{ marginTop: "-133px",  marginLeft: "-330px" }}>
                 <SideBar/>
             </div>
             <Col md = {8}>
                 <Container>
                     <Row>
-                        <InfoBox/>
+                        <InfoBox style={{ marginTop: "-200px",  marginLeft: "-200px",  width: "100%"}}/>
                     </Row>
                     <br/>
                     <Row>

@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents the staff working for the university, eg. library staff, cleaning staff
+ * @see com.panicatthedevops.campuscarebackend.entity.User
+ */
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
