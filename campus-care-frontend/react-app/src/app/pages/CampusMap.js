@@ -2,12 +2,23 @@ import map from "../../public/map.jpg";
 import {Container, Row, Col} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import MyButton from "../components/MyButton/MyButton";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Card from "react-bootstrap/Button";
 import MyModal from "../components/MyModal/MyModal";
 import ReservationForm from "../components/appointmentComponents/ReservationForm";
+import CampusMapSelection from "../components/CampusMapSelection";
+import ReservationService from "../../service/ReservationService";
+import CampusMapList from "../components/CampusMapList";
+
 const CampusMap = () => {
     const [modal, setModal] = useState(false);
+    const[campusmap, setCampusMap] = useState([
+        { type: "",  place: "", },
+    ])
+
+    const createCampusMap = (newCampusMap) => {
+        setCampusMap([...campusmap, newCampusMap])
+    }
 
     return (
         <Container >
@@ -31,36 +42,14 @@ const CampusMap = () => {
                 </div>
             </Row>
             <Row>
-                <Form>
-                    <Form.Group>
-                        <Form.Label className="col-12" style={{ marginLeft: "0px" }}>
-                            Choose Type
-                        </Form.Label>
-                        <Form.Select>
-                            <option>...</option>
-                        </Form.Select>
-                    </Form.Group>
-
-                    <Row className="mb-2">
-                        <Col>
-                            <MyButton>
-                                Reserve
-                            </MyButton>
-                        </Col>
-                        <Col>
-                            <MyButton>
-                                Cancel
-                            </MyButton>
-                        </Col>
-                    </Row>
-                </Form>
+                <CampusMapList campusmap={campusmap}/>
             </Row>
             <MyModal
                 style={{ position: "relative" }}
                 visible={modal}
                 setVisible={setModal}
             >
-                Lmao
+                <CampusMapSelection create = {createCampusMap}/>
             </MyModal>
         </Container>
     )
