@@ -23,7 +23,7 @@ public class CampusCareBackendApplication {
     public CommandLineRunner lineRunner(
             StudentRepository studentRepository, InstructorRepository instructorRepository, CourseRepository courseRepository, StaffRepository staffRepository,
             CourseService courseService, SeatingPlanService seatingPlanService, SeatingObjectService seatingObjectService, ReservationService reservationService, StudentService studentService,
-            ScheduledService scheduledService,
+            ScheduledService scheduledService, NotificationService notificationService,
             ReservationRepository reservationRepository, AreaRepository areaRepository, NotificationRepository notificationRepository, SeatingPlanRepository seatingPlanRepository) {
         return args -> {
             studentRepository.saveAll(Arrays.asList(
@@ -47,9 +47,9 @@ public class CampusCareBackendApplication {
                     new Course("MATH-230-1", "Probability and Statistics for Engineers", 1, 25, instructorRepository.findById(99L).get(), null, null, "3 4 5")
             ));
 
-            notificationRepository.saveAll(Arrays.asList(new Notification(0, "Motivational quote1", NotificationType.MOTIVATIONAL_QUOTE,null, null),
-                    new Notification(0, "Its definitely not 1 am rn", NotificationType.MOTIVATIONAL_QUOTE, null, null ),
-                    new Notification(0, "You are covid positive and not allowed to enter the campus", NotificationType.COVID_NOTIFICATION, studentRepository.findById(21902319L).get(), "23/12/2021 18:20" )));
+            notificationRepository.saveAll(Arrays.asList(new Notification(0, "Work hard, stay positive, and get up early. It's the best part of the day. George Allen, Sr", NotificationType.MOTIVATIONAL_QUOTE,null, null),
+                    new Notification(0, "My optimism wears heavy boots and is loud –Henry Rollins", NotificationType.MOTIVATIONAL_QUOTE, null, null ),
+                    new Notification(0, "You are covid positive and not allowed to enter the campus", NotificationType.COVID_NOTIFICATION, studentRepository.findById(21902319L).get(), "27/12/2021 18:20" )));
 
             //staffRepository.saveAll(Arrays.asList(
             //        new Staff(5L, "Staff1", "password", "staff1@ug.bilkent.edu.tr", "hedcode-h", "000", false, true, false, null, null)
@@ -144,6 +144,9 @@ public class CampusCareBackendApplication {
 
             scheduledService.notifyInstructors();
             scheduledService.notifyNearbyStudents();
+
+            notificationService.saveMotivationalQuote("Live life to the fullest, focus on the positive-Matt Cameron");
+            notificationService.saveMotivationalQuote("Delete the negative; accentuate the positive-Donna Karan");
 
         };
     }
