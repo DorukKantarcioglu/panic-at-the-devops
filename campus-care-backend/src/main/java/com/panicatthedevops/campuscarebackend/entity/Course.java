@@ -32,7 +32,7 @@ public class Course {
     private Instructor instructor;
 
     @ManyToMany(mappedBy = "coursesTaken", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties({"coursesTaken", "reservations", "password"})
+    @JsonIgnoreProperties({"coursesTaken", "reservations", "password", "seatings"})
     List<Student> studentList;
 
     @OneToOne

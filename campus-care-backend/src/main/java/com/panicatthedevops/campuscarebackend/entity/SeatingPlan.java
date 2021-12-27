@@ -26,11 +26,11 @@ public class SeatingPlan {
     private int rowNumber;
     private int columnNumber;
 
-    @OneToMany(mappedBy = "seatingPlan")
+    @OneToMany(mappedBy = "seatingPlan", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("seatingPlan")
     private Set<SeatingObject> seatingSet;
 
     @OneToOne(mappedBy = "seatingPlan")
-    @JsonIgnoreProperties("seatingPlan")
+    @JsonIgnoreProperties({"seatingPlan", "notificationList","student"})
     private Course course;
 }

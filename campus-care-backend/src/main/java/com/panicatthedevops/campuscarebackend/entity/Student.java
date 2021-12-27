@@ -38,7 +38,7 @@ public class Student extends User {
         this.seatings = seatings;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "course_enrollment",
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "courseCode"))
     @JsonIgnoreProperties("studentList")

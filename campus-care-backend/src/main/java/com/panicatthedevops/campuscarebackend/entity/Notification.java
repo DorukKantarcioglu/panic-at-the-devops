@@ -27,7 +27,7 @@ public class Notification {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"notificationList", "password"})
+    @JsonIgnoreProperties({"notificationList", "password", "coursesGiven", "coursesTaken", "seatings"})
     private User user;
 
     private String date;

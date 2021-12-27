@@ -166,7 +166,7 @@ public class ReservationService {
                 user = instructorRepository.findById(userId).get();
             else
                 user = staffRepository.findById(userId).get();
-            if(!user.isAllowedOnCampus()){
+            if(!user.isAllowedOnCampus() && !type.equals(ReservationInformation.DIAGNOVIR_RESERVATION)){
                 throw new UserIsBannedFromCampusException("User " + userId + " cannot proceed with the reservation since he/she is banned from campus");
             }
             return reservationBehavior.reserve(date, timeSlot, place, user);

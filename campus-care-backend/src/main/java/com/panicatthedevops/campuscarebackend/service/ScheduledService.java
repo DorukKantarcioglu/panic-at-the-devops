@@ -73,8 +73,10 @@ public class ScheduledService {
 
                 StringBuilder notificationContent = new StringBuilder("For the course " + course.getCourseCode() + " the disallowed students are:\n");
                 for(Student student : studentList){
-                    notificationContent.append(student.getName()).append(" ");
+                    notificationContent.append(student.getName()).append(", ");
                 }
+                notificationContent.deleteCharAt(notificationContent.length()-1);
+                notificationContent.deleteCharAt(notificationContent.length()-1);
                 notificationContents.add(notificationContent.toString());
             }
             for(String notificationContent : notificationContents){
@@ -99,7 +101,7 @@ public class ScheduledService {
             String censoredSecondName = "" + student.getName().split(" ")[1].charAt(0);
             String notificationContent = "A student sitting near you (" + censoredFirstName + ". " + censoredSecondName + ".) has recently tested positive for covid, you are expected to take a test as soon as possible";
             for(Student nearbyStudent : nearbyStudents){
-                if(!notificationServices.existsByContent(notificationContent)){
+                if(!notificationServices.existsByContentAndUserId(notificationContent, nearbyStudent.getId())){
                     notificationServices.saveCovidNotification(notificationContent, nearbyStudent.getId());
                 }
             }

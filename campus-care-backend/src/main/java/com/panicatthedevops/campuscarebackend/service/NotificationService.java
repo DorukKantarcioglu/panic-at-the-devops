@@ -73,8 +73,8 @@ public class NotificationService {
         }
     }
 
-    public Boolean existsByContent(String content){
-        return notificationRepository.existsByContent(content);
+    public Boolean existsByContentAndUserId(String content, Long userId){
+        return notificationRepository.existsByContentAndUserId(content, userId);
     }
 
     public Notification saveCovidNotification(String content, long userId){

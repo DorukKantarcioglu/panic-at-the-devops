@@ -31,7 +31,7 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"reservations", "password"})
+    @JsonIgnoreProperties({"reservations", "password", "coursesTaken", "notificationList", "coursesGiven", "seatings"})
     private User user;
 
 }
