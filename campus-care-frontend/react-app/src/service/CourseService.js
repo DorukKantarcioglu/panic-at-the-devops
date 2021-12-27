@@ -15,6 +15,7 @@ const CourseService = (function () {
 
     const response = await axios.get(path, {headers: {Authorization: 'Bearer ' + LocalStorageService.getToken()}});
     if (response) {
+      console.log(response.data)
       return response.data;
     }
   };

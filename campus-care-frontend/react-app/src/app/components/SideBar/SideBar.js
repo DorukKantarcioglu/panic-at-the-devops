@@ -48,13 +48,18 @@ const SideBar = (props) => {
                 activeItemId="/management/members"
                 onSelect={({ itemId }) => {
                   if (itemId !== "/management" && itemId !== "/profile") {
+                    let path;
+                    console.log("history1 " + history.location.pathname)
+                    console.log("substring " + history.location.pathname.substring(0,7))
 
-                    let path = "/course/".concat(itemId);
-                    history.push(path);
-                  }
+                      path = "/course/".concat(itemId);
+                      console.log("history2 " + history.location.pathname)
+                      console.log("path: " + path)
+                    history.replace(path)
+                    }
                   else if (itemId === "/profile")
                   {
-                    history.push(itemId)
+                    history.replace(itemId)
                   }
 
                 }}

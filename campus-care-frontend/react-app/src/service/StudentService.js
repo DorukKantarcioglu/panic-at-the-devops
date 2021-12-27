@@ -89,6 +89,15 @@ const StudentService = (function () {
         })
     }
 
+    const _getReservations=async (id) => {
+        const url = "http://localhost:8080/api/v1/students/" + id + "/reservations"
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: "Bearer " + LocalStorageService.getToken()
+            }
+        })
+    }
+
 
     return {
         fetchAllStudents: _fetchAllStudents,
@@ -98,8 +107,8 @@ const StudentService = (function () {
         updateHesCode: _updateHesCode,
         deleteStudent: _deleteStudent,
         validateHesCode: _validateHesCode,
-        getNotifications: _getNotifications
-    };
+        getNotifications: _getNotifications,
+        getReservations: _getReservations}
 })();
 export default StudentService;
 

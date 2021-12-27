@@ -52,7 +52,7 @@ const ReservationService = (function () {
   };
 
   const _getAvailableTimes=async (type, date, place) => {
-    const response = await axios.get(path.concat("/timeSlot"), {
+    const response = await axios.get(path.concat("/timeSlots"), {
       headers: {
         type: type,
         date: date,

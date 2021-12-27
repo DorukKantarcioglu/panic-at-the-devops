@@ -3,8 +3,11 @@ import InfoBox from "../components/profileComponents/InfoBox";
 import { Container, Col, Row } from "react-bootstrap";
 import SideBar from "../components/SideBar/SideBar";
 import ReservationsList from "../components/appointmentComponents/ReservationsList";
+import ReservationService from "../../service/ReservationService";
+import AppointmentPage from "./AppointmentPage";
 
 class MyProfile extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -14,6 +17,7 @@ class MyProfile extends React.Component {
       hesCode: "XXX",
     };
   }
+
 
   render() {
     return (
@@ -29,7 +33,7 @@ class MyProfile extends React.Component {
                     </Row>
                     <br/>
                     <Row>
-                        <ReservationsList/>
+                        <AppointmentPage hidden ={true}/>
                     </Row>
                 </Container>
 

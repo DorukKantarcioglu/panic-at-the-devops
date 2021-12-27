@@ -28,13 +28,13 @@ public class CampusCareBackendApplication {
         return args -> {
             studentRepository.saveAll(Arrays.asList(
                     new Student(21902319L, "Doruk Kantarcıoğlu", new BCryptPasswordEncoder().encode("doruk-password"), "doruk@campuscare.com", "F4K2-1836-10", "num", false, false, false, null, null, null, null, null, null),
-                    new Student(21903087L, "Oğuz Ata Çal", "password", "oğuz@campuscare.com", "Oğuz-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
+                    new Student(21903087L, "Oğuz Ata Çal", new BCryptPasswordEncoder().encode("password"), "oğuz@campuscare.com", "Oğuz-HES-CODE", "num", true, true, false, null, null, null, null, null, null),
                     new Student(21903223L, "Yağmur Eryılmaz", new BCryptPasswordEncoder().encode("yagmur-password"), "yağmur@campuscare.com", "C6D9-3181-14", "num", true, true, false, null, null, null, null, null, null),
-                    new Student(21902460L, "Elif Çenesiz", "password", "elif@campuscare.com", "A6A2-1832-17", "num", false, true, false, null, null, null, null, null, null),
-                    new Student(21901008L, "Suleyman Hanyyev", "password", "suleyman@campuscare.com", "B4V3-8549-14", "num", true, true, false, null, null, null, null, null, null)
+                    new Student(21902460L, "Elif Çenesiz", new BCryptPasswordEncoder().encode("password"), "elif@campuscare.com", "A6A2-1832-17", "num", false, true, false, null, null, null, null, null, null),
+                    new Student(21901008L, "Suleyman Hanyyev", new BCryptPasswordEncoder().encode("password"), "suleyman@campuscare.com", "B4V3-8549-14", "num", true, true, false, null, null, null, null, null, null)
             ));
             instructorRepository.saveAll(Arrays.asList(
-                    new Instructor(4L, "Eray Tuzun", new BCryptPasswordEncoder().encode("eray-password"), "tuzun@campuscare.com", "B4V3-8549-14", "+90", true, true, false , null, null, null),
+                    new Instructor(4L, "Eray Tuzun", new BCryptPasswordEncoder().encode("a"), "tuzun@campuscare.com", "B4V3-8549-14", "+90", true, true, false , null, null, null),
                     new Instructor(12L, "Karani Kardaş", new BCryptPasswordEncoder().encode("karani-password"), "karani@campuscare.com", "A6A2-1832-17", "+90", true, true, false , null, null, null),
                     new Instructor(99L, "Dilek Köksal", new BCryptPasswordEncoder().encode("karani-password"), "dilek@campuscare.com", "B6A2-1832-17", "+90", true, true, false , null, null, null)
             ));

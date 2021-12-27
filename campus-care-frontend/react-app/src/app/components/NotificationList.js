@@ -1,6 +1,8 @@
 import ReservationService from "../../service/ReservationService";
 import {useEffect, useState} from "react";
 import NotificationService from "../../service/NotificationService";
+import InstructorService from "../../service/InstructorService";
+import LocalStorageService from "../../service/LocalStorageService";
 
 const NotificationList = (props) => {
   const notifications = [
@@ -18,10 +20,10 @@ const NotificationList = (props) => {
   const [notification,setNotification]=useState();
   async function fetchNotifications(){
 
-    const response = await NotificationService.getNotifications();
-    {
-        setNotification(response)
-    }
+
+    const response = await InstructorService.getNotifications(LocalStorageService.getId());
+    setNotification(response)
+
 
   }
   useEffect( async () => {

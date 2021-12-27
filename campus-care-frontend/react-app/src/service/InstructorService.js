@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorageService from "./LocalStorageService";
+import StudentService from "./StudentService";
 
 const InstructorService =(function () {
     
@@ -28,10 +29,13 @@ const InstructorService =(function () {
     const _getInstructorById=async(id)=>
     {
         const url = "http://localhost:8080/api/v1/instructors/".concat(id);
-        const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}});
+        const response = await axios.get(url, {headers:{Authorization : "Bearer " + LocalStorageService.getToken()}})
         if (response) {
-
             return response.data;
+        }
+        else {
+            console.log("else")
+            return StudentService.getStudentById(id);
         }
     }
     
@@ -109,12 +113,27 @@ const InstructorService =(function () {
         }
     }
     const _getNotifications=async (id) => {
-        const url = "http://localhost:8080/api/v1/instructor/" + id + "/notifications"
+        const url = "http://localhost:8080/api/v1/instructors/" + id + "/notifications"
         const response = await axios.get(url, {
             headers: {
                 Authorization: "Bearer " + LocalStorageService.getToken()
             }
         })
+        if (response) {
+            return response.data;
+        }
+    }
+
+    const _getReservations=async (id)=>{
+        const url = "http://localhost:8080/api/v1/instructors/" + id + "/reservations"
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: "Bearer " + LocalStorageService.getToken()
+            }
+        })
+        if (response) {
+            return response.data;
+        }
     }
 
     return(
@@ -129,7 +148,8 @@ const InstructorService =(function () {
             addCourse: _addCourse,
             deleteCourse: _deleteCourse,
             getCourses: _getCourses,
-            getNotifications: _getNotifications
+            getNotifications: _getNotifications,
+            getReservations: _getReservations
         }
     );
 

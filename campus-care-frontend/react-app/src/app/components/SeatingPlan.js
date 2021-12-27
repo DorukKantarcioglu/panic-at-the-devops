@@ -37,7 +37,7 @@ export default function SeatingPlan(props) {
       let id = j + i * 1;
 
       let temp = data;
-      temp[id] = list[x].student.id;
+      temp[x] = list[x].student.id;
       setData(temp);
     }
   };

@@ -6,7 +6,7 @@ import CourseService from "../../../service/CourseService";
 const StudentList = (props) => {
 
   const [riskColor, setColor] = useState(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   const handleShow = (id) => {
     const path = "/student-info/".concat(id);
@@ -41,7 +41,7 @@ const StudentList = (props) => {
   const checkRiskStatus = (status) => {
     let bgRisky = "#f0bac1";
     let bgRiskless = "#caf5d0";
-    if (status === "risky") {
+    if (status === false) {
       return bgRisky;
     } else {
       return bgRiskless;
@@ -73,10 +73,10 @@ const StudentList = (props) => {
                   <td>{student.id}</td>
                   <td
                     style={{
-                      backgroundColor: checkRiskStatus(student.riskStatus),
+                      backgroundColor: checkRiskStatus(student.allowedOnCampus),
                     }}
                   >
-                    {student.riskStatus}
+                    {student.allowedOnCampus}
                   </td>
                   <td>
                     <button

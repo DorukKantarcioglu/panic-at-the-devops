@@ -32,7 +32,6 @@ const AppRouter = () => {
 
   useEffect( async () => {
       await fetchData();
-      console.log(courses)
   }, []);
 
   return (
@@ -46,7 +45,7 @@ const AppRouter = () => {
       </Route>
       <Route path="/appointment">
         <MenuTab />
-        <AppointmentPage />
+        <AppointmentPage hidden = {false} />
       </Route>
       <Route path="/profile">
         <MenuTab />
@@ -55,7 +54,7 @@ const AppRouter = () => {
       <Route path="/campusmap">
         <MenuTab />
           <CampusMap/>
-        <CoursePage courseCode="MATH-230-1" />
+
       </Route>
       <Route path="/notifications">
         <MenuTab />

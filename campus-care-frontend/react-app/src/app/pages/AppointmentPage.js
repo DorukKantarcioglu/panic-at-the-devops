@@ -4,8 +4,11 @@ import MyModal from "../components/MyModal/MyModal";
 import Card from "react-bootstrap/Button";
 import ReservationsList from "../components/appointmentComponents/ReservationsList";
 import ReservationService from "../../service/ReservationService";
+import InstructorService from "../../service/InstructorService";
+import LocalStorageService from "../../service/LocalStorageService";
+import StudentService from "../../service/StudentService";
 
-const AppointmentPage = () => {
+const AppointmentPage = (props) => {
     const [modal, setModal] = useState(false);
     const[reservations, setReservations] = useState([
         {   date: "", timeSlot: "", place: "", type: "", userId: 0, id: 0, },
@@ -16,11 +19,14 @@ const AppointmentPage = () => {
     }
 
     async function fetchReservations(){
-        const response = await ReservationService.getReservations();
-        console.log( " I was here, didn't get the responses", response)
-        {response&& response.map(response0 =>
-            setReservations([response0])
-        )}
+
+        try{
+            let response = await  InstructorService.getReservations(LocalStorageService.getId())
+            setReservations(response)
+        } catch (e){
+            let response = await StudentService.getReservations(LocalStorageService.getId())
+            setReservations(response)
+        }
     }
 
     useEffect( async () => {
@@ -30,7 +36,7 @@ const AppointmentPage = () => {
   return (
     <React.Fragment>
       <div className="row justify-content-start">
-        <div className="col-2 align-center">
+        <div className="col-2 align-center" >
           <Card
             className="button"
             style={{
@@ -40,6 +46,8 @@ const AppointmentPage = () => {
             }}
             size="md"
             onClick={() => setModal(true)}
+            hidden={props.hidden}
+
           >
             New Appointment
           </Card>
