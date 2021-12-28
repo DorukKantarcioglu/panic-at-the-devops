@@ -137,7 +137,7 @@ public class ReservationService {
         }
     }
 
-    public void setReservationBehavior(String reservationType){
+    private void setReservationBehavior(String reservationType){
         if(reservationType.equals(ReservationInformation.DIAGNOVIR_RESERVATION))
             reservationBehavior = new DiagnovirReservationBehavior(reservationRepository, this);
         else if(reservationType.equals(ReservationInformation.LIBRARY_RESERVATION))

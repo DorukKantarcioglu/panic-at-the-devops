@@ -34,7 +34,7 @@ public class CampusCareBackendApplication {
                     new Student(21901008L, "Suleyman Hanyyev", new BCryptPasswordEncoder().encode("password"), "suleyman@campuscare.com", "B4V3-8549-14", "num", true, true, false, null, null, null, null, null, null)
             ));
             instructorRepository.saveAll(Arrays.asList(
-                    new Instructor(4L, "Eray Tuzun", new BCryptPasswordEncoder().encode("a"), "tuzun@campuscare.com", "B4V3-8549-14", "+90", true, true, false , null, null, null),
+                    new Instructor(4L, "Eray Tuzun", new BCryptPasswordEncoder().encode("aaaaaaa"), "tuzun@campuscare.com", "B4V3-8549-14", "+90", true, true, false , null, null, null),
                     new Instructor(12L, "Karani Kardaş", new BCryptPasswordEncoder().encode("karani-password"), "karani@campuscare.com", "A6A2-1832-17", "+90", true, true, false , null, null, null),
                     new Instructor(99L, "Dilek Köksal", new BCryptPasswordEncoder().encode("karani-password"), "dilek@campuscare.com", "B6A2-1832-17", "+90", true, true, false , null, null, null)
             ));
@@ -94,11 +94,11 @@ public class CampusCareBackendApplication {
             studentService.addCourse(21902460L, "CS-319-1");
             studentService.addCourse(21901008L, "CS-319-1");
 
-            studentService.addCourse(21902319L, "CS-315-1");
-            studentService.addCourse(21903087L, "CS-315-1");
-            studentService.addCourse(21903223L, "CS-315-2");
-            studentService.addCourse(21902460L, "CS-315-2");
-            studentService.addCourse(21901008L, "CS-315-2");
+            studentService.addCourse(21902319L, "CS-319-2");
+            studentService.addCourse(21903087L, "CS-319-3");
+            studentService.addCourse(21903223L, "CS-319-3");
+            studentService.addCourse(21902460L, "CS-319-2");
+            studentService.addCourse(21901008L, "CS-319-3");
 
             studentService.addCourse(21902319L, "MATH-230-1");
             studentService.addCourse(21903087L, "MATH-230-1");

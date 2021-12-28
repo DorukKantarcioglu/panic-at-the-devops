@@ -3,7 +3,7 @@ const ReservationsList = ({reservations}) => {
     return (
         <>
             <div className="row d-flex justify-content-start">
-                <h5> Upcoming Reservations </h5>
+                <h5> Upcoming Appointments </h5>
             </div>
             <table
                 className="border"

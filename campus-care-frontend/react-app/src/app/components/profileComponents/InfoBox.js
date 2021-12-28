@@ -3,6 +3,7 @@ import StudentService from "../../../service/StudentService";
 import { Container, Col, Row } from "react-bootstrap";
 import LocalStorageService from "../../../service/LocalStorageService";
 import InstructorService from "../../../service/InstructorService";
+import NewSeatingPlanForm from "./NewSeatingPlanForm";
 
 class InfoBox extends React.Component {
   constructor(props) {
@@ -64,30 +65,35 @@ class InfoBox extends React.Component {
               className="infoBox"
               style={{ borderStyle: "dashed", width :"700px"}}
             >
-              <label className="infoBox">
+              <label className="infoBox" style = {{fontWeight: "bold"}}>
                 {" "}
-                Name: {this.state.student.name}{" "}
-              </label>
+                Name: {" "}
+              </label><br />
+              <label>{this.state.student.name}</label>
               <br />
-              <label className="infoBox">
+              <label className="infoBox" style = {{fontWeight: "bold"}}>
                 {" "}
-                Email: {this.state.student.email}{" "}
-              </label>
+                Email: {" "}
+              </label><br />
+              <label>{this.state.student.email}</label>
               <br />
-              <label className="infoBox">
+              <label className="infoBox" style = {{fontWeight: "bold"}}>
                 {" "}
-                Hes Code: {this.state.student.hesCode}{" "}
-              </label>
+                Hes Code: {" "}
+              </label><br />
+              <label>{this.state.student.hesCode}</label>
               <br />
-              <label className="infoBox">
+              <label className="infoBox" style = {{fontWeight: "bold"}}>
                 {" "}
-                isAllowed: {this.state.student.allowedOnCampus}{" "}
-              </label>
+                Allowed on campus: {" "}
+              </label><br />
+              <label>{this.state.student.allowedOnCampus?("yes"):("no")}</label>
               <br />
-              <label className="infoBox">
+              <label className="infoBox" style = {{fontWeight: "bold"}}>
                 {" "}
-                vaccinated: {this.state.student.vaccinated}{" "}
-              </label>
+                Vaccinated: {" "}
+              </label><br />
+              {this.state.student.vaccinated?("yes"):("no")}
               <br />
             </div>
           </Col>
